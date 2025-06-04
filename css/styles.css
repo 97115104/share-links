@@ -29,17 +29,41 @@ body {
     animation: rainbowShift 25s ease-in-out infinite;
 }
 
-/* PWA/Standalone mode optimizations */
+/* iOS Safari and PWA specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* Target iOS Safari */
+    body {
+        background-attachment: scroll !important;
+    }
+    
+    /* iOS PWA detection - when status bar is hidden or in standalone */
+    @media (display-mode: standalone), 
+           (display-mode: fullscreen),
+           (-webkit-standalone) {
+        body {
+            background: #baffc9 !important;
+            background-image: none !important;
+            animation: none !important;
+        }
+        
+        .bg-animation {
+            display: none !important;
+        }
+    }
+}
+
+/* Additional PWA detection methods */
 @media (display-mode: standalone) {
     body {
-        background: #baffc9 !important; /* Simple solid fill - soft green */
+        background: #baffc9 !important;
+        background-image: none !important;
         background-size: auto !important;
         background-attachment: initial !important;
         animation: none !important;
     }
     
     .bg-animation {
-        display: none;
+        display: none !important;
     }
     
     .content {
@@ -48,17 +72,16 @@ body {
     }
 }
 
-/* iOS Safari specific fixes */
-@supports (-webkit-touch-callout: none) {
+/* Fallback for when all else fails - detect small viewport typical of PWA */
+@media (max-height: 700px) and (max-width: 500px) {
     body {
-        background-attachment: scroll;
+        background: #baffc9 !important;
+        background-image: none !important;
+        animation: none !important;
     }
     
-    /* Additional fix for iOS PWA */
-    @media (display-mode: standalone) {
-        body {
-            background: #baffc9 !important;
-        }
+    .bg-animation {
+        opacity: 0 !important;
     }
 }
 
