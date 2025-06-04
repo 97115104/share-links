@@ -1,0 +1,455 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 1rem;
+    background: linear-gradient(135deg, 
+        #ffb3ba 0%,   /* soft pink */
+        #ffdfba 16%,  /* soft orange */
+        #ffffba 32%,  /* soft yellow */
+        #baffc9 48%,  /* soft green */
+        #bae1ff 64%,  /* soft blue */
+        #c9baff 80%,  /* soft purple */
+        #ffb3ba 100%  /* back to soft pink */
+    );
+    background-size: 400% 400%;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+    overflow: hidden;
+    position: relative;
+    animation: rainbowShift 30s ease-in-out infinite;
+}
+
+@keyframes rainbowShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 25% 75%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 75% 25%;
+    }
+}
+
+/* Background animations */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-shape {
+    position: absolute;
+    background: linear-gradient(45deg, 
+        rgba(255, 179, 186, 0.15),
+        rgba(255, 223, 186, 0.15),
+        rgba(255, 255, 186, 0.15),
+        rgba(186, 255, 201, 0.15),
+        rgba(186, 225, 255, 0.15),
+        rgba(201, 186, 255, 0.15)
+    );
+    backdrop-filter: blur(20px);
+    animation: complexFloat 15s ease-in-out infinite, colorShift 20s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 60px;
+    height: 60px;
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.shape-2 {
+    width: 80px;
+    height: 80px;
+    top: 70%;
+    right: 15%;
+    animation-delay: 3s;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.shape-3 {
+    width: 40px;
+    height: 40px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 6s;
+    border-radius: 70% 30% 50% 50% / 60% 40% 60% 40%;
+}
+
+.shape-4 {
+    width: 70px;
+    height: 70px;
+    top: 30%;
+    right: 25%;
+    animation-delay: 1.5s;
+    border-radius: 40% 60% 30% 70% / 50% 60% 40% 50%;
+}
+
+.shape-5 {
+    width: 50px;
+    height: 50px;
+    top: 60%;
+    left: 5%;
+    animation-delay: 4.5s;
+    border-radius: 50% 50% 30% 70% / 40% 50% 50% 60%;
+}
+
+@keyframes complexFloat {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+        opacity: 0.6;
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    25% {
+        transform: translateY(-20px) translateX(15px) rotate(90deg) scale(1.1);
+        opacity: 0.8;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    50% {
+        transform: translateY(-10px) translateX(-10px) rotate(180deg) scale(0.9);
+        opacity: 0.7;
+        border-radius: 70% 30% 50% 50% / 60% 40% 60% 40%;
+    }
+    75% {
+        transform: translateY(5px) translateX(-15px) rotate(270deg) scale(1.05);
+        opacity: 0.9;
+        border-radius: 40% 60% 30% 70% / 50% 60% 40% 50%;
+    }
+}
+
+@keyframes colorShift {
+    0%, 100% {
+        background: linear-gradient(45deg, 
+            rgba(255, 179, 186, 0.15), rgba(255, 223, 186, 0.15), rgba(255, 255, 186, 0.15));
+    }
+    33% {
+        background: linear-gradient(45deg, 
+            rgba(186, 255, 201, 0.15), rgba(186, 225, 255, 0.15), rgba(201, 186, 255, 0.15));
+    }
+    66% {
+        background: linear-gradient(45deg, 
+            rgba(255, 223, 186, 0.15), rgba(255, 255, 186, 0.15), rgba(186, 255, 201, 0.15));
+    }
+}
+
+/* Main container */
+.qr-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.qr-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500, #26de81, #4bcffa, #a55eea);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textRainbow 8s ease-in-out infinite;
+}
+
+@keyframes textRainbow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.qr-subtitle {
+    color: #718096;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* QR Code styling */
+.qr-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+#qrcode {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+#qrcode canvas {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: qrPulse 4s ease-in-out infinite, qrFloat 6s ease-in-out infinite;
+}
+
+@keyframes qrPulse {
+    0%, 100% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.2), 0 0 20px rgba(75, 207, 250, 0.1);
+    }
+}
+
+@keyframes qrFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-3px) scale(1.02);
+    }
+}
+
+/* QR Code shine effect */
+.qr-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+    );
+    border-radius: 12px;
+    animation: shine 3s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 3;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    50% {
+        left: 100%;
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.url-display {
+    background: rgba(255, 107, 157, 0.1);
+    color: #ff6b9d;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    animation: urlGlow 5s ease-in-out infinite;
+}
+
+@keyframes urlGlow {
+    0%, 100% {
+        background: rgba(255, 107, 157, 0.1);
+        box-shadow: none;
+    }
+    50% {
+        background: rgba(255, 107, 157, 0.15);
+        box-shadow: 0 0 15px rgba(255, 107, 157, 0.2);
+    }
+}
+
+.instructions {
+    color: #4a5568;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.footer-note {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    color: #a0aec0;
+    font-size: 0.75rem;
+}
+
+/* Attestation badge styling */
+.attestation-badge {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.75rem;
+}
+
+.badge-link {
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.badge-link:hover {
+    transform: translateY(-1px);
+}
+
+.badge-link .badge-tooltip {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    background-color: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.badge-link .badge-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -4px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.badge-link:hover .badge-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+    
+    .qr-container {
+        padding: 1.25rem;
+        border-radius: 16px;
+        margin: auto;
+    }
+    
+    .qr-title {
+        font-size: 1.2rem;
+    }
+    
+    .qr-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .url-display {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .instructions {
+        font-size: 0.8rem;
+    }
+    
+    .footer-note {
+        font-size: 0.7rem;
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+    }
+    
+    .attestation-badge {
+        margin-top: 0.5rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 350px) {
+    .qr-container {
+        padding: 1rem;
+    }
+    
+    .qr-title {
+        font-size: 1.1rem;
+    }
+    
+    .attestation-badge img {
+        width: 90px;
+        height: 22px;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        padding: 0.5rem;
+        overflow-y: auto;
+    }
+    
+    .qr-container {
+        padding: 1rem;
+        max-width: 300px;
+    }
+    
+    .qr-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .qr-subtitle {
+        margin-bottom: 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .footer-note {
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+    }
+    
+    .attestation-badge {
+        margin-top: 0.25rem;
+    }
+}
