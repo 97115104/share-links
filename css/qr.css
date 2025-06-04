@@ -17,6 +17,7 @@ body {
         #ffb3ba 100%  /* back to soft pink */
     );
     background-size: 400% 400%;
+    background-attachment: fixed;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     flex-direction: column;
@@ -27,6 +28,38 @@ body {
     overflow: hidden;
     position: relative;
     animation: rainbowShift 30s ease-in-out infinite;
+}
+
+/* PWA/Standalone mode optimizations */
+@media (display-mode: standalone) {
+    body {
+        background-attachment: scroll;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        overflow-y: auto;
+        /* Simplified background for PWA mode */
+        background: linear-gradient(135deg, 
+            #ffb3ba 0%, 
+            #baffc9 50%, 
+            #c9baff 100%
+        );
+        animation: none;
+    }
+    
+    .bg-animation {
+        opacity: 0.3;
+    }
+    
+    .qr-container {
+        margin: 1rem auto;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        background-attachment: scroll;
+    }
 }
 
 @keyframes rainbowShift {
