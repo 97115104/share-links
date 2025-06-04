@@ -32,20 +32,19 @@ body {
 /* PWA/Standalone mode optimizations */
 @media (display-mode: standalone) {
     body {
-        background-attachment: scroll;
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        /* Simplified background for PWA mode */
-        background: linear-gradient(135deg, 
-            #ffb3ba 0%, 
-            #baffc9 50%, 
-            #c9baff 100%
-        );
-        animation: none;
+        background: #baffc9 !important; /* Simple solid fill - soft green */
+        background-size: auto !important;
+        background-attachment: initial !important;
+        animation: none !important;
     }
     
     .bg-animation {
-        opacity: 0.5;
+        display: none;
+    }
+    
+    .content {
+        margin: 1rem auto;
+        padding: 2rem 1.5rem;
     }
 }
 
@@ -53,6 +52,13 @@ body {
 @supports (-webkit-touch-callout: none) {
     body {
         background-attachment: scroll;
+    }
+    
+    /* Additional fix for iOS PWA */
+    @media (display-mode: standalone) {
+        body {
+            background: #baffc9 !important;
+        }
     }
 }
 
