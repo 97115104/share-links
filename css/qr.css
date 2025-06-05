@@ -447,18 +447,18 @@ body {
     right: 0;
     height: 3px;
     background: linear-gradient(90deg, 
-        transparent 0%, 
-        transparent 20%,
-        #ff6b9d 30%, 
-        #4bcffa 50%, 
-        #a55eea 70%,
-        transparent 80%,
-        transparent 100%
+        rgba(255, 179, 186, 0.2) 0%, 
+        rgba(255, 179, 186, 0.6) 10%,
+        rgba(255, 107, 157, 0.8) 25%, 
+        rgba(75, 207, 250, 0.8) 50%, 
+        rgba(165, 94, 234, 0.8) 75%,
+        rgba(255, 179, 186, 0.6) 90%,
+        rgba(255, 179, 186, 0.2) 100%
     );
     border-radius: 2px;
     animation: scannerLine 2.5s ease-in-out infinite;
     opacity: 0.9;
-    box-shadow: 0 0 8px rgba(255, 107, 157, 0.4);
+    box-shadow: 0 0 6px rgba(255, 107, 157, 0.3);
 }
 
 @keyframes scannerLine {
@@ -466,10 +466,10 @@ body {
         transform: translateY(0px);
         opacity: 0;
     }
-    5% {
+    8% {
         opacity: 0.9;
     }
-    95% {
+    92% {
         opacity: 0.9;
     }
     100% {
@@ -526,12 +526,7 @@ body {
 
 .url-icon {
     font-size: 1.1rem;
-    animation: iconSpin 8s linear infinite;
-}
-
-@keyframes iconSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    /* Removed spinning animation */
 }
 
 .copy-hint {

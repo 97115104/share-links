@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeBioToggle() {
     const bioToggle = document.querySelector('.bio-toggle');
     const bioContent = document.querySelector('.bio-content');
+    const easterEggSection = document.querySelector('.easter-egg-section');
     
     if (bioToggle && bioContent) {
         bioToggle.addEventListener('click', function() {
@@ -24,8 +25,19 @@ function initializeBioToggle() {
             
             if (isExpanded) {
                 bioContent.classList.remove('expanded');
+                // Hide easter egg when bio is collapsed
+                if (easterEggSection) {
+                    easterEggSection.classList.remove('show');
+                }
             } else {
                 bioContent.classList.add('expanded');
+                // Show easter egg when bio is expanded
+                if (easterEggSection) {
+                    setTimeout(() => {
+                        easterEggSection.classList.add('show');
+                        showNotification('🥚 Hidden wisdom discovered!');
+                    }, 800); // Delay to let bio expand first
+                }
             }
         });
     }
