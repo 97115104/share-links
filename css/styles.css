@@ -93,7 +93,7 @@ body {
 /* Fallback for when all else fails - detect small viewport typical of PWA */
 @media (max-height: 700px) and (max-width: 500px) {
     body {
-        background: #baffc9 !important;
+        background: #ffffff !important;
         background-image: none !important;
         animation: none !important;
     }

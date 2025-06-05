@@ -60,7 +60,7 @@ body {
            (display-mode: fullscreen),
            (-webkit-standalone) {
         body {
-            background: #baffc9 !important;
+            background: #ffffff !important;
             background-image: none !important;
             animation: none !important;
             overflow-y: auto !important;
@@ -75,7 +75,7 @@ body {
 /* Additional PWA detection methods */
 @media (display-mode: standalone) {
     body {
-        background: #baffc9 !important;
+        background: #ffffff !important;
         background-image: none !important;
         background-size: auto !important;
         background-attachment: initial !important;
@@ -95,7 +95,7 @@ body {
 /* Fallback for when all else fails - detect small viewport typical of PWA */
 @media (max-height: 700px) and (max-width: 500px) {
     body {
-        background: #baffc9 !important;
+        background: #ffffff !important;
         background-image: none !important;
         animation: none !important;
     }
