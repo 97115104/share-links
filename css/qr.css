@@ -7,17 +7,7 @@
 
 body {
     padding: 1rem;
-    background: linear-gradient(135deg, 
-        #ffb3ba 0%,   /* soft pink */
-        #ffdfba 16%,  /* soft orange */
-        #ffffba 32%,  /* soft yellow */
-        #baffc9 48%,  /* soft green */
-        #bae1ff 64%,  /* soft blue */
-        #c9baff 80%,  /* soft purple */
-        #ffb3ba 100%  /* back to soft pink */
-    );
-    background-size: 400% 400%;
-    background-attachment: fixed;
+    background: #ffffff;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     flex-direction: column;
@@ -27,7 +17,6 @@ body {
     min-height: 100dvh; /* Dynamic viewport height for mobile */
     overflow: hidden;
     position: relative;
-    animation: rainbowShift 30s ease-in-out infinite;
 }
 
 /* iOS Safari and PWA specific fixes */

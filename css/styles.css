@@ -11,22 +11,43 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, 
-        #ffb3ba 0%,   /* soft pink */
-        #ffdfba 16%,  /* soft orange */
-        #ffffba 32%,  /* soft yellow */
-        #baffc9 48%,  /* soft green */
-        #bae1ff 64%,  /* soft blue */
-        #c9baff 80%,  /* soft purple */
-        #ffb3ba 100%  /* back to soft pink */
-    );
-    background-size: 400% 400%;
-    background-attachment: fixed;
+    background: #ffffff;
     min-height: 100vh;
     min-height: 100dvh;
     overflow-x: hidden;
     line-height: 1.6;
-    animation: rainbowShift 25s ease-in-out infinite;
+}
+
+/* Desktop rainbow animation */
+@media (min-width: 769px) {
+    body {
+        background: linear-gradient(135deg, 
+            #ffb3ba 0%,   /* soft pink */
+            #ffdfba 16%,  /* soft orange */
+            #ffffba 32%,  /* soft yellow */
+            #baffc9 48%,  /* soft green */
+            #bae1ff 64%,  /* soft blue */
+            #c9baff 80%,  /* soft purple */
+            #ffb3ba 100%  /* back to soft pink */
+        );
+        background-size: 400% 400%;
+        animation: rainbowShift 25s ease-in-out infinite;
+    }
+}
+
+@keyframes rainbowShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 25% 75%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 75% 25%;
+    }
 }
 
 /* iOS Safari and PWA specific fixes */
@@ -123,15 +144,15 @@ body {
 .floating-shape {
     position: absolute;
     background: linear-gradient(45deg, 
-        rgba(255, 179, 186, 0.2),
-        rgba(255, 223, 186, 0.2),
-        rgba(255, 255, 186, 0.2),
-        rgba(186, 255, 201, 0.2),
-        rgba(186, 225, 255, 0.2),
-        rgba(201, 186, 255, 0.2)
+        rgba(255, 179, 186, 0.1),
+        rgba(255, 223, 186, 0.1),
+        rgba(255, 255, 186, 0.1),
+        rgba(186, 255, 201, 0.1),
+        rgba(186, 225, 255, 0.1),
+        rgba(201, 186, 255, 0.1)
     );
-    backdrop-filter: blur(15px);
-    animation: complexFloat 12s ease-in-out infinite, colorShift 18s ease-in-out infinite;
+    backdrop-filter: blur(20px);
+    animation: complexFloat 15s ease-in-out infinite;
 }
 
 @keyframes colorShift {
@@ -353,13 +374,54 @@ body {
     color: var(--heading-color);
 }
 
-/* Bio section */
+/* Bio section - Expandable */
 .bio-section {
     margin-bottom: 2.5rem;
 }
 
+.bio-toggle {
+    background: none;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4a5568;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.bio-toggle:hover {
+    border-color: #cbd5e0;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.bio-toggle-icon {
+    transition: transform 0.3s ease;
+    margin-left: 0.5rem;
+}
+
+.bio-toggle[aria-expanded="true"] .bio-toggle-icon {
+    transform: rotate(180deg);
+}
+
 .bio-content {
     text-align: left;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.bio-content.expanded {
+    max-height: 1000px;
+    opacity: 1;
 }
 
 .bio-text {
@@ -367,6 +429,18 @@ body {
     font-size: 1rem;
     margin-bottom: 1rem;
     line-height: 1.7;
+}
+
+.bio-link {
+    color: #667eea;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.bio-link:hover {
+    color: #5a67d8;
+    border-bottom-color: #5a67d8;
 }
 
 .bio-text.networking {

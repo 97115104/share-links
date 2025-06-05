@@ -61,11 +61,16 @@
                 </div>
             </section>
 
-            <!-- Bio section -->
+            <!-- Bio section - Expandable -->
             <section class="bio-section">
-                <div class="bio-content">
+                <button class="bio-toggle" aria-expanded="false" aria-controls="bio-content">
+                    <span class="bio-toggle-text">Personal fluff</span>
+                    <i class="fas fa-chevron-down bio-toggle-icon"></i>
+                </button>
+                
+                <div class="bio-content" id="bio-content">
                     <p class="bio-text">
-                        Employee zero at status.health and healthprotocol.network, reimagining healthcare through privacy-first public good infrastructure. A lifelong builder who started modding World of Warcraft to run on Linux and somehow ended up holding patents and launching prizes for zero-knowledge research.
+                        Employee zero at status.health and healthprotocol.network, reimagining healthcare through privacy-first public good infrastructure. A lifelong builder who started modding <a href="https://en.wikipedia.org/wiki/World_of_Warcraft" target="_blank" class="bio-link">World of Warcraft</a> to run on <a href="https://en.wikipedia.org/wiki/Linux" target="_blank" class="bio-link">Linux</a> and somehow ended up holding <a href="https://drive.google.com/file/d/1_4DmuODdSGVrdFsH3eMu758Moij-I_vp/view" target="_blank" class="bio-link">patents</a> and launching the <a href="https://pioneersprize.polkadot.network/" target="_blank" class="bio-link">Polkadot Pioneers Prize</a> for zero-knowledge research.
                     </p>
                     <p class="bio-text">
                         I build like I write: more often than I'd like, a little sarcastically, and usually after some matcha. San Francisco-based, delightfully homosexual, and firmly convinced that tech should be as respectful as it is powerful.
@@ -83,7 +88,7 @@
 
             <!-- Links section -->
             <section class="links-section">
-                <h2 class="section-title">How to Find Me on the Internet</h2>
+                <h2 class="section-title">Get in Touch</h2>
                 
                 <!-- Social links -->
                 <div class="links-grid">
@@ -206,9 +211,13 @@
             <!-- Footer -->
             <footer class="footer">
                 <p class="footer-text">
-                    "silent waiting on the truth, pure sitting and breathing in the presence of the question mark."
+                    Onward and upward! 🧑‍💻
                 </p>
-                <p class="footer-subtext">Onward and upward! 🧑‍💻</p>
+                
+                <!-- Hidden easter egg quote -->
+                <div class="easter-egg-quote" id="easter-egg">
+                    "silent waiting on the truth, pure sitting and breathing in the presence of the question mark."
+                </div>
                 
                 <!-- Claude attestation badge -->
                 <div class="attestation-badge">

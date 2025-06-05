@@ -5,9 +5,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all interactive features
     initializeAnimations();
     initializeInteractiveElements();
+    initializeBioToggle();
     initializeEasterEggs();
     initializePerformanceOptimizations();
 });
+
+// Bio toggle functionality
+function initializeBioToggle() {
+    const bioToggle = document.querySelector('.bio-toggle');
+    const bioContent = document.querySelector('.bio-content');
+    
+    if (bioToggle && bioContent) {
+        bioToggle.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            this.setAttribute('aria-expanded', !isExpanded);
+            
+            if (isExpanded) {
+                bioContent.classList.remove('expanded');
+            } else {
+                bioContent.classList.add('expanded');
+            }
+        });
+    }
+}
 
 // Animation and interaction handlers
 function initializeAnimations() {
@@ -198,17 +219,45 @@ function initializeEasterEggs() {
     // Click counter easter egg on profile image
     let clickCount = 0;
     const profileImage = document.querySelector('.profile-image');
-    profileImage.addEventListener('click', () => {
-        clickCount++;
-        if (clickCount === 5) {
-            triggerProfileEasterEgg();
-            clickCount = 0;
-        }
-    });
+    if (profileImage) {
+        profileImage.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 5) {
+                triggerProfileEasterEgg();
+                clickCount = 0;
+            }
+        });
+    }
     
-    // Secret champagne easter egg
-    const footer = document.querySelector('.footer');
-    footer.addEventListener('dblclick', triggerChampagneEasterEgg);
+    // Make easter egg quote more discoverable - click or hover to reveal
+    const easterEgg = document.getElementById('easter-egg');
+    if (easterEgg) {
+        // Click to reveal permanently (until page reload)
+        easterEgg.addEventListener('click', () => {
+            easterEgg.classList.add('revealed');
+            showNotification('🤔 "The unexamined life is not worth living" - Socrates... or Austin?');
+        });
+        
+        // Long hover also reveals it temporarily
+        let hoverTimeout;
+        easterEgg.addEventListener('mouseenter', () => {
+            hoverTimeout = setTimeout(() => {
+                easterEgg.style.opacity = '0.8';
+                easterEgg.style.color = '#718096';
+            }, 1000); // 1 second hover
+        });
+        
+        easterEgg.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+            if (!easterEgg.classList.contains('revealed')) {
+                easterEgg.style.opacity = '';
+                easterEgg.style.color = '';
+            }
+        });
+        
+        // Add subtle hint text
+        easterEgg.title = 'Something philosophical lurks here...';
+    }
 }
 
 function triggerEasterEgg() {
@@ -244,9 +293,12 @@ function triggerProfileEasterEgg() {
     }
 }
 
-function triggerChampagneEasterEgg() {
-    showNotification('🥂 Cheers! Every crisis averted deserves a toast!');
-    createChampagneBubbles();
+function revealEasterEggQuote() {
+    const easterEgg = document.querySelector('.easter-egg-quote');
+    if (easterEgg) {
+        easterEgg.classList.add('revealed');
+        showNotification('🤔 "The unexamined life is not worth living" - Socrates... or Austin?');
+    }
 }
 
 function createMatrixRain() {
