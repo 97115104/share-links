@@ -449,56 +449,102 @@ body {
     border-left: 4px solid #9370db;
 }
 
-.bio-highlight {
-    color: #ff6b9d;
-    font-size: 1rem;
-    font-weight: 500;
-    font-style: italic;
+/* Personal details section with beverage and MBTI */
+.personal-details {
     margin-top: 1.5rem;
-    padding: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Favorite beverage styling - from team.css */
+.favorite-beverage {
+    margin-top: 20px;
+    padding: 15px;
     background: rgba(255, 107, 157, 0.1);
     border-radius: 12px;
-    border-left: 4px solid #ff6b9d;
-    text-align: center;
     display: flex;
     align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.favorite-beverage:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.beverage-emoji {
+    font-size: 2rem;
+    margin-right: 15px;
+    animation: float-emoji 3s ease-in-out infinite alternate;
+}
+
+.beverage-content h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.95rem;
+    color: #ff6b9d;
+    font-weight: 600;
+}
+
+.beverage-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #4a5568;
+}
+
+/* Myers-Briggs badge - from team.css */
+.personality-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #4a5568;
+    transition: transform 0.2s, background-color 0.2s;
+    text-decoration: none;
+    width: 100%;
     justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
-.bio-highlight span:first-child {
-    font-size: 1.2rem;
-    animation: floatChampagne 3s ease-in-out infinite;
+.personality-badge:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: #4a5568;
 }
 
-@keyframes floatChampagne {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
+.mbti-type {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.mbti-divider {
+    margin: 0 5px;
+    color: #a0aec0;
+}
+
+.mbti-name {
+    font-style: italic;
+    color: #4a5568;
+}
+
+/* Animation keyframes from team.css */
+@keyframes float-emoji {
+    0% {
+        transform: translateY(0) rotate(0deg);
     }
     50% {
-        transform: translateY(-5px) rotate(5deg);
+        transform: translateY(-3px) rotate(5deg);
     }
-}
-
-.mbti-badge {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    font-style: normal;
-    margin-left: 0.5rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.mbti-badge:hover {
-    transform: translateY(-1px);
-    color: white;
+    100% {
+        transform: translateY(3px) rotate(-5deg);
+    }
 }
 
 /* Links section */
@@ -702,6 +748,90 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Enhanced easter egg quote styling with golden egg animation */
+.easter-egg-quote {
+    position: relative;
+    display: block;
+    padding: 15px 20px;
+    margin: 1rem 0;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #667eea;
+    font-style: italic;
+    color: #4a5568;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.easter-egg-quote:hover {
+    background: rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+.easter-egg-quote.golden-egg {
+    background: linear-gradient(45deg, 
+        rgba(255, 215, 0, 0.1), 
+        rgba(255, 193, 7, 0.1), 
+        rgba(255, 215, 0, 0.1));
+    border-left-color: #ffd700;
+    font-size: 1.5rem;
+    animation: goldenEggPulse 2s ease-in-out infinite;
+    font-style: normal;
+}
+
+.easter-egg-quote.hint-mode {
+    background: rgba(255, 215, 0, 0.1);
+    border-left-color: #ffd700;
+    color: #b8860b;
+    font-size: 0.95rem;
+    animation: goldenGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes goldenEggPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+}
+
+@keyframes goldenGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+    }
+}
+
+.easter-egg-quote.typing::after {
+    content: '';
+    display: none;
+}
+
+.easter-egg-quote.revealed {
+    background: rgba(255, 107, 157, 0.1);
+    border-left-color: #ff6b9d;
+    font-family: 'Courier', monospace;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 .attestation-badge {
     display: flex;
     justify-content: center;
@@ -751,7 +881,7 @@ body {
     transform: translateX(-50%) scale(1);
 }
 
-/* Pride badge section */
+/* Pride badge section with unicorn easter egg */
 .pride-section {
     margin: 2rem 0;
 }
@@ -769,10 +899,67 @@ body {
     transition: transform 0.3s ease;
     width: 100%;
     max-width: 100%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .pride-badge:hover {
     transform: translateY(-2px);
+}
+
+.pride-badge.unicorn-mode {
+    background: linear-gradient(45deg, 
+        rgba(255, 182, 193, 0.9), 
+        rgba(255, 222, 173, 0.9), 
+        rgba(255, 255, 173, 0.9), 
+        rgba(173, 255, 182, 0.9), 
+        rgba(173, 216, 255, 0.9), 
+        rgba(216, 173, 255, 0.9));
+    background-size: 300% 300%;
+    animation: unicornGradient 2s ease-in-out infinite;
+}
+
+@keyframes unicornGradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.unicorn-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.sparkle {
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    opacity: 0;
+    animation: sparkleFloat 2s ease-out infinite;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.5) rotate(360deg);
+    }
 }
 
 .pride-flag {
@@ -818,6 +1005,19 @@ body {
     
     .companies {
         align-items: center;
+    }
+    
+    .personal-details {
+        gap: 0.75rem;
+    }
+    
+    .favorite-beverage {
+        padding: 12px;
+    }
+    
+    .beverage-emoji {
+        font-size: 1.5rem;
+        margin-right: 12px;
     }
 }
 

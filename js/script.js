@@ -1,5 +1,5 @@
 // Austin Harshberger Contact Page - Interactive Enhancements
-// Adding delightful interactions and animations
+// Adding delightful interactions and animations with team.js style typing
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all interactive features
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeBioToggle();
     initializeEasterEggs();
     initializePerformanceOptimizations();
+    initializeBeverageAnimations();
 });
 
 // Bio toggle functionality
@@ -28,6 +29,15 @@ function initializeBioToggle() {
             }
         });
     }
+}
+
+// Random rotation for beverage emojis - from team.js
+function initializeBeverageAnimations() {
+    const beverageEmojis = document.querySelectorAll('.beverage-emoji');
+    beverageEmojis.forEach(emoji => {
+        const randomDelay = Math.random() * 2;
+        emoji.style.animationDelay = `${randomDelay}s`;
+    });
 }
 
 // Animation and interaction handlers
@@ -97,7 +107,9 @@ function initializeInteractiveElements() {
 
     // Email link special behavior
     const emailLink = document.querySelector('.email');
-    emailLink.addEventListener('click', handleEmailClick);
+    if (emailLink) {
+        emailLink.addEventListener('click', handleEmailClick);
+    }
 }
 
 function handleCardHover(e) {
@@ -229,58 +241,273 @@ function initializeEasterEggs() {
         });
     }
     
-    // Enhanced easter egg quote - more engaging and interactive
+    // Pride badge unicorn easter egg
+    const prideBadge = document.querySelector('.pride-badge');
+    if (prideBadge) {
+        let unicornClickCount = 0;
+        prideBadge.addEventListener('click', () => {
+            unicornClickCount++;
+            if (unicornClickCount === 3) {
+                triggerUnicornMode();
+                unicornClickCount = 0;
+            }
+        });
+    }
+    
+    // Enhanced easter egg quote with typing animation like team.js
     const easterEgg = document.getElementById('easter-egg');
     if (easterEgg) {
-        // Start with an intriguing hint
-        easterEgg.innerHTML = 'slice the philosophical pie...';
-        easterEgg.title = 'Something contemplative awaits your discovery';
+        let currentPhase = 0; // 0: initial egg, 1: egg clicked, 2: typing, 3: final
+        let isTyping = false;
         
-        let hasBeenRevealed = false;
+        // Initialize with golden egg
+        easterEgg.innerHTML = '🥚';
+        easterEgg.classList.add('golden-egg');
         
-        // First click reveals the quote
         easterEgg.addEventListener('click', (e) => {
-            if (!hasBeenRevealed) {
-                // First reveal - show the quote
-                easterEgg.innerHTML = '"silent waiting on the truth, pure sitting and breathing in the presence of the question mark."';
-                easterEgg.classList.add('revealed');
-                showNotification('🧘‍♂️ A moment of zen in the startup chaos...');
-                hasBeenRevealed = true;
+            if (currentPhase === 0 && !isTyping) {
+                // First click - show hint to click again
+                showClickAgainHint(easterEgg);
+                currentPhase = 1;
                 e.stopPropagation();
-            } else {
-                // Second click on cake - show startup interpretation
-                const rect = e.target.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const width = rect.width;
-                
-                // Check if clicked on the cake (right side)
-                if (x > width * 0.8) {
-                    showStartupInterpretation();
-                    e.stopPropagation();
-                }
+            } else if (currentPhase === 1 && !isTyping) {
+                // Second click - start typing quote and show zen animation
+                startTypingAnimation(easterEgg, '"silent waiting on the truth, pure sitting and breathing in the presence of the question mark."');
+                showZenBookAnimation();
+                currentPhase = 2;
+                e.stopPropagation();
+            } else if (currentPhase === 2 && !isTyping) {
+                // Hidden third click - show startup interpretation (user has to find this)
+                showStartupInterpretation();
+                e.stopPropagation();
             }
         });
         
-        // Hover effects for engagement
-        let hoverTimeout;
+        // Hover effects for the golden egg
         easterEgg.addEventListener('mouseenter', () => {
-            hoverTimeout = setTimeout(() => {
-                if (!hasBeenRevealed) {
-                    easterEgg.style.opacity = '0.8';
-                    easterEgg.style.color = '#9ca3af';
-                    easterEgg.innerHTML = 'wisdom awaits the curious...';
-                }
-            }, 600);
+            if (currentPhase === 0) {
+                easterEgg.style.transform = 'scale(1.1)';
+            }
         });
         
         easterEgg.addEventListener('mouseleave', () => {
-            clearTimeout(hoverTimeout);
-            if (!hasBeenRevealed) {
-                easterEgg.style.opacity = '';
-                easterEgg.style.color = '';
-                easterEgg.innerHTML = 'slice the philosophical pie...';
+            if (currentPhase === 0) {
+                easterEgg.style.transform = '';
             }
         });
+        
+        // Function to show click again hint
+        function showClickAgainHint(element) {
+            element.innerHTML = '✨ Click again for a moment of startup bliss via quotation ✨';
+            element.classList.remove('golden-egg');
+            element.classList.add('hint-mode');
+            element.style.background = 'rgba(255, 215, 0, 0.1)';
+            element.style.borderLeftColor = '#ffd700';
+            element.style.color = '#b8860b';
+            element.style.fontSize = '0.95rem';
+            
+            showNotification('🥇 The golden wisdom awaits your second touch...');
+        }
+        
+        // Function to show zen book animation across screen
+        function showZenBookAnimation() {
+            const zenContainer = document.createElement('div');
+            zenContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(123, 104, 238, 0.1);
+                backdrop-filter: blur(2px);
+                animation: zenFadeIn 1s ease-out;
+            `;
+            
+            // Create book with zen emojis
+            const bookElement = document.createElement('div');
+            bookElement.style.cssText = `
+                font-size: 4rem;
+                animation: zenBookFloat 1s ease-out;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            `;
+            bookElement.innerHTML = '🧘‍♂️ 📖 🧘‍♀️';
+            
+            // Add floating zen elements around the book
+            const zenEmojis = ['🧘‍♂️', '🧘‍♀️', '🕯️', '🌸', '☯️', '🍃', '💫'];
+            for (let i = 0; i < 12; i++) {
+                const zenElement = document.createElement('div');
+                zenElement.textContent = zenEmojis[Math.floor(Math.random() * zenEmojis.length)];
+                zenElement.style.cssText = `
+                    position: absolute;
+                    font-size: 2rem;
+                    left: ${20 + Math.random() * 60}%;
+                    top: ${20 + Math.random() * 60}%;
+                    animation: zenFloat ${1 + Math.random() * 0.5}s ease-out;
+                    opacity: 0.8;
+                `;
+                zenContainer.appendChild(zenElement);
+            }
+            
+            zenContainer.appendChild(bookElement);
+            document.body.appendChild(zenContainer);
+            
+            // Add zen animation styles
+            const zenStyle = document.createElement('style');
+            zenStyle.textContent = `
+                @keyframes zenFadeIn {
+                    0% { opacity: 0; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0; }
+                }
+                
+                @keyframes zenBookFloat {
+                    0% { 
+                        transform: scale(0.5) translateY(50px);
+                        opacity: 0;
+                    }
+                    50% { 
+                        transform: scale(1.2) translateY(0px);
+                        opacity: 1;
+                    }
+                    100% { 
+                        transform: scale(1) translateY(-20px);
+                        opacity: 0.8;
+                    }
+                }
+                
+                @keyframes zenFloat {
+                    0% { 
+                        transform: scale(0) rotate(0deg);
+                        opacity: 0;
+                    }
+                    50% { 
+                        transform: scale(1.2) rotate(180deg);
+                        opacity: 1;
+                    }
+                    100% { 
+                        transform: scale(0.8) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(zenStyle);
+            
+            // Remove after 1 second
+            setTimeout(() => {
+                zenContainer.remove();
+                zenStyle.remove();
+            }, 1000);
+        }
+        
+        // Function to start typing animation - based on team.js (without cursor)
+        function startTypingAnimation(element, text) {
+            isTyping = true;
+            
+            // Clear the element and add typing class
+            element.innerHTML = '';
+            element.classList.add('typing');
+            element.classList.add('revealed');
+            element.classList.remove('hint-mode');
+            
+            // Parse text and tags
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const textAndTags = extractTextAndTags(doc.body);
+            
+            let currentIndex = 0;
+            let currentString = '';
+            
+            // Function to type one character at a time
+            function typeNextChar() {
+                if (currentIndex < textAndTags.length) {
+                    const item = textAndTags[currentIndex];
+                    
+                    if (item.type === 'text') {
+                        // Add one character at a time for text
+                        if (item.content.length > 0) {
+                            currentString += item.content.charAt(0);
+                            item.content = item.content.substring(1);
+                            element.innerHTML = currentString;
+                            
+                            // Continue typing after a short delay
+                            setTimeout(typeNextChar, 40 + Math.random() * 20);
+                        } else {
+                            currentIndex++;
+                            typeNextChar();
+                        }
+                    } else if (item.type === 'tag') {
+                        // Add entire tag at once
+                        currentString += item.content;
+                        element.innerHTML = currentString;
+                        currentIndex++;
+                        
+                        // Continue immediately to the next item
+                        typeNextChar();
+                    }
+                } else {
+                    // Typing completed
+                    setTimeout(() => {
+                        element.classList.remove('typing');
+                        isTyping = false;
+                        showNotification('💭 The deepest truths require the most searching...');
+                        
+                        // Add subtle hint for the final easter egg
+                        setTimeout(() => {
+                            element.style.cursor = 'pointer';
+                            element.title = 'There may be more to discover...';
+                        }, 3000);
+                    }, 1000);
+                }
+            }
+            
+            // Start typing
+            typeNextChar();
+        }
+        
+        // Extract HTML structure (text vs tags) - from team.js
+        function extractTextAndTags(node) {
+            const items = [];
+            
+            Array.from(node.childNodes).forEach(child => {
+                if (child.nodeType === Node.TEXT_NODE) {
+                    // Text node
+                    items.push({
+                        type: 'text',
+                        content: child.textContent
+                    });
+                } else if (child.nodeType === Node.ELEMENT_NODE) {
+                    // Element node (tags)
+                    const outerHTML = child.outerHTML;
+                    const innerHTML = child.innerHTML;
+                    
+                    // Get opening tag
+                    const openingTag = outerHTML.substring(0, outerHTML.indexOf(innerHTML));
+                    items.push({
+                        type: 'tag',
+                        content: openingTag
+                    });
+                    
+                    // Process children recursively
+                    items.push(...extractTextAndTags(child));
+                    
+                    // Get closing tag
+                    const closingTag = outerHTML.substring(outerHTML.indexOf(innerHTML) + innerHTML.length);
+                    items.push({
+                        type: 'tag',
+                        content: closingTag
+                    });
+                }
+            });
+            
+            return items;
+        }
     }
 }
 
@@ -288,6 +515,48 @@ function triggerEasterEgg() {
     // Matrix-style rain effect
     showNotification('🎉 Konami Code Activated! Welcome to the Matrix...');
     createMatrixRain();
+}
+
+function triggerUnicornMode() {
+    const prideBadge = document.querySelector('.pride-badge');
+    const prideText = document.querySelector('.pride-text');
+    
+    // Add unicorn mode class
+    prideBadge.classList.add('unicorn-mode');
+    
+    // Change text temporarily
+    const originalText = prideText.textContent;
+    prideText.textContent = '🦄 Fun & Fabulous 🦄';
+    
+    // Create sparkles container
+    const sparklesContainer = document.createElement('div');
+    sparklesContainer.className = 'unicorn-sparkles';
+    prideBadge.appendChild(sparklesContainer);
+    
+    // Create sparkles
+    const sparkleEmojis = ['✨', '⭐', '🌟', '💫', '🔮'];
+    for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.animationDelay = `${Math.random() * 2}s`;
+        sparklesContainer.appendChild(sparkle);
+    }
+    
+    // Create floating unicorns
+    createFloatingUnicorns();
+    
+    // Show notification
+    showNotification('🦄 Unicorn magic activated! You\'ve unlocked fabulous mode! ✨');
+    
+    // Revert after 8 seconds
+    setTimeout(() => {
+        prideBadge.classList.remove('unicorn-mode');
+        prideText.textContent = originalText;
+        sparklesContainer.remove();
+    }, 8000);
 }
 
 function triggerProfileEasterEgg() {
@@ -339,7 +608,6 @@ function showStartupInterpretation() {
             
             <div style="text-align: center; margin-top: 1.5rem; padding: 1rem; background: rgba(0, 0, 0, 0.02); border-radius: 8px;">
                 <em style="color: #4a5568;">"The best startups aren't built in the noise of certainty,<br>but in the quiet confidence of questions worth asking."</em>
-                <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #718096;">— Austin's interpretation, probably over matcha</div>
             </div>
         </div>
     `;
