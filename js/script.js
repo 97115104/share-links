@@ -25,17 +25,12 @@ function initializeBioToggle() {
             
             if (isExpanded) {
                 bioContent.classList.remove('expanded');
-                // Hide easter egg when bio is collapsed
-                if (easterEggSection) {
-                    easterEggSection.classList.remove('show');
-                }
             } else {
                 bioContent.classList.add('expanded');
-                // Show easter egg when bio is expanded
-                if (easterEggSection) {
+                // Show easter egg when bio is expanded (and keep it visible)
+                if (easterEggSection && !easterEggSection.classList.contains('show')) {
                     setTimeout(() => {
                         easterEggSection.classList.add('show');
-                        showNotification('🥚 Hidden wisdom discovered!');
                     }, 800); // Delay to let bio expand first
                 }
             }
@@ -253,38 +248,15 @@ function initializeEasterEggs() {
         });
     }
     
-    // Easter egg dropdown functionality
-    const easterEggBtn = document.getElementById('easter-egg-btn');
-    const easterEggDropdown = document.getElementById('easter-egg-dropdown');
-    
-    if (easterEggBtn && easterEggDropdown) {
-        easterEggBtn.addEventListener('click', () => {
-            const isOpen = easterEggBtn.getAttribute('aria-expanded') === 'true';
-            
-            if (!isOpen) {
-                // Open dropdown
-                easterEggBtn.setAttribute('aria-expanded', 'true');
-                easterEggDropdown.classList.add('open');
-                
-                // Add bounce animation to egg
-                easterEggBtn.style.transform = 'scale(1.2)';
-                setTimeout(() => {
-                    easterEggBtn.style.transform = '';
-                }, 200);
-                
-                showNotification('🥚 Hidden wisdom awaits your discovery...');
-            } else {
-                // Close dropdown
-                easterEggBtn.setAttribute('aria-expanded', 'false');
-                easterEggDropdown.classList.remove('open');
-            }
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!easterEggBtn.contains(e.target) && !easterEggDropdown.contains(e.target)) {
-                easterEggBtn.setAttribute('aria-expanded', 'false');
-                easterEggDropdown.classList.remove('open');
+    // Pride badge unicorn easter egg
+    const prideBadge = document.querySelector('.pride-badge');
+    if (prideBadge) {
+        let unicornClickCount = 0;
+        prideBadge.addEventListener('click', () => {
+            unicornClickCount++;
+            if (unicornClickCount === 3) {
+                triggerUnicornMode();
+                unicornClickCount = 0;
             }
         });
     }
@@ -340,8 +312,9 @@ function initializeEasterEggs() {
             element.style.borderLeftColor = '#ffd700';
             element.style.color = '#b8860b';
             element.style.fontSize = '0.95rem';
-            
-            showNotification('🥇 The golden wisdom awaits your second touch...');
+            element.style.textAlign = 'left';
+            element.style.width = '90%';
+            element.style.marginBottom = '29px';
         }
         
         // Function to show zen book animation across screen
@@ -372,10 +345,10 @@ function initializeEasterEggs() {
                 align-items: center;
                 gap: 1rem;
             `;
-            bookElement.innerHTML = '🧘‍♂️ 📖 🧘‍♀️';
+            bookElement.innerHTML = '🥚 📖 🥚';
             
             // Add floating zen elements around the book
-            const zenEmojis = ['🧘‍♂️', '🧘‍♀️', '🕯️', '🌸', '☯️', '🍃', '💫'];
+            const zenEmojis = ['🥚', '🥚', '🕯️', '🌸', '☯️', '🍃', '💫'];
             for (let i = 0; i < 12; i++) {
                 const zenElement = document.createElement('div');
                 zenElement.textContent = zenEmojis[Math.floor(Math.random() * zenEmojis.length)];
@@ -491,7 +464,6 @@ function initializeEasterEggs() {
                     setTimeout(() => {
                         element.classList.remove('typing');
                         isTyping = false;
-                        showNotification('💭 The deepest truths require the most searching...');
                         
                         // Add subtle hint for the final easter egg
                         setTimeout(() => {
@@ -583,9 +555,6 @@ function triggerUnicornMode() {
     // Create floating unicorns
     createFloatingUnicorns();
     
-    // Show notification
-    showNotification('🦄 Unicorn magic activated! You\'ve unlocked fabulous mode! ✨');
-    
     // Revert after 8 seconds
     setTimeout(() => {
         prideBadge.classList.remove('unicorn-mode');
@@ -624,7 +593,7 @@ function triggerProfileEasterEgg() {
 function showStartupInterpretation() {
     const interpretationContent = `
         <div style="text-align: left; line-height: 1.6; font-size: 0.95rem;">
-            <h3 style="color: #667eea; margin-bottom: 1rem; text-align: center;">🍰 The Startup Zen of Silent Waiting</h3>
+            <h3 style="color: #667eea; margin-bottom: 1rem; text-align: center;">🥚 The Startup Zen of Silent Waiting</h3>
             
             <div style="background: rgba(255, 107, 157, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid #ff6b9d;">
                 <strong>Silent Waiting on the Truth</strong><br>
@@ -760,8 +729,6 @@ function showStartupInterpretation() {
         }
     };
     document.addEventListener('keydown', escHandler);
-    
-    showNotification('🎂 The deeper layer of startup philosophy revealed!');
 }
 
 function createMatrixRain() {
