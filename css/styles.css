@@ -51,7 +51,10 @@ body {
 @supports (-webkit-touch-callout: none) {
     /* Target iOS Safari */
     body {
+        background: #ffffff !important;
+        background-image: none !important;
         background-attachment: scroll !important;
+        animation: none !important;
     }
     
     /* iOS PWA detection - full white background */
@@ -65,6 +68,10 @@ body {
         }
         
         .bg-animation {
+            display: none !important;
+        }
+        
+        .floating-shape {
             display: none !important;
         }
     }
@@ -84,6 +91,10 @@ body {
         display: none !important;
     }
     
+    .floating-shape {
+        display: none !important;
+    }
+    
     .content {
         margin: 1rem auto;
         padding: 2rem 1.5rem;
@@ -99,7 +110,11 @@ body {
     }
     
     .bg-animation {
-        opacity: 0 !important;
+        display: none !important;
+    }
+    
+    .floating-shape {
+        display: none !important;
     }
 }
 
@@ -748,12 +763,70 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Easter egg dropdown section */
+.easter-egg-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.easter-egg-dropdown-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background: rgba(255, 215, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.easter-egg-dropdown-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 215, 0, 0.2);
+}
+
+.easter-egg-icon {
+    font-size: 1.2rem;
+    animation: eggBob 3s ease-in-out infinite;
+}
+
+@keyframes eggBob {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-3px) rotate(2deg);
+    }
+}
+
+.easter-egg-dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    max-width: 500px;
+    margin-bottom: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform-origin: bottom center;
+    transform: translateX(-50%) translateY(10px) scale(0.95);
+}
+
+.easter-egg-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
 /* Enhanced easter egg quote styling with golden egg animation */
 .easter-egg-quote {
     position: relative;
     display: block;
     padding: 15px 20px;
-    margin: 1rem 0;
     background: rgba(102, 126, 234, 0.1);
     border-radius: 8px;
     border-left: 3px solid #667eea;
@@ -768,6 +841,7 @@ body {
     justify-content: center;
     text-align: center;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .easter-egg-quote:hover {
@@ -1018,6 +1092,20 @@ body {
     .beverage-emoji {
         font-size: 1.5rem;
         margin-right: 12px;
+    }
+    
+    .easter-egg-dropdown {
+        width: 95vw;
+        max-width: 400px;
+    }
+    
+    .easter-egg-quote {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .easter-egg-quote.golden-egg {
+        font-size: 1.3rem;
     }
 }
 

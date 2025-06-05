@@ -241,15 +241,38 @@ function initializeEasterEggs() {
         });
     }
     
-    // Pride badge unicorn easter egg
-    const prideBadge = document.querySelector('.pride-badge');
-    if (prideBadge) {
-        let unicornClickCount = 0;
-        prideBadge.addEventListener('click', () => {
-            unicornClickCount++;
-            if (unicornClickCount === 3) {
-                triggerUnicornMode();
-                unicornClickCount = 0;
+    // Easter egg dropdown functionality
+    const easterEggBtn = document.getElementById('easter-egg-btn');
+    const easterEggDropdown = document.getElementById('easter-egg-dropdown');
+    
+    if (easterEggBtn && easterEggDropdown) {
+        easterEggBtn.addEventListener('click', () => {
+            const isOpen = easterEggBtn.getAttribute('aria-expanded') === 'true';
+            
+            if (!isOpen) {
+                // Open dropdown
+                easterEggBtn.setAttribute('aria-expanded', 'true');
+                easterEggDropdown.classList.add('open');
+                
+                // Add bounce animation to egg
+                easterEggBtn.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    easterEggBtn.style.transform = '';
+                }, 200);
+                
+                showNotification('🥚 Hidden wisdom awaits your discovery...');
+            } else {
+                // Close dropdown
+                easterEggBtn.setAttribute('aria-expanded', 'false');
+                easterEggDropdown.classList.remove('open');
+            }
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!easterEggBtn.contains(e.target) && !easterEggDropdown.contains(e.target)) {
+                easterEggBtn.setAttribute('aria-expanded', 'false');
+                easterEggDropdown.classList.remove('open');
             }
         });
     }
@@ -305,10 +328,6 @@ function initializeEasterEggs() {
             element.style.borderLeftColor = '#ffd700';
             element.style.color = '#b8860b';
             element.style.fontSize = '0.95rem';
-            element.style.width = '90%';
-            element.style.marginLeft = '20px';
-            element.style.textAlign = 'left';
-
             
             showNotification('🥇 The golden wisdom awaits your second touch...');
         }
@@ -530,7 +549,7 @@ function triggerUnicornMode() {
     
     // Change text temporarily
     const originalText = prideText.textContent;
-    prideText.textContent = '🦄 Fun & Fabulous 🦄';
+    prideText.textContent = '🦄 Magical & Fabulous 🦄';
     
     // Create sparkles container
     const sparklesContainer = document.createElement('div');
@@ -593,7 +612,7 @@ function triggerProfileEasterEgg() {
 function showStartupInterpretation() {
     const interpretationContent = `
         <div style="text-align: left; line-height: 1.6; font-size: 0.95rem;">
-            <h3 style="color: #667eea; margin-bottom: 1rem; text-align: center;">🥚 The Startup Zen of Silent Waiting</h3>
+            <h3 style="color: #667eea; margin-bottom: 1rem; text-align: center;">🍰 The Startup Zen of Silent Waiting</h3>
             
             <div style="background: rgba(255, 107, 157, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid #ff6b9d;">
                 <strong>Silent Waiting on the Truth</strong><br>
@@ -730,7 +749,7 @@ function showStartupInterpretation() {
     };
     document.addEventListener('keydown', escHandler);
     
-    showNotification('🥚 The deeper layer of startup philosophy revealed!');
+    showNotification('🎂 The deeper layer of startup philosophy revealed!');
 }
 
 function createMatrixRain() {

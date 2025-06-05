@@ -52,7 +52,10 @@ body {
 @supports (-webkit-touch-callout: none) {
     /* Target iOS Safari */
     body {
+        background: #ffffff !important;
+        background-image: none !important;
         background-attachment: scroll !important;
+        animation: none !important;
     }
     
     /* iOS PWA detection - when status bar is hidden or in standalone */
@@ -67,6 +70,10 @@ body {
         }
         
         .bg-animation {
+            display: none !important;
+        }
+        
+        .floating-shape {
             display: none !important;
         }
     }
@@ -87,6 +94,10 @@ body {
         display: none !important;
     }
     
+    .floating-shape {
+        display: none !important;
+    }
+    
     .qr-container {
         margin: 1rem auto;
     }
@@ -101,7 +112,11 @@ body {
     }
     
     .bg-animation {
-        opacity: 0 !important;
+        display: none !important;
+    }
+    
+    .floating-shape {
+        display: none !important;
     }
 }
 
@@ -411,78 +426,69 @@ body {
     }
 }
 
-/* Scanning line effect */
-.scan-line {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        #ff6b9d 50%, 
-        transparent 100%
-    );
-    border-radius: 1px;
-    animation: scanAnimation 3s ease-in-out infinite;
-    opacity: 0.8;
-}
-
-@keyframes scanAnimation {
-    0%, 100% {
-        transform: translateY(0px);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.8;
-    }
-    90% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(200px);
-        opacity: 0;
-    }
-}
-
-/* Rainbow shine effect */
-.qr-shine {
+/* Scanner overlay directly on QR code */
+.scan-overlay {
     position: absolute;
     top: 15px;
     left: 15px;
     right: 15px;
     bottom: 15px;
     border-radius: 12px;
-    background: linear-gradient(
-        45deg,
-        rgba(255, 179, 186, 0) 0%,
-        rgba(255, 179, 186, 0.1) 20%,
-        rgba(255, 223, 186, 0.15) 35%,
-        rgba(255, 255, 186, 0.2) 50%,
-        rgba(186, 255, 201, 0.15) 65%,
-        rgba(186, 225, 255, 0.1) 80%,
-        rgba(201, 186, 255, 0) 100%
-    );
-    animation: rainbowScan 4s ease-in-out infinite;
     pointer-events: none;
     z-index: 3;
+    overflow: hidden;
 }
 
-@keyframes rainbowScan {
+.scan-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        transparent 20%,
+        #ff6b9d 30%, 
+        #4bcffa 50%, 
+        #a55eea 70%,
+        transparent 80%,
+        transparent 100%
+    );
+    border-radius: 2px;
+    animation: scannerLine 2.5s ease-in-out infinite;
+    opacity: 0.9;
+    box-shadow: 0 0 8px rgba(255, 107, 157, 0.4);
+}
+
+@keyframes scannerLine {
     0% {
-        transform: translateX(-100%) skewX(-25deg);
+        transform: translateY(0px);
         opacity: 0;
     }
-    10% {
-        opacity: 1;
+    5% {
+        opacity: 0.9;
     }
-    90% {
-        opacity: 1;
+    95% {
+        opacity: 0.9;
     }
     100% {
-        transform: translateX(100%) skewX(-25deg);
+        transform: translateY(190px);
         opacity: 0;
     }
+}
+
+.action-btn.tertiary {
+    background: rgba(248, 250, 255, 0.9);
+    color: #667eea;
+    border: 2px solid #e2e8f0;
+}
+
+.action-btn.tertiary:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: #667eea;
+    color: #5a67d8;
+    transform: translateY(-1px);
 }
 
 /* Enhanced URL display */
@@ -549,6 +555,7 @@ body {
     gap: 0.75rem;
     margin-bottom: 1.5rem;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .action-btn {
@@ -641,38 +648,7 @@ body {
     font-weight: 500;
 }
 
-/* Easter egg trigger */
-.easter-egg-trigger {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-}
 
-.easter-egg-trigger:hover {
-    transform: scale(1.1);
-    background: rgba(255, 215, 0, 0.2);
-}
-
-.egg-hint {
-    font-size: 1.2rem;
-    animation: eggWiggle 2s ease-in-out infinite;
-}
-
-@keyframes eggWiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(5deg); }
-    75% { transform: rotate(-5deg); }
-}
 
 .footer-note {
     margin-top: 1rem;

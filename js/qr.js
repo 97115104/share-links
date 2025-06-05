@@ -280,28 +280,6 @@ function initializeEasterEggs() {
         }
     });
     
-    // QR Code easter egg trigger
-    const easterEggTrigger = document.getElementById('qr-easter-egg');
-    if (easterEggTrigger) {
-        let clickCount = 0;
-        easterEggTrigger.addEventListener('click', () => {
-            clickCount++;
-            
-            if (clickCount === 3) {
-                triggerQRPartyMode();
-                clickCount = 0;
-            } else {
-                // Add bounce animation
-                easterEggTrigger.style.transform = 'scale(1.3)';
-                setTimeout(() => {
-                    easterEggTrigger.style.transform = '';
-                }, 200);
-                
-                showNotification(`🎯 ${3 - clickCount} more clicks for a surprise!`);
-            }
-        });
-    }
-    
     // Mini avatar click easter egg
     const miniAvatar = document.querySelector('.mini-avatar');
     if (miniAvatar) {
@@ -351,113 +329,9 @@ function triggerRainbowExplosion() {
     }
 }
 
-function triggerQRPartyMode() {
-    showNotification('🎉 QR Party Mode! The code is dancing! 💃');
-    
-    const qrFrame = document.querySelector('.qr-frame');
-    const canvas = document.querySelector('#qrcode canvas');
-    
-    if (qrFrame && canvas) {
-        // Add party class for special styling
-        qrFrame.classList.add('party-mode');
-        
-        // Create disco balls
-        createDiscoBalls();
-        
-        // Enhance corner dots animation
-        const cornerDots = document.querySelectorAll('.corner-dot');
-        cornerDots.forEach((dot, index) => {
-            dot.style.animation = `cornerPulse 0.3s ease-in-out infinite, partyRotate 1s linear infinite`;
-            dot.style.animationDelay = `${index * 0.1}s`;
-        });
-        
-        // Enhanced scan line
-        const scanLine = document.querySelector('.scan-line');
-        if (scanLine) {
-            scanLine.style.background = 'linear-gradient(90deg, transparent 0%, #ff6b9d 20%, #4bcffa 40%, #a55eea 60%, #26de81 80%, transparent 100%)';
-            scanLine.style.animation = 'scanAnimation 1s ease-in-out infinite';
-        }
-        
-        // Add party styles
-        const partyStyle = document.createElement('style');
-        partyStyle.textContent = `
-            .party-mode {
-                animation: partyShake 0.5s ease-in-out infinite;
-            }
-            
-            @keyframes partyShake {
-                0%, 100% { transform: translateX(0) rotate(0deg); }
-                25% { transform: translateX(-2px) rotate(-1deg); }
-                75% { transform: translateX(2px) rotate(1deg); }
-            }
-            
-            @keyframes partyRotate {
-                from { transform: rotate(0deg) scale(1); }
-                to { transform: rotate(360deg) scale(1.2); }
-            }
-        `;
-        document.head.appendChild(partyStyle);
-        
-        // Revert after 5 seconds
-        setTimeout(() => {
-            qrFrame.classList.remove('party-mode');
-            cornerDots.forEach(dot => {
-                dot.style.animation = '';
-            });
-            if (scanLine) {
-                scanLine.style.background = '';
-                scanLine.style.animation = '';
-            }
-            document.querySelectorAll('.disco-ball').forEach(ball => ball.remove());
-            partyStyle.remove();
-        }, 5000);
-    }
-}
+// Remove the QR party mode function entirely
 
-function createDiscoBalls() {
-    const container = document.querySelector('.qr-container');
-    
-    for (let i = 0; i < 6; i++) {
-        const discoBall = document.createElement('div');
-        discoBall.className = 'disco-ball';
-        discoBall.style.cssText = `
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-            border-radius: 50%;
-            top: ${Math.random() * 80 + 10}%;
-            left: ${Math.random() * 80 + 10}%;
-            animation: discoBallFloat 2s ease-in-out infinite;
-            animation-delay: ${i * 0.3}s;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-            z-index: 10;
-            pointer-events: none;
-        `;
-        
-        container.appendChild(discoBall);
-    }
-    
-    // Add disco ball animation
-    const discoStyle = document.createElement('style');
-    discoStyle.textContent = `
-        @keyframes discoBallFloat {
-            0%, 100% { 
-                transform: translateY(0px) scale(1) rotate(0deg);
-                opacity: 0.8;
-            }
-            50% { 
-                transform: translateY(-20px) scale(1.2) rotate(180deg);
-                opacity: 1;
-            }
-        }
-    `;
-    document.head.appendChild(discoStyle);
-    
-    setTimeout(() => {
-        discoStyle.remove();
-    }, 5000);
-}
+// Remove the createDiscoBalls function and related disco ball functionality
 
 function triggerAvatarDance() {
     showNotification('🕺 Austin is feeling the rhythm! 💃');

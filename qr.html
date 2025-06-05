@@ -53,7 +53,7 @@
         <div class="qr-wrapper">
             <div class="qr-frame">
                 <div id="qrcode"></div>
-                <div class="qr-shine"></div>
+                <div class="scan-overlay"></div>
                 <div class="corner-dots">
                     <div class="corner-dot top-left"></div>
                     <div class="corner-dot top-right"></div>
@@ -61,7 +61,6 @@
                     <div class="corner-dot bottom-right"></div>
                 </div>
             </div>
-            <div class="scan-line"></div>
         </div>
         
         <div class="url-display" id="url-display">
@@ -75,11 +74,27 @@
                 <span class="btn-icon">📤</span>
                 <span class="btn-text">Share QR</span>
             </button>
+            <a href="./index.html" class="action-btn tertiary" id="contact-btn">
+                <span class="btn-icon">👤</span>
+                <span class="btn-text">Contact Page</span>
+            </a>
         </div>
         
-        <div class="easter-egg-trigger" id="qr-easter-egg">
-            <span class="egg-hint">🎯</span>
+        <div class="instructions">
+            <div class="instruction-item">
+                <span class="step-number">1</span>
+                <span class="step-text">Open your camera app</span>
+            </div>
+            <div class="instruction-item">
+                <span class="step-number">2</span>
+                <span class="step-text">Point at the QR code</span>
+            </div>
+            <div class="instruction-item">
+                <span class="step-number">3</span>
+                <span class="step-text">Tap the notification</span>
+            </div>
         </div>
+        
         
         <div class="footer-note">
             Looking forward to connecting soon! 📱
