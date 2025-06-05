@@ -19,6 +19,35 @@ body {
     position: relative;
 }
 
+/* Desktop subtle rainbow animation */
+@media (min-width: 769px) {
+    body {
+        background: linear-gradient(135deg, 
+            #ffffff 0%,   /* white base */
+            rgba(255, 179, 186, 0.08) 20%,  /* very soft pink */
+            rgba(255, 223, 186, 0.08) 35%,  /* very soft orange */
+            rgba(255, 255, 186, 0.08) 50%,  /* very soft yellow */
+            rgba(186, 255, 201, 0.08) 65%,  /* very soft green */
+            rgba(186, 225, 255, 0.08) 80%,  /* very soft blue */
+            #ffffff 100%  /* back to white */
+        );
+        background-size: 300% 300%;
+        animation: subtleRainbow 35s ease-in-out infinite;
+    }
+}
+
+@keyframes subtleRainbow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    33% {
+        background-position: 50% 100%;
+    }
+    66% {
+        background-position: 100% 0%;
+    }
+}
+
 /* iOS Safari and PWA specific fixes */
 @supports (-webkit-touch-callout: none) {
     /* Target iOS Safari */
@@ -73,21 +102,6 @@ body {
     
     .bg-animation {
         opacity: 0 !important;
-    }
-}
-
-@keyframes rainbowShift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    25% {
-        background-position: 25% 75%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    75% {
-        background-position: 75% 25%;
     }
 }
 
@@ -203,15 +217,17 @@ body {
 .qr-container {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     border-radius: 20px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
     text-align: center;
     width: 100%;
-    max-width: 350px;
+    max-width: 380px;
     position: relative;
     z-index: 1;
     animation: slideUp 0.8s ease-out;
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 @keyframes slideUp {
@@ -225,11 +241,65 @@ body {
     }
 }
 
+/* Header with mini profile */
+.qr-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-mini {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.mini-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.profile-pulse {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6b9d, #4bcffa, #a55eea);
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0.6;
+    animation: profilePulse 3s ease-in-out infinite;
+}
+
+@keyframes profilePulse {
+    0%, 100% { 
+        transform: scale(0.95);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+.header-content {
+    text-align: left;
+}
+
 .qr-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #2d3748;
-    margin-bottom: 0.5rem;
+    margin: 0;
     background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500, #26de81, #4bcffa, #a55eea);
     background-size: 300% 300%;
     -webkit-background-clip: text;
@@ -249,15 +319,29 @@ body {
 
 .qr-subtitle {
     color: #718096;
-    margin-bottom: 1.5rem;
+    margin: 0;
     font-size: 0.9rem;
+    font-weight: 500;
 }
 
-/* QR Code styling */
+/* Enhanced QR Code styling */
 .qr-wrapper {
     position: relative;
     display: inline-block;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.qr-frame {
+    position: relative;
+    padding: 15px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9), 
+        rgba(248, 250, 255, 0.9)
+    );
+    border-radius: 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 #qrcode {
@@ -271,6 +355,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     animation: qrPulse 4s ease-in-out infinite, qrFloat 6s ease-in-out infinite;
+    transition: all 0.3s ease;
 }
 
 @keyframes qrPulse {
@@ -291,24 +376,93 @@ body {
     }
 }
 
-/* QR Code shine effect - Rainbow Scanner */
-.qr-shine {
+/* Corner decoration dots */
+.corner-dots {
     position: absolute;
     top: 0;
-    left: -30%;
-    width: 30%;
-    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.corner-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #ff6b9d, #4bcffa);
+    border-radius: 50%;
+    animation: cornerPulse 2s ease-in-out infinite;
+}
+
+.corner-dot.top-left { top: 8px; left: 8px; animation-delay: 0s; }
+.corner-dot.top-right { top: 8px; right: 8px; animation-delay: 0.5s; }
+.corner-dot.bottom-left { bottom: 8px; left: 8px; animation-delay: 1s; }
+.corner-dot.bottom-right { bottom: 8px; right: 8px; animation-delay: 1.5s; }
+
+@keyframes cornerPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+/* Scanning line effect */
+.scan-line {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        #ff6b9d 50%, 
+        transparent 100%
+    );
+    border-radius: 1px;
+    animation: scanAnimation 3s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+@keyframes scanAnimation {
+    0%, 100% {
+        transform: translateY(0px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+}
+
+/* Rainbow shine effect */
+.qr-shine {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 12px;
     background: linear-gradient(
-        90deg,
+        45deg,
         rgba(255, 179, 186, 0) 0%,
-        rgba(255, 179, 186, 0.15) 20%,
-        rgba(255, 223, 186, 0.2) 35%,
-        rgba(255, 255, 186, 0.25) 50%,
-        rgba(186, 255, 201, 0.2) 65%,
-        rgba(186, 225, 255, 0.15) 80%,
+        rgba(255, 179, 186, 0.1) 20%,
+        rgba(255, 223, 186, 0.15) 35%,
+        rgba(255, 255, 186, 0.2) 50%,
+        rgba(186, 255, 201, 0.15) 65%,
+        rgba(186, 225, 255, 0.1) 80%,
         rgba(201, 186, 255, 0) 100%
     );
-    border-radius: 12px;
     animation: rainbowScan 4s ease-in-out infinite;
     pointer-events: none;
     z-index: 3;
@@ -316,7 +470,7 @@ body {
 
 @keyframes rainbowScan {
     0% {
-        left: -30%;
+        transform: translateX(-100%) skewX(-25deg);
         opacity: 0;
     }
     10% {
@@ -326,46 +480,207 @@ body {
         opacity: 1;
     }
     100% {
-        left: 100%;
+        transform: translateX(100%) skewX(-25deg);
         opacity: 0;
     }
 }
 
+/* Enhanced URL display */
 .url-display {
-    background: rgba(255, 107, 157, 0.1);
-    color: #ff6b9d;
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 157, 0.1), 
+        rgba(75, 207, 250, 0.1)
+    );
+    color: #2d3748;
     padding: 0.75rem 1rem;
-    border-radius: 12px;
+    border-radius: 15px;
     font-family: 'Monaco', 'Menlo', monospace;
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
-    animation: urlGlow 5s ease-in-out infinite;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 2px solid transparent;
 }
 
-@keyframes urlGlow {
-    0%, 100% {
-        background: rgba(255, 107, 157, 0.1);
-        box-shadow: none;
-    }
-    50% {
-        background: rgba(255, 107, 157, 0.15);
-        box-shadow: 0 0 15px rgba(255, 107, 157, 0.2);
-    }
+.url-display:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 157, 0.15), 
+        rgba(75, 207, 250, 0.15)
+    );
+    border-color: rgba(255, 107, 157, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.2);
 }
 
+.url-icon {
+    font-size: 1.1rem;
+    animation: iconSpin 8s linear infinite;
+}
+
+@keyframes iconSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.copy-hint {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #a0aec0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.url-display:hover .copy-hint {
+    opacity: 1;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #ff6b9d, #a55eea);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.action-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+}
+
+.action-btn.secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+}
+
+.action-btn.secondary:hover {
+    background: rgba(248, 250, 255, 0.95);
+    border-color: #cbd5e0;
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    font-size: 1rem;
+}
+
+.btn-text {
+    font-size: 0.85rem;
+}
+
+/* Step-by-step instructions */
 .instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.instruction-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: rgba(248, 250, 255, 0.5);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.instruction-item:hover {
+    background: rgba(248, 250, 255, 0.8);
+    transform: translateX(5px);
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #ff6b9d, #a55eea);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.step-text {
     color: #4a5568;
     font-size: 0.85rem;
-    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Easter egg trigger */
+.easter-egg-trigger {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.easter-egg-trigger:hover {
+    transform: scale(1.1);
+    background: rgba(255, 215, 0, 0.2);
+}
+
+.egg-hint {
+    font-size: 1.2rem;
+    animation: eggWiggle 2s ease-in-out infinite;
+}
+
+@keyframes eggWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
 }
 
 .footer-note {
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid #e2e8f0;
-    color: #a0aec0;
-    font-size: 0.75rem;
+    color: #4a5568;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 /* Attestation badge styling */
@@ -425,18 +740,38 @@ body {
     }
     
     .qr-container {
-        padding: 1.25rem;
+        padding: 1.5rem 1.25rem;
         border-radius: 16px;
         margin: auto;
+        max-width: 350px;
+    }
+    
+    .qr-header {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .header-content {
+        text-align: center;
     }
     
     .qr-title {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     
     .qr-subtitle {
         font-size: 0.85rem;
-        margin-bottom: 1.25rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .action-btn {
+        width: 100%;
+        justify-content: center;
     }
     
     .url-display {
@@ -445,11 +780,19 @@ body {
     }
     
     .instructions {
+        gap: 0.5rem;
+    }
+    
+    .instruction-item {
+        padding: 0.4rem;
+    }
+    
+    .step-text {
         font-size: 0.8rem;
     }
     
     .footer-note {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         margin-top: 0.75rem;
         padding-top: 0.75rem;
     }
@@ -462,11 +805,11 @@ body {
 /* Very small screens */
 @media (max-width: 350px) {
     .qr-container {
-        padding: 1rem;
+        padding: 1.25rem 1rem;
     }
     
     .qr-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     
     .attestation-badge img {
@@ -484,16 +827,18 @@ body {
     
     .qr-container {
         padding: 1rem;
-        max-width: 300px;
+        max-width: 320px;
+    }
+    
+    .qr-header {
+        margin-bottom: 1rem;
     }
     
     .qr-title {
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem;
+        font-size: 1.2rem;
     }
     
     .qr-subtitle {
-        margin-bottom: 1rem;
         font-size: 0.8rem;
     }
     

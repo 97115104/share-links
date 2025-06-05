@@ -39,18 +39,46 @@
     </div>
 
     <div class="qr-container">
-        <h1 class="qr-title">Austin Harshberger</h1>
-        <p class="qr-subtitle">Let's Connect</p>
-        
-        <div class="qr-wrapper">
-            <div id="qrcode"></div>
-            <div class="qr-shine"></div>
+        <div class="qr-header">
+            <div class="profile-mini">
+                <img src="./assets/profile.png" alt="Austin Harshberger" class="mini-avatar">
+                <div class="profile-pulse"></div>
+            </div>
+            <div class="header-content">
+                <h1 class="qr-title">Austin Harshberger</h1>
+                <p class="qr-subtitle">Let's Connect 🤝</p>
+            </div>
         </div>
         
-        <div class="url-display">97104.xyz</div>
+        <div class="qr-wrapper">
+            <div class="qr-frame">
+                <div id="qrcode"></div>
+                <div class="qr-shine"></div>
+                <div class="corner-dots">
+                    <div class="corner-dot top-left"></div>
+                    <div class="corner-dot top-right"></div>
+                    <div class="corner-dot bottom-left"></div>
+                    <div class="corner-dot bottom-right"></div>
+                </div>
+            </div>
+            <div class="scan-line"></div>
+        </div>
         
-        <div class="instructions">
-            Scan this QR code to visit my contact page<br>
+        <div class="url-display" id="url-display">
+            <span class="url-icon">🌐</span>
+            <span class="url-text">97104.xyz</span>
+            <span class="copy-hint">Tap to copy</span>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-btn secondary" id="share-btn">
+                <span class="btn-icon">📤</span>
+                <span class="btn-text">Share QR</span>
+            </button>
+        </div>
+        
+        <div class="easter-egg-trigger" id="qr-easter-egg">
+            <span class="egg-hint">🎯</span>
         </div>
         
         <div class="footer-note">
