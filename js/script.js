@@ -305,6 +305,10 @@ function initializeEasterEggs() {
             element.style.borderLeftColor = '#ffd700';
             element.style.color = '#b8860b';
             element.style.fontSize = '0.95rem';
+            element.style.width = '90%';
+            element.style.marginLeft = '20px';
+            element.style.textAlign = 'left';
+
             
             showNotification('🥇 The golden wisdom awaits your second touch...');
         }
@@ -589,7 +593,7 @@ function triggerProfileEasterEgg() {
 function showStartupInterpretation() {
     const interpretationContent = `
         <div style="text-align: left; line-height: 1.6; font-size: 0.95rem;">
-            <h3 style="color: #667eea; margin-bottom: 1rem; text-align: center;">🍰 The Startup Zen of Silent Waiting</h3>
+            <h3 style="color: #667eea; margin-bottom: 1rem; text-align: center;">🥚 The Startup Zen of Silent Waiting</h3>
             
             <div style="background: rgba(255, 107, 157, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1rem; border-left: 4px solid #ff6b9d;">
                 <strong>Silent Waiting on the Truth</strong><br>
@@ -726,7 +730,7 @@ function showStartupInterpretation() {
     };
     document.addEventListener('keydown', escHandler);
     
-    showNotification('🎂 The deeper layer of startup philosophy revealed!');
+    showNotification('🥚 The deeper layer of startup philosophy revealed!');
 }
 
 function createMatrixRain() {
