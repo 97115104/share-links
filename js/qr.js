@@ -13,7 +13,7 @@ function generateQRCode() {
     const qr = new QRious({
         element: document.createElement('canvas'),
         value: 'https://97104.xyz',
-        size: window.innerWidth < 480 ? 200 : 220,
+        size: window.innerWidth < 480 ? 180 : 200,
         background: 'white',
         foreground: '#2d3748',
         level: 'M'
@@ -26,6 +26,8 @@ function generateQRCode() {
     // Style the canvas
     qr.canvas.style.borderRadius = '12px';
     qr.canvas.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+    qr.canvas.style.maxWidth = '100%';
+    qr.canvas.style.height = 'auto';
     
     // Add interactive hover effect
     qr.canvas.addEventListener('mouseenter', handleQRHover);
@@ -147,52 +149,15 @@ function animateQRCode(canvas) {
 }
 
 function setupActionButtons() {
-    // Scan button functionality
-    const scanBtn = document.getElementById('scan-btn');
-    if (scanBtn) {
-        scanBtn.addEventListener('click', () => {
+    // Contact page button functionality
+    const contactBtn = document.getElementById('contact-btn');
+    if (contactBtn) {
+        contactBtn.addEventListener('click', (e) => {
             // Add click animation
-            scanBtn.style.transform = 'scale(0.95)';
+            contactBtn.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                scanBtn.style.transform = '';
+                contactBtn.style.transform = '';
             }, 150);
-            
-            // Try to open camera if supported
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                showNotification('📸 Open your camera app and point it at the QR code!');
-            } else {
-                showNotification('📱 Use your phone\'s camera app to scan the QR code!');
-            }
-        });
-    }
-    
-    // Share button functionality
-    const shareBtn = document.getElementById('share-btn');
-    if (shareBtn) {
-        shareBtn.addEventListener('click', async () => {
-            // Add click animation
-            shareBtn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                shareBtn.style.transform = '';
-            }, 150);
-            
-            // Try to use Web Share API
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'Austin Harshberger - Contact',
-                        text: 'Connect with Austin Harshberger',
-                        url: 'https://97104.xyz'
-                    });
-                    showNotification('📤 Thanks for sharing!');
-                } catch (err) {
-                    if (err.name !== 'AbortError') {
-                        copyToClipboard();
-                    }
-                }
-            } else {
-                copyToClipboard();
-            }
         });
     }
 }
@@ -239,24 +204,6 @@ function initializeInteractiveEffects() {
             container.style.transform = 'translateY(0)';
         }, 200);
     }
-    
-    // Add hover effects to instruction items
-    const instructionItems = document.querySelectorAll('.instruction-item');
-    instructionItems.forEach((item, index) => {
-        item.addEventListener('mouseenter', () => {
-            item.style.transform = 'translateX(8px) scale(1.02)';
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = '';
-        });
-        
-        // Stagger the initial animation
-        setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-        }, 300 + (index * 100));
-    });
 }
 
 function initializeEasterEggs() {
@@ -328,10 +275,6 @@ function triggerRainbowExplosion() {
         }, 3000);
     }
 }
-
-// Remove the QR party mode function entirely
-
-// Remove the createDiscoBalls function and related disco ball functionality
 
 function triggerAvatarDance() {
     showNotification('🕺 Austin is feeling the rhythm! 💃');
@@ -434,6 +377,8 @@ function showNotification(message) {
         transition: all 0.3s ease;
         pointer-events: none;
         border: 1px solid rgba(255, 255, 255, 0.2);
+        max-width: 90vw;
+        text-align: center;
     `;
     notification.textContent = message;
     

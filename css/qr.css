@@ -15,7 +15,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     min-height: 100dvh; /* Dynamic viewport height for mobile */
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -109,6 +109,7 @@ body {
         background: #ffffff !important;
         background-image: none !important;
         animation: none !important;
+        overflow-y: auto !important;
     }
     
     .bg-animation {
@@ -391,41 +392,6 @@ body {
     }
 }
 
-/* Corner decoration dots */
-.corner-dots {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-}
-
-.corner-dot {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: linear-gradient(45deg, #ff6b9d, #4bcffa);
-    border-radius: 50%;
-    animation: cornerPulse 2s ease-in-out infinite;
-}
-
-.corner-dot.top-left { top: 8px; left: 8px; animation-delay: 0s; }
-.corner-dot.top-right { top: 8px; right: 8px; animation-delay: 0.5s; }
-.corner-dot.bottom-left { bottom: 8px; left: 8px; animation-delay: 1s; }
-.corner-dot.bottom-right { bottom: 8px; right: 8px; animation-delay: 1.5s; }
-
-@keyframes cornerPulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-    50% {
-        transform: scale(1.3);
-        opacity: 1;
-    }
-}
-
 /* Scanner overlay directly on QR code */
 .scan-overlay {
     position: absolute;
@@ -445,20 +411,20 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 2px;
     background: linear-gradient(90deg, 
-        rgba(255, 179, 186, 0.2) 0%, 
-        rgba(255, 179, 186, 0.6) 10%,
-        rgba(255, 107, 157, 0.8) 25%, 
-        rgba(75, 207, 250, 0.8) 50%, 
-        rgba(165, 94, 234, 0.8) 75%,
-        rgba(255, 179, 186, 0.6) 90%,
-        rgba(255, 179, 186, 0.2) 100%
+        rgba(255, 182, 193, 0.1) 0%, 
+        rgba(255, 182, 193, 0.3) 15%,
+        rgba(255, 222, 173, 0.4) 30%, 
+        rgba(255, 255, 173, 0.5) 45%, 
+        rgba(173, 255, 182, 0.4) 60%,
+        rgba(173, 216, 255, 0.3) 75%,
+        rgba(216, 173, 255, 0.1) 100%
     );
-    border-radius: 2px;
-    animation: scannerLine 2.5s ease-in-out infinite;
-    opacity: 0.9;
-    box-shadow: 0 0 6px rgba(255, 107, 157, 0.3);
+    border-radius: 1px;
+    animation: scannerLine 3s ease-in-out infinite;
+    opacity: 0.6;
+    box-shadow: 0 0 4px rgba(255, 107, 157, 0.2);
 }
 
 @keyframes scannerLine {
@@ -466,29 +432,16 @@ body {
         transform: translateY(0px);
         opacity: 0;
     }
-    8% {
-        opacity: 0.9;
+    10% {
+        opacity: 0.6;
     }
-    92% {
-        opacity: 0.9;
+    90% {
+        opacity: 0.6;
     }
     100% {
         transform: translateY(190px);
         opacity: 0;
     }
-}
-
-.action-btn.tertiary {
-    background: rgba(248, 250, 255, 0.9);
-    color: #667eea;
-    border: 2px solid #e2e8f0;
-}
-
-.action-btn.tertiary:hover {
-    background: rgba(102, 126, 234, 0.1);
-    border-color: #667eea;
-    color: #5a67d8;
-    transform: translateY(-1px);
 }
 
 /* Enhanced URL display */
@@ -526,7 +479,6 @@ body {
 
 .url-icon {
     font-size: 1.1rem;
-    /* Removed spinning animation */
 }
 
 .copy-hint {
@@ -557,39 +509,49 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6rem 1rem;
+    padding: 0.8rem 1.2rem;
     border: none;
     border-radius: 12px;
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
 }
 
 .action-btn.primary {
-    background: linear-gradient(135deg, #ff6b9d, #a55eea);
-    color: white;
+    background: linear-gradient(45deg, 
+        rgba(255, 182, 193, 0.8), 
+        rgba(255, 222, 173, 0.8), 
+        rgba(255, 255, 173, 0.8), 
+        rgba(173, 255, 182, 0.8), 
+        rgba(173, 216, 255, 0.8), 
+        rgba(216, 173, 255, 0.8));
+    background-size: 300% 300%;
+    animation: buttonRainbow 8s ease-in-out infinite;
+    color: #2d3748;
+    font-weight: 700;
     box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+@keyframes buttonRainbow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .action-btn.primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
-}
-
-.action-btn.secondary {
-    background: rgba(255, 255, 255, 0.9);
-    color: #4a5568;
-    border: 2px solid #e2e8f0;
-}
-
-.action-btn.secondary:hover {
-    background: rgba(248, 250, 255, 0.95);
-    border-color: #cbd5e0;
-    transform: translateY(-1px);
+    color: #2d3748;
+    animation-play-state: paused;
 }
 
 .btn-icon {
@@ -597,53 +559,8 @@ body {
 }
 
 .btn-text {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
-
-/* Step-by-step instructions */
-.instructions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-}
-
-.instruction-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    background: rgba(248, 250, 255, 0.5);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.instruction-item:hover {
-    background: rgba(248, 250, 255, 0.8);
-    transform: translateX(5px);
-}
-
-.step-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(135deg, #ff6b9d, #a55eea);
-    color: white;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    font-weight: 600;
-    flex-shrink: 0;
-}
-
-.step-text {
-    color: #4a5568;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-
 
 .footer-note {
     margin-top: 1rem;
@@ -708,13 +625,15 @@ body {
 @media (max-width: 480px) {
     body {
         padding: 0.5rem;
+        overflow-y: auto;
     }
     
     .qr-container {
         padding: 1.5rem 1.25rem;
         border-radius: 16px;
-        margin: auto;
+        margin: 0.5rem auto;
         max-width: 350px;
+        min-height: auto;
     }
     
     .qr-header {
@@ -735,6 +654,11 @@ body {
         font-size: 0.85rem;
     }
     
+    #qrcode canvas {
+        max-width: 100%;
+        height: auto;
+    }
+    
     .action-buttons {
         flex-direction: column;
         gap: 0.5rem;
@@ -743,23 +667,12 @@ body {
     .action-btn {
         width: 100%;
         justify-content: center;
+        padding: 0.9rem 1rem;
     }
     
     .url-display {
         font-size: 0.9rem;
         padding: 0.6rem 0.8rem;
-    }
-    
-    .instructions {
-        gap: 0.5rem;
-    }
-    
-    .instruction-item {
-        padding: 0.4rem;
-    }
-    
-    .step-text {
-        font-size: 0.8rem;
     }
     
     .footer-note {
@@ -777,6 +690,7 @@ body {
 @media (max-width: 350px) {
     .qr-container {
         padding: 1.25rem 1rem;
+        margin: 0.25rem auto;
     }
     
     .qr-title {
@@ -799,6 +713,7 @@ body {
     .qr-container {
         padding: 1rem;
         max-width: 320px;
+        margin: 0.5rem auto;
     }
     
     .qr-header {
