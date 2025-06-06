@@ -693,6 +693,7 @@ body {
 .signal .link-icon { background: linear-gradient(135deg, #3a76f0, #2563eb); }
 .signal svg { fill: white; }
 .telegram .link-icon { background: linear-gradient(135deg, #0088cc, #006699); }
+.calendly .link-icon { background: linear-gradient(135deg, #006bff, #0052cc); }
 .blog .link-icon { background: linear-gradient(135deg, #ff6b9d, #a55eea); }
 
 /* Companies section */
