@@ -206,9 +206,6 @@ function handleCardHover(e) {
     
     // Add a subtle bounce animation
     icon.style.animation = 'bounce 0.6s ease, iconFloat 3s ease-in-out infinite';
-    
-    // Create ripple effect
-    createRippleEffect(card, e);
 }
 
 function handleCardLeave(e) {
