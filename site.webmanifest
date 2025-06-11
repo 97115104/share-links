@@ -4,8 +4,6 @@
     "description": "Austin Harshberger's professional contact page for conference networking",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#ffffff",
     "orientation": "portrait-primary",
     "icons": [
         {

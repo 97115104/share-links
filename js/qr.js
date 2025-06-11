@@ -1,7 +1,50 @@
 // Enhanced QR Code Generator with Interactive Features
 // Austin Harshberger Contact Page QR Code
 
+// Initialize theme on page load
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        // Update aria-label based on current theme
+        themeToggle.setAttribute('aria-label', 
+            savedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+        );
+        
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update aria-label
+            this.setAttribute('aria-label', 
+                newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+            );
+            
+            // Add transition class for smooth theme change
+            document.body.classList.add('theme-transitioning');
+            
+            // Clear existing QR code and regenerate with new colors
+            const qrContainer = document.getElementById('qrcode');
+            if (qrContainer) {
+                qrContainer.innerHTML = '';
+            }
+            generateQRCode();
+            
+            setTimeout(() => {
+                document.body.classList.remove('theme-transitioning');
+            }, 300);
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme first
+    initializeTheme();
     generateQRCode();
     initializeInteractiveEffects();
     initializeEasterEggs();
@@ -9,13 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function generateQRCode() {
-    // Generate QR code with mobile-optimized size
+    const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+    
+    // Generate QR code with mobile-optimized size and theme-aware colors
     const qr = new QRious({
         element: document.createElement('canvas'),
         value: 'https://97104.xyz',
         size: window.innerWidth < 480 ? 180 : 200,
-        background: 'white',
-        foreground: '#2d3748',
+        background: isDarkMode ? '#1a202c' : 'white',
+        foreground: isDarkMode ? '#e2e8f0' : '#2d3748',
         level: 'M'
     });
     

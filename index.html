@@ -37,6 +37,14 @@
 </head>
 <body>
     <div class="container">
+        <!-- Dark mode toggle -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+            <span class="theme-icon-wrapper">
+                <i class="fas fa-sun theme-icon theme-icon-light"></i>
+                <i class="fas fa-moon theme-icon theme-icon-dark"></i>
+            </span>
+        </button>
+
         <!-- Background animation elements -->
         <div class="bg-animation">
             <div class="floating-shape shape-1"></div>
@@ -237,6 +245,40 @@
                 </div>
             </footer>
         </main>
+    </div>
+
+    <!-- Email Modal -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    📧
+                </div>
+                <h2>Let's Connect!</h2>
+            </div>
+            <div class="modal-body">
+                <p>I'd love to hear from you! Choose how you'd like to reach out:</p>
+                <div class="email-options">
+                    <div class="email-display">
+                        <span class="email-address">founder@status.health</span>
+                        <button class="copy-button" data-email="founder@status.health">
+                            <span class="copy-icon">📋</span>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                    <a href="mailto:founder@status.health" class="email-client-button">
+                        <span>📨</span>
+                        <span>Open Email Client</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/script.js"></script>

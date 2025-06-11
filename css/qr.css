@@ -1,3 +1,25 @@
+/* CSS Variables for theming */
+:root {
+    --heading-color: #2d3748;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --link-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark mode */
+:root[data-theme="dark"] {
+    --heading-color: #e2e8f0;
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --link-shadow: rgba(0, 0, 0, 0.4);
+    --border-color: #333333;
+    --muted-color: #a0a0a0;
+}
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -7,7 +29,8 @@
 
 body {
     padding: 1rem;
-    background: #ffffff;
+    background: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     flex-direction: column;
@@ -17,6 +40,11 @@ body {
     min-height: 100dvh; /* Dynamic viewport height for mobile */
     overflow-x: hidden;
     position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root[data-theme="dark"] body {
+    background: var(--bg-color);
 }
 
 /* Desktop subtle rainbow animation */
@@ -52,7 +80,7 @@ body {
 @supports (-webkit-touch-callout: none) {
     /* Target iOS Safari */
     body {
-        background: #ffffff !important;
+        background: var(--bg-color) !important;
         background-image: none !important;
         background-attachment: scroll !important;
         animation: none !important;
@@ -63,7 +91,7 @@ body {
            (display-mode: fullscreen),
            (-webkit-standalone) {
         body {
-            background: #ffffff !important;
+            background: var(--bg-color) !important;
             background-image: none !important;
             animation: none !important;
             overflow-y: auto !important;
@@ -82,7 +110,7 @@ body {
 /* Additional PWA detection methods */
 @media (display-mode: standalone) {
     body {
-        background: #ffffff !important;
+        background: var(--bg-color) !important;
         background-image: none !important;
         background-size: auto !important;
         background-attachment: initial !important;
@@ -106,7 +134,7 @@ body {
 /* Fallback for when all else fails - detect small viewport typical of PWA */
 @media (max-height: 700px) and (max-width: 500px) {
     body {
-        background: #ffffff !important;
+        background: var(--bg-color) !important;
         background-image: none !important;
         animation: none !important;
         overflow-y: auto !important;
@@ -130,7 +158,9 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 0;
+    background: transparent;
 }
+
 
 .floating-shape {
     position: absolute;
@@ -144,6 +174,19 @@ body {
     );
     backdrop-filter: blur(20px);
     animation: complexFloat 15s ease-in-out infinite, colorShift 20s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+:root[data-theme="dark"] .floating-shape {
+    background: linear-gradient(45deg, 
+        rgba(255, 179, 186, 0.05),
+        rgba(255, 223, 186, 0.05),
+        rgba(255, 255, 186, 0.05),
+        rgba(186, 255, 201, 0.05),
+        rgba(186, 225, 255, 0.05),
+        rgba(201, 186, 255, 0.05)
+    );
+    opacity: 0.3;
 }
 
 .shape-1 {
@@ -231,11 +274,11 @@ body {
 
 /* Main container */
 .qr-container {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--card-bg);
     backdrop-filter: blur(20px);
     padding: 2rem 1.5rem;
     border-radius: 20px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 50px var(--shadow-color);
     text-align: center;
     width: 100%;
     max-width: 380px;
@@ -245,6 +288,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
 }
+
 
 @keyframes slideUp {
     from {
@@ -277,8 +321,8 @@ body {
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--card-bg);
+    box-shadow: 0 4px 15px var(--shadow-color);
     transition: transform 0.3s ease;
 }
 
@@ -314,7 +358,7 @@ body {
 .qr-title {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #2d3748;
+    color: var(--text-color);
     margin: 0;
     background: linear-gradient(135deg, #ff6b9d, #c44569, #f8b500, #26de81, #4bcffa, #a55eea);
     background-size: 300% 300%;
@@ -334,7 +378,7 @@ body {
 }
 
 .qr-subtitle {
-    color: #718096;
+    color: var(--text-secondary);
     margin: 0;
     font-size: 0.9rem;
     font-weight: 500;
@@ -446,13 +490,10 @@ body {
 
 /* Enhanced URL display */
 .url-display {
-    background: linear-gradient(135deg, 
-        rgba(255, 107, 157, 0.1), 
-        rgba(75, 207, 250, 0.1)
-    );
-    color: #2d3748;
-    padding: 0.75rem 1rem;
-    border-radius: 15px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
     font-family: 'Monaco', 'Menlo', monospace;
     font-size: 1rem;
     font-weight: 600;
@@ -464,15 +505,12 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border: 2px solid transparent;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
 }
 
 .url-display:hover {
     transform: translateY(-2px);
-    background: linear-gradient(135deg, 
-        rgba(255, 107, 157, 0.15), 
-        rgba(75, 207, 250, 0.15)
-    );
     border-color: rgba(255, 107, 157, 0.3);
     box-shadow: 0 8px 25px rgba(255, 107, 157, 0.2);
 }
@@ -487,7 +525,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.7rem;
-    color: #a0aec0;
+    color: var(--text-tertiary);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -503,6 +541,19 @@ body {
     margin-bottom: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+/* Desktop: Make contact button match URL width */
+@media (min-width: 481px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
 .action-btn {
@@ -533,7 +584,7 @@ body {
         rgba(216, 173, 255, 0.8));
     background-size: 300% 300%;
     animation: buttonRainbow 8s ease-in-out infinite;
-    color: #2d3748;
+    color: var(--text-color);
     font-weight: 700;
     box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
 }
@@ -550,7 +601,7 @@ body {
 .action-btn.primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
-    color: #2d3748;
+    color: var(--text-color);
     animation-play-state: paused;
 }
 
@@ -565,8 +616,8 @@ body {
 .footer-note {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #e2e8f0;
-    color: #4a5568;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
     font-size: 0.85rem;
     font-weight: 500;
 }
@@ -593,8 +644,8 @@ body {
     bottom: 35px;
     left: 50%;
     transform: translateX(-50%) scale(0.8);
-    background-color: #333;
-    color: white;
+    background-color: var(--text-color);
+    color: var(--bg-color);
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.7rem;
@@ -613,7 +664,7 @@ body {
     margin-left: -4px;
     border-width: 4px;
     border-style: solid;
-    border-color: #333 transparent transparent transparent;
+    border-color: var(--text-color) transparent transparent transparent;
 }
 
 .badge-link:hover .badge-tooltip {
@@ -735,5 +786,94 @@ body {
     
     .attestation-badge {
         margin-top: 0.25rem;
+    }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10000;
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(180deg);
+}
+
+/* Show/hide sun and moon icons based on theme */
+:root[data-theme="light"] .moon-icon,
+:root:not([data-theme]) .moon-icon {
+    display: none;
+}
+
+:root[data-theme="dark"] .sun-icon {
+    display: none;
+}
+
+:root[data-theme="dark"] .moon-icon {
+    display: block;
+}
+
+/* Smooth theme transition */
+body.theme-transitioning * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Dark mode specific adjustments - URL display now uses same styling as other cards */
+
+:root[data-theme="dark"] .action-btn.primary {
+    background: linear-gradient(45deg, 
+        rgba(255, 182, 193, 0.6), 
+        rgba(255, 222, 173, 0.6), 
+        rgba(255, 255, 173, 0.6), 
+        rgba(173, 255, 182, 0.6), 
+        rgba(173, 216, 255, 0.6), 
+        rgba(216, 173, 255, 0.6));
+}
+
+:root[data-theme="dark"] .profile-pulse {
+    opacity: 0.4;
+}
+
+:root[data-theme="dark"] .scan-overlay::before {
+    opacity: 0.4;
+}
+
+/* Mobile theme toggle adjustments */
+@media (max-width: 480px) {
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .theme-toggle svg {
+        width: 18px;
+        height: 18px;
     }
 }

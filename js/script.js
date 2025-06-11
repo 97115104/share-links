@@ -3,13 +3,49 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all interactive features
+    initializeTheme();
     initializeAnimations();
     initializeInteractiveElements();
     initializeBioToggle();
     initializeEasterEggs();
     initializePerformanceOptimizations();
     initializeBeverageAnimations();
+    initializeEmailModal();
 });
+
+// Theme toggle functionality
+function initializeTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Update toggle button aria-label
+    const updateAriaLabel = (theme) => {
+        const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        themeToggle.setAttribute('aria-label', label);
+    };
+    
+    updateAriaLabel(currentTheme);
+    
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Update theme
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateAriaLabel(newTheme);
+        
+        // Add animation class for smooth transition
+        document.body.classList.add('theme-transition');
+        setTimeout(() => {
+            document.body.classList.remove('theme-transition');
+        }, 300);
+    });
+}
 
 // Bio toggle functionality
 function initializeBioToggle() {
@@ -163,18 +199,20 @@ function handleCompanyLeave(e) {
 }
 
 function handleEmailClick(e) {
-    // Add special feedback for email clicks
-    const emailCard = e.currentTarget;
-    const originalBg = emailCard.style.background;
+    e.preventDefault();
     
-    emailCard.style.background = 'linear-gradient(135deg, #48bb78, #38a169)';
-    
-    setTimeout(() => {
-        emailCard.style.background = originalBg;
-    }, 200);
-    
-    // Show a subtle notification
-    showNotification('Email client opening... 📧');
+    // Open email modal
+    const modal = document.getElementById('email-modal');
+    if (modal) {
+        modal.classList.add('show');
+        
+        // Add click animation to email card
+        const emailCard = e.currentTarget;
+        emailCard.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            emailCard.style.transform = '';
+        }, 150);
+    }
 }
 
 function createRippleEffect(element, event) {
@@ -572,4 +610,84 @@ if (prefersReducedMotion()) {
         }
     `;
     document.head.appendChild(style);
+}
+
+// Email modal functionality
+function initializeEmailModal() {
+    const modal = document.getElementById('email-modal');
+    const closeButton = modal?.querySelector('.modal-close');
+    const copyButton = modal?.querySelector('.copy-button');
+    
+    // Close modal functionality
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+    }
+    
+    // Close on background click
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+    }
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal?.classList.contains('show')) {
+            modal.classList.remove('show');
+        }
+    });
+    
+    // Copy email functionality
+    if (copyButton) {
+        copyButton.addEventListener('click', async () => {
+            const email = copyButton.dataset.email;
+            
+            try {
+                await navigator.clipboard.writeText(email);
+                
+                // Visual feedback
+                copyButton.classList.add('copied');
+                const originalText = copyButton.querySelector('span:last-child').textContent;
+                copyButton.querySelector('span:last-child').textContent = 'Copied!';
+                copyButton.querySelector('.copy-icon').textContent = '✅';
+                
+                setTimeout(() => {
+                    copyButton.classList.remove('copied');
+                    copyButton.querySelector('span:last-child').textContent = originalText;
+                    copyButton.querySelector('.copy-icon').textContent = '📋';
+                }, 2000);
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = email;
+                textArea.style.position = 'absolute';
+                textArea.style.left = '-9999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    copyButton.classList.add('copied');
+                    const originalText = copyButton.querySelector('span:last-child').textContent;
+                    copyButton.querySelector('span:last-child').textContent = 'Copied!';
+                    copyButton.querySelector('.copy-icon').textContent = '✅';
+                    
+                    setTimeout(() => {
+                        copyButton.classList.remove('copied');
+                        copyButton.querySelector('span:last-child').textContent = originalText;
+                        copyButton.querySelector('.copy-icon').textContent = '📋';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy email:', err);
+                    showNotification('Failed to copy email 😕');
+                }
+                
+                document.body.removeChild(textArea);
+            }
+        });
+    }
 }
