@@ -13,12 +13,32 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeEmailModal();
 });
 
-// Theme toggle functionality
+// Theme toggle functionality with automatic detection
 function initializeTheme() {
     const themeToggle = document.getElementById('theme-toggle');
     
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    // Determine the appropriate theme based on user preference, system preference, and time
+    function getAutoTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        
+        // If user has manually set a theme, use that
+        if (savedTheme && savedTheme !== 'auto') {
+            return savedTheme;
+        }
+        
+        // Check system preference first
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        
+        // Fall back to time-based detection
+        const hour = new Date().getHours();
+        // Dark mode from 7 PM to 7 AM
+        return (hour >= 19 || hour < 7) ? 'dark' : 'light';
+    }
+    
+    // Apply the determined theme
+    const currentTheme = getAutoTheme();
     document.documentElement.setAttribute('data-theme', currentTheme);
     
     // Update toggle button aria-label
@@ -29,21 +49,53 @@ function initializeTheme() {
     
     updateAriaLabel(currentTheme);
     
+    // Listen for system theme changes
+    if (window.matchMedia) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', (e) => {
+            // Only auto-update if user hasn't manually set a preference
+            const savedTheme = localStorage.getItem('theme');
+            if (!savedTheme || savedTheme === 'auto') {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateAriaLabel(newTheme);
+                applyThemeTransition();
+            }
+        });
+    }
+    
+    // Check time-based theme change every hour
+    setInterval(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (!savedTheme || savedTheme === 'auto') {
+            const newTheme = getAutoTheme();
+            const currentAppliedTheme = document.documentElement.getAttribute('data-theme');
+            if (newTheme !== currentAppliedTheme) {
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateAriaLabel(newTheme);
+                applyThemeTransition();
+            }
+        }
+    }, 3600000); // Check every hour
+    
+    // Apply smooth transition animation
+    function applyThemeTransition() {
+        document.body.classList.add('theme-transition');
+        setTimeout(() => {
+            document.body.classList.remove('theme-transition');
+        }, 300);
+    }
+    
     // Toggle theme on button click
     themeToggle.addEventListener('click', function() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        // Update theme
+        // Update theme and save user preference
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateAriaLabel(newTheme);
-        
-        // Add animation class for smooth transition
-        document.body.classList.add('theme-transition');
-        setTimeout(() => {
-            document.body.classList.remove('theme-transition');
-        }, 300);
+        applyThemeTransition();
     });
 }
 

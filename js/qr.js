@@ -1,43 +1,101 @@
 // Enhanced QR Code Generator with Interactive Features
 // Austin Harshberger Contact Page QR Code
 
-// Initialize theme on page load
+// Initialize theme on page load with automatic detection
 function initializeTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // Determine the appropriate theme based on user preference, system preference, and time
+    function getAutoTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        
+        // If user has manually set a theme, use that
+        if (savedTheme && savedTheme !== 'auto') {
+            return savedTheme;
+        }
+        
+        // Check system preference first
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        
+        // Fall back to time-based detection
+        const hour = new Date().getHours();
+        // Dark mode from 7 PM to 7 AM
+        return (hour >= 19 || hour < 7) ? 'dark' : 'light';
+    }
+    
+    // Apply the determined theme
+    const currentTheme = getAutoTheme();
+    document.documentElement.setAttribute('data-theme', currentTheme);
     
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         // Update aria-label based on current theme
-        themeToggle.setAttribute('aria-label', 
-            savedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-        );
+        const updateAriaLabel = (theme) => {
+            themeToggle.setAttribute('aria-label', 
+                theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+            );
+        };
+        
+        updateAriaLabel(currentTheme);
+        
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            mediaQuery.addEventListener('change', (e) => {
+                // Only auto-update if user hasn't manually set a preference
+                const savedTheme = localStorage.getItem('theme');
+                if (!savedTheme || savedTheme === 'auto') {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateAriaLabel(newTheme);
+                    applyThemeTransition();
+                    regenerateQRCode();
+                }
+            });
+        }
+        
+        // Check time-based theme change every hour
+        setInterval(() => {
+            const savedTheme = localStorage.getItem('theme');
+            if (!savedTheme || savedTheme === 'auto') {
+                const newTheme = getAutoTheme();
+                const currentAppliedTheme = document.documentElement.getAttribute('data-theme');
+                if (newTheme !== currentAppliedTheme) {
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    updateAriaLabel(newTheme);
+                    applyThemeTransition();
+                    regenerateQRCode();
+                }
+            }
+        }, 3600000); // Check every hour
+        
+        // Apply smooth transition animation
+        function applyThemeTransition() {
+            document.body.classList.add('theme-transitioning');
+            setTimeout(() => {
+                document.body.classList.remove('theme-transitioning');
+            }, 300);
+        }
+        
+        // Regenerate QR code with new theme colors
+        function regenerateQRCode() {
+            const qrContainer = document.getElementById('qrcode');
+            if (qrContainer) {
+                qrContainer.innerHTML = '';
+                generateQRCode();
+            }
+        }
         
         themeToggle.addEventListener('click', function() {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
+            // Update theme and save user preference
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            
-            // Update aria-label
-            this.setAttribute('aria-label', 
-                newTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-            );
-            
-            // Add transition class for smooth theme change
-            document.body.classList.add('theme-transitioning');
-            
-            // Clear existing QR code and regenerate with new colors
-            const qrContainer = document.getElementById('qrcode');
-            if (qrContainer) {
-                qrContainer.innerHTML = '';
-            }
-            generateQRCode();
-            
-            setTimeout(() => {
-                document.body.classList.remove('theme-transitioning');
-            }, 300);
+            updateAriaLabel(newTheme);
+            applyThemeTransition();
+            regenerateQRCode();
         });
     }
 }
