@@ -13,7 +13,7 @@
     --heading-color: #e2e8f0;
     --bg-color: #121212;
     --text-color: #e0e0e0;
-    --card-bg: #1e1e1e;
+    --card-bg: rgba(30, 30, 30, 0.25);
     --shadow-color: rgba(0, 0, 0, 0.5);
     --link-shadow: rgba(0, 0, 0, 0.4);
     --border-color: #333333;
@@ -178,15 +178,78 @@ body {
 }
 
 :root[data-theme="dark"] .floating-shape {
-    background: linear-gradient(45deg, 
-        rgba(255, 179, 186, 0.05),
-        rgba(255, 223, 186, 0.05),
-        rgba(255, 255, 186, 0.05),
-        rgba(186, 255, 201, 0.05),
-        rgba(186, 225, 255, 0.05),
-        rgba(201, 186, 255, 0.05)
-    );
-    opacity: 0.3;
+    display: none;
+}
+
+/* Starry night background for dark mode */
+[data-theme="dark"] .bg-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        /* North Star - largest and brightest */
+        radial-gradient(4px 4px at 75% 15%, #fff, transparent),
+        radial-gradient(8px 8px at 75% 15%, rgba(255, 255, 255, 0.3), transparent),
+        /* Bright stars */
+        radial-gradient(3px 3px at 20% 30%, #ffd4a3, transparent),
+        radial-gradient(2.5px 2.5px at 60% 70%, #fff, transparent),
+        radial-gradient(3px 3px at 90% 60%, #e6f3ff, transparent),
+        /* Medium stars */
+        radial-gradient(2px 2px at 45% 85%, #fff, transparent),
+        radial-gradient(2px 2px at 80% 40%, #ffe7c7, transparent),
+        radial-gradient(1.5px 1.5px at 30% 80%, #fff, transparent),
+        radial-gradient(2px 2px at 10% 20%, #f0f8ff, transparent),
+        /* Small dim stars */
+        radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 95% 90%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 5% 5%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(0.5px 0.5px at 85% 85%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 25% 60%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(0.5px 0.5px at 65% 25%, rgba(255, 255, 255, 0.6), transparent);
+    background-size: 100% 100%;
+    background-position: 0% 0%;
+    opacity: 1;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+[data-theme="dark"] .bg-animation::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        /* More varied stars */
+        radial-gradient(1.5px 1.5px at 15% 25%, #fff9e6, transparent),
+        radial-gradient(2.5px 2.5px at 35% 45%, #fff, transparent),
+        radial-gradient(1px 1px at 55% 35%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(3px 3px at 85% 25%, #e8f0ff, transparent),
+        radial-gradient(0.5px 0.5px at 25% 75%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1.5px 1.5px at 70% 90%, #fff, transparent),
+        radial-gradient(2px 2px at 40% 10%, #fffaf0, transparent),
+        radial-gradient(1px 1px at 90% 80%, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(0.5px 0.5px at 10% 70%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(1.5px 1.5px at 95% 50%, #fff, transparent);
+    background-size: 100% 100%;
+    background-position: 0% 0%;
+    opacity: 0.8;
+    animation: twinkle 6s ease-in-out infinite reverse;
+}
+
+/* Twinkle animation for stars */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.8;
+        filter: brightness(0.9);
+    }
+    50% {
+        opacity: 1;
+        filter: brightness(1.2);
+    }
 }
 
 .shape-1 {

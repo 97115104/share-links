@@ -112,10 +112,48 @@ function initializeBioToggle() {
             
             if (isExpanded) {
                 bioContent.classList.remove('expanded');
+                // Remove waving emoji
+                const wavingEmoji = bioContent.querySelector('.waving-emoji');
+                if (wavingEmoji) {
+                    wavingEmoji.remove();
+                }
             } else {
                 bioContent.classList.add('expanded');
+                // Add waving emoji after "Employee zero"
+                addWavingEmoji();
             }
         });
+    }
+}
+
+function addWavingEmoji() {
+    const bioText = document.querySelector('.bio-text');
+    if (bioText && !bioText.querySelector('.waving-emoji')) {
+        // Add emoji inline with the text, right before "Employee zero"
+        const textContent = bioText.innerHTML;
+        const updatedContent = textContent.replace(
+            'Employee zero',
+            '<span class="waving-emoji" style="display: inline-block; font-size: 1.1rem; margin-right: 0.2rem; animation: wave 1.5s ease-in-out infinite; transform-origin: 70% 70%; vertical-align: baseline; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));">👋</span> Employee zero'
+        );
+        bioText.innerHTML = updatedContent;
+        
+        // Add wave animation if not already present
+        if (!document.querySelector('#wave-animation')) {
+            const style = document.createElement('style');
+            style.id = 'wave-animation';
+            style.textContent = `
+                @keyframes wave {
+                    0%, 100% { transform: rotate(0deg); }
+                    10% { transform: rotate(14deg); }
+                    20% { transform: rotate(-8deg); }
+                    30% { transform: rotate(14deg); }
+                    40% { transform: rotate(-4deg); }
+                    50% { transform: rotate(10deg); }
+                    60%, 100% { transform: rotate(0deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     }
 }
 
@@ -317,11 +355,13 @@ function initializeEasterEggs() {
     
     // Click counter easter egg on profile image
     let clickCount = 0;
-    const profileImage = document.querySelector('.profile-image');
-    if (profileImage) {
-        profileImage.addEventListener('click', () => {
+    const profileImageContainer = document.querySelector('.profile-image-container');
+    if (profileImageContainer) {
+        profileImageContainer.style.cursor = 'pointer';
+        profileImageContainer.addEventListener('click', (e) => {
+            e.preventDefault();
             clickCount++;
-            if (clickCount === 5) {
+            if (clickCount === 4) {
                 triggerProfileEasterEgg();
                 clickCount = 0;
             }
@@ -388,30 +428,153 @@ function triggerUnicornMode() {
 }
 
 function triggerProfileEasterEgg() {
-    // Disco mode
-    showNotification('🕺 Disco mode activated! Austin\'s feeling groovy...');
-    document.body.classList.add('disco-mode');
+    const quote = "silent waiting on the truth, pure sitting and breathing in the presence of the question mark.";
     
-    setTimeout(() => {
-        document.body.classList.remove('disco-mode');
-    }, 5000);
+    // Create quote overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        padding: 1rem;
+    `;
     
-    // Add disco styles
-    if (!document.querySelector('#disco-styles')) {
-        const discoStyles = document.createElement('style');
-        discoStyles.id = 'disco-styles';
-        discoStyles.textContent = `
-            .disco-mode {
-                animation: disco 0.5s ease-in-out infinite alternate;
-            }
-            
-            @keyframes disco {
-                0% { filter: hue-rotate(0deg); }
-                100% { filter: hue-rotate(360deg); }
-            }
+    const quoteContainer = document.createElement('div');
+    quoteContainer.style.cssText = `
+        max-width: 90%;
+        text-align: center;
+        padding: 2rem;
+    `;
+    
+    const quoteText = document.createElement('div');
+    const isMobile = window.innerWidth <= 768;
+    quoteText.style.cssText = `
+        font-size: ${isMobile ? '1.2rem' : '2rem'};
+        color: white;
+        font-family: 'Georgia', serif;
+        font-style: italic;
+        line-height: 1.8;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+        white-space: normal;
+        word-wrap: break-word;
+    `;
+    
+    // Create sparkle emojis around the quote
+    const createSparkle = () => {
+        const sparkle = document.createElement('div');
+        const emojis = ['✨', '⭐', '🌟', '💫', '🌠'];
+        sparkle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        sparkle.style.cssText = `
+            position: absolute;
+            font-size: ${Math.random() * 30 + 20}px;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: floatAndFade 4s ease-out forwards;
+            pointer-events: none;
         `;
-        document.head.appendChild(discoStyles);
-    }
+        overlay.appendChild(sparkle);
+    };
+    
+    // Add styles for animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes floatAndFade {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
+            }
+        }
+        
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        .typewriter-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: ${isMobile ? 'normal' : 'nowrap'};
+            ${isMobile ? '' : 'border-right: 3px solid white;'}
+            animation: ${isMobile ? 'fadeIn 2s ease forwards' : `typewriter 4s steps(${quote.length}) forwards, blink 0.75s step-end infinite`};
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    quoteContainer.appendChild(quoteText);
+    overlay.appendChild(quoteContainer);
+    document.body.appendChild(overlay);
+    
+    // Trigger animations
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+        
+        // Create sparkles
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createSparkle, i * 200);
+        }
+        
+        // Animate quote
+        setTimeout(() => {
+            quoteText.style.opacity = '1';
+            quoteText.style.transform = 'translateY(0)';
+            // For mobile, just show the text; for desktop, use typewriter effect
+            if (isMobile) {
+                quoteText.innerHTML = `<div class="typewriter-text">"${quote}"</div>`;
+            } else {
+                quoteText.innerHTML = `<span class="typewriter-text">"${quote}"</span>`;
+            }
+        }, 500);
+    }, 100);
+    
+    // Remove overlay on click or after delay
+    const removeOverlay = () => {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.remove();
+            style.remove();
+        }, 500);
+    };
+    
+    overlay.addEventListener('click', removeOverlay);
+    setTimeout(removeOverlay, 8000);
 }
 
 function showStartupInterpretation() {
