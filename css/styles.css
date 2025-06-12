@@ -12,6 +12,7 @@
     --card-bg: rgba(255, 255, 255, 0.95);
     --shadow-color: rgba(0, 0, 0, 0.15);
     --link-shadow: rgba(0, 0, 0, 0.08);
+    --border-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode */
@@ -51,9 +52,11 @@ body.theme-transition *::after {
 
 /* Theme toggle button */
 .theme-toggle {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
+    position: fixed !important;
+    bottom: 2rem !important;
+    right: 2rem !important;
+    top: auto !important;
+    left: auto !important;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -65,12 +68,14 @@ body.theme-transition *::after {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 0.8;
 }
 
 .theme-toggle:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 25px var(--shadow-color);
+    opacity: 1;
 }
 
 .theme-toggle:active {
@@ -1660,6 +1665,20 @@ body.theme-transition *::after {
     }
     
     .modal-body p {
+        font-size: 1rem;
+    }
+    
+    /* Mobile theme toggle adjustments */
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        bottom: 15px !important;
+        right: 15px !important;
+        top: auto !important;
+        left: auto !important;
+    }
+    
+    .theme-icon {
         font-size: 1rem;
     }
 }

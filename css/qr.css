@@ -855,50 +855,69 @@ body {
 /* Theme Toggle Button */
 .theme-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    bottom: 2rem;
+    right: 2rem;
     background: var(--card-bg);
     border: 2px solid var(--border-color);
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10000;
-    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    opacity: 0.8;
 }
 
 .theme-toggle:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px var(--shadow-color);
+    box-shadow: 0 6px 25px var(--shadow-color);
+    opacity: 1;
 }
 
-.theme-toggle svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--text-color);
-    transition: transform 0.3s ease;
+.theme-toggle:active {
+    transform: scale(0.95);
 }
 
-.theme-toggle:hover svg {
-    transform: rotate(180deg);
+/* Theme icon styles to match main page */
+.theme-icon-wrapper {
+    position: relative;
+    width: 24px;
+    height: 24px;
 }
 
-/* Show/hide sun and moon icons based on theme */
-:root[data-theme="light"] .moon-icon,
-:root:not([data-theme]) .moon-icon {
-    display: none;
+.theme-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-:root[data-theme="dark"] .sun-icon {
-    display: none;
+.theme-icon-light {
+    color: #f59e0b;
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
 }
 
-:root[data-theme="dark"] .moon-icon {
-    display: block;
+.theme-icon-dark {
+    color: #6366f1;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg);
+}
+
+:root[data-theme="dark"] .theme-icon-light {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(180deg);
+}
+
+:root[data-theme="dark"] .theme-icon-dark {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
 }
 
 /* Smooth theme transition */
@@ -931,12 +950,11 @@ body.theme-transitioning * {
     .theme-toggle {
         width: 40px;
         height: 40px;
-        top: 15px;
+        bottom: 15px;
         right: 15px;
     }
     
-    .theme-toggle svg {
-        width: 18px;
-        height: 18px;
+    .theme-icon {
+        font-size: 1rem;
     }
 }
