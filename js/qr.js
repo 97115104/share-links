@@ -115,7 +115,7 @@ function generateQRCode() {
     // Generate QR code with mobile-optimized size and theme-aware colors
     const qr = new QRious({
         element: document.createElement('canvas'),
-        value: 'https://97104.xyz',
+        value: 'https://links.97115104.com',
         size: window.innerWidth < 480 ? 180 : 200,
         background: isDarkMode ? '#1a202c' : 'white',
         foreground: isDarkMode ? '#e2e8f0' : '#2d3748',
@@ -267,11 +267,11 @@ function setupActionButtons() {
 
 function copyToClipboard() {
     if (navigator.clipboard) {
-        navigator.clipboard.writeText('https://97104.xyz').then(() => {
+        navigator.clipboard.writeText('https://links.97115104.com').then(() => {
             showNotification('📋 URL copied to clipboard!');
         });
     } else {
-        showNotification('🌐 97104.xyz - Share this link!');
+        showNotification('🌐 links.97115104.com - Share this link!');
     }
 }
 

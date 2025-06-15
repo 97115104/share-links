@@ -4,13 +4,13 @@ A modern, animated, and professional contact page designed for conference networ
 
 ## 🌟 Live Demo
 
-Visit the live page at **[97104.xyz](https://97104.xyz)**
+Visit the live page at **[links.97115104.com](https://links.97115104.com)**
 
 Scan this QR code to access on mobile:
 
-![QR Code for 97104.xyz](assets/qr-code-97104xyz.png)
+![QR Code for links.97115104.com](assets/qr-code-97104xyz.png)
 
-*QR Code points to https://97104.xyz*
+*QR Code points to https://links.97115104.com*
 
 ## ✨ Features
 
@@ -128,7 +128,7 @@ Update these sections in `index.html`:
 Modify `qr.js` to change:
 ```javascript
 // QR code target URL
-value: 'https://97104.xyz'
+value: 'https://links.97115104.com'
 
 // Animation parameters
 amplitude: 0.3 + Math.random() * 0.4  // Pixel movement range
@@ -253,7 +253,7 @@ Find Austin through any of the methods on the contact page, or:
 - **Email**: founder@status.health
 - **LinkedIn**: [aharshbe](https://www.linkedin.com/in/aharshbe/)
 - **Blog**: [97115104.com](https://97115104.com/)
-- **QR Code**: Scan the code above or visit [97104.xyz](https://97104.xyz)
+- **QR Code**: Scan the code above or visit [links.97115104.com](https://links.97115104.com)
 
 ---
 
