@@ -116,7 +116,7 @@ function generateQRCode() {
     const qr = new QRious({
         element: document.createElement('canvas'),
         value: 'https://links.97115104.com',
-        size: window.innerWidth < 480 ? 180 : 200,
+        size: window.innerWidth < 480 ? 160 : 180,
         background: isDarkMode ? '#1a202c' : 'white',
         foreground: isDarkMode ? '#e2e8f0' : '#2d3748',
         level: 'M'
