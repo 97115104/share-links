@@ -500,6 +500,12 @@ body.theme-transition *::after {
     flex-wrap: wrap;
 }
 
+@media (min-width: 769px) {
+    .companies {
+        gap: 2rem;
+    }
+}
+
 .company-tag {
     background: linear-gradient(45deg, 
         rgba(255, 182, 193, 0.3), 
@@ -517,6 +523,15 @@ body.theme-transition *::after {
     transition: transform 0.2s ease;
     text-decoration: none;
     display: inline-block;
+}
+
+@media (min-width: 769px) {
+    .company-tag {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 20px;
+    }
 }
 
 .company-tag:hover {
@@ -899,6 +914,12 @@ body.theme-transition *::after {
     gap: 1rem;
 }
 
+@media (min-width: 769px) {
+    .company-links {
+        gap: 1.25rem;
+    }
+}
+
 .company-link {
     display: flex;
     align-items: center;
@@ -928,6 +949,7 @@ body.theme-transition *::after {
     box-shadow: 0 8px 30px var(--shadow-color);
 }
 
+
 .company-info h4 {
     font-size: 1.2rem;
     font-weight: 600;
@@ -956,6 +978,12 @@ body.theme-transition *::after {
     color: var(--border-hover);
     font-size: 1.2rem;
     transition: color 0.3s ease;
+}
+
+@media (min-width: 769px) {
+    .company-link i {
+        font-size: 1.4rem;
+    }
 }
 
 .company-link:hover i {
