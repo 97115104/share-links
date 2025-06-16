@@ -686,6 +686,25 @@ body {
     font-weight: 500;
 }
 
+.footer-copyright {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.footer-copyright p {
+    margin: 0.25rem 0;
+    color: #718096;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.footer-quote {
+    font-style: italic;
+    color: #a0aec0;
+    font-size: 0.75rem !important;
+    margin-top: 0.5rem;
+}
+
 /* Attestation badge styling */
 .attestation-badge {
     display: flex;

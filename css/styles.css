@@ -1005,6 +1005,33 @@ body.theme-transition *::after {
     }
 }
 
+.footer-copyright {
+    margin-top: 2rem;
+}
+
+.footer-copyright p {
+    margin: 0.25rem 0;
+    color: #718096;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer-quote {
+    font-style: italic;
+    color: #a0aec0;
+    font-size: 0.85rem !important;
+    margin-top: 0.5rem;
+}
+
+/* Dark mode footer adjustments */
+:root[data-theme="dark"] .footer-copyright p {
+    color: #a0aec0;
+}
+
+:root[data-theme="dark"] .footer-quote {
+    color: #718096;
+}
+
 .footer-text {
     color: #718096;
     font-size: 0.95rem;
