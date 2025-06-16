@@ -817,21 +817,11 @@ body.theme-transition *::after {
 }
 
 .floating-icon {
-    animation: iconFloat 3s ease-in-out infinite;
-}
-
-@keyframes iconFloat {
-    0%, 100% {
-        transform: translateY(0px) scale(1);
-    }
-    50% {
-        transform: translateY(-5px) scale(1.05);
-    }
+    /* Animation removed for cleaner look */
 }
 
 .link-card:hover .link-icon {
     transform: scale(1.1);
-    animation-play-state: paused;
 }
 
 .link-content {

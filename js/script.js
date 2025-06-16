@@ -242,18 +242,16 @@ function handleCardHover(e) {
     const card = e.currentTarget;
     const icon = card.querySelector('.link-icon');
     
-    // Add a subtle bounce animation
-    icon.style.animation = 'bounce 0.6s ease, iconFloat 3s ease-in-out infinite';
+    // Simple scale effect on hover
+    icon.style.transform = 'scale(1.1)';
 }
 
 function handleCardLeave(e) {
     const card = e.currentTarget;
     const icon = card.querySelector('.link-icon');
     
-    // Reset animation to just the floating
-    setTimeout(() => {
-        icon.style.animation = 'iconFloat 3s ease-in-out infinite';
-    }, 600);
+    // Reset transform
+    icon.style.transform = '';
 }
 
 function handleCardClick(e) {
