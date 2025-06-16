@@ -8,7 +8,7 @@ Visit the live page at **[links.97115104.com](https://links.97115104.com)**
 
 Scan this QR code to access on mobile:
 
-![QR Code for links.97115104.com](assets/qr-code-97104xyz.png)
+![QR Code for links.97115104.com](assets/qr-code.png)
 
 *QR Code points to https://links.97115104.com*
 
@@ -66,7 +66,7 @@ austin-contact-page/
 │   ├── profile.jpg         # Austin's profile photo (400x400px recommended)
 │   ├── favicon.png         # Site favicon
 │   ├── prideflag.gif       # Animated pride flag
-│   └── qr-code-97104xyz.png # Static QR code for README
+│   └── qr-code.png # Static QR code for README
 ├── claude-generated.svg    # Custom Claude attestation badge
 └── README.md              # This file
 ```
