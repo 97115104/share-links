@@ -359,6 +359,14 @@ body.theme-transition *::after {
     margin: 2rem auto;
 }
 
+/* Desktop enhancements */
+@media (min-width: 769px) {
+    .content {
+        padding: 4rem 3rem;
+        max-width: 700px;
+    }
+}
+
 
 /* PWA mode content adjustments */
 @media (display-mode: standalone) {
@@ -385,6 +393,12 @@ body.theme-transition *::after {
     margin-bottom: 2.5rem;
 }
 
+@media (min-width: 769px) {
+    .profile-section {
+        margin-bottom: 3.5rem;
+    }
+}
+
 .profile-image-container {
     position: relative;
     display: inline-block;
@@ -400,6 +414,13 @@ body.theme-transition *::after {
     box-shadow: 0 10px 30px var(--shadow-color);
     transition: transform 0.3s ease;
     animation: profilePulse 3s ease-in-out infinite;
+}
+
+@media (min-width: 769px) {
+    .profile-image {
+        width: 140px;
+        height: 140px;
+    }
 }
 
 .profile-image:hover {
@@ -443,6 +464,13 @@ body.theme-transition *::after {
     animation: textRainbow 15s ease-in-out infinite;
 }
 
+@media (min-width: 769px) {
+    .name {
+        font-size: 3rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
 @keyframes textRainbow {
     0%, 100% {
         background-position: 0% 50%;
@@ -457,6 +485,13 @@ body.theme-transition *::after {
     color: var(--muted-color);
     font-weight: 500;
     margin-bottom: 1rem;
+}
+
+@media (min-width: 769px) {
+    .title {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .companies {
@@ -494,6 +529,12 @@ body.theme-transition *::after {
     margin-bottom: 2.5rem;
 }
 
+@media (min-width: 769px) {
+    .bio-section {
+        margin-bottom: 3.5rem;
+    }
+}
+
 .bio-toggle {
     background: none;
     border: 2px solid var(--border-color);
@@ -510,6 +551,13 @@ body.theme-transition *::after {
     width: 100%;
     transition: all 0.3s ease;
     margin-bottom: 0;
+}
+
+@media (min-width: 769px) {
+    .bio-toggle {
+        font-size: 1.1rem;
+        padding: 1.25rem 1.75rem;
+    }
 }
 
 .bio-toggle:hover {
@@ -557,6 +605,14 @@ body.theme-transition *::after {
     font-size: 1rem;
     margin-bottom: 1rem;
     line-height: 1.7;
+}
+
+@media (min-width: 769px) {
+    .bio-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.25rem;
+    }
 }
 
 .bio-link {
@@ -727,6 +783,12 @@ body.theme-transition *::after {
     overflow: hidden;
 }
 
+@media (min-width: 769px) {
+    .link-card {
+        padding: 1.5rem;
+    }
+}
+
 
 .link-card:hover {
     transform: translateY(-3px);
@@ -744,6 +806,14 @@ body.theme-transition *::after {
     font-size: 1.25rem;
     color: white;
     transition: transform 0.3s ease;
+}
+
+@media (min-width: 769px) {
+    .link-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
+    }
 }
 
 .floating-icon {
@@ -776,11 +846,23 @@ body.theme-transition *::after {
     display: block;
 }
 
+@media (min-width: 769px) {
+    .link-text {
+        font-size: 1.2rem;
+    }
+}
+
 .link-desc {
     font-size: 0.9rem;
     color: var(--muted-color);
     display: block;
     margin-top: 0.25rem;
+}
+
+@media (min-width: 769px) {
+    .link-desc {
+        font-size: 0.95rem;
+    }
 }
 
 /* Specific link colors */
@@ -800,12 +882,25 @@ body.theme-transition *::after {
     margin-top: 2rem;
 }
 
+@media (min-width: 769px) {
+    .companies-section {
+        margin-top: 3rem;
+    }
+}
+
 .companies-title {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-color);
     margin-bottom: 1.5rem;
+}
+
+@media (min-width: 769px) {
+    .companies-title {
+        font-size: 1.75rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .company-links {
@@ -828,6 +923,12 @@ body.theme-transition *::after {
     border-left: 4px solid;
 }
 
+@media (min-width: 769px) {
+    .company-link {
+        padding: 1.75rem;
+    }
+}
+
 .status { border-left-color: #ff6b9d; }
 .health-protocol { border-left-color: #a55eea; }
 .attest { border-left-color: #26de81; }
@@ -844,9 +945,21 @@ body.theme-transition *::after {
     margin-bottom: 0.25rem;
 }
 
+@media (min-width: 769px) {
+    .company-info h4 {
+        font-size: 1.3rem;
+    }
+}
+
 .company-info p {
     color: var(--muted-color);
     font-size: 0.95rem;
+}
+
+@media (min-width: 769px) {
+    .company-info p {
+        font-size: 1rem;
+    }
 }
 
 .company-link i {
@@ -865,6 +978,13 @@ body.theme-transition *::after {
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
     margin-top: 2rem;
+}
+
+@media (min-width: 769px) {
+    .footer {
+        padding-top: 2.5rem;
+        margin-top: 3rem;
+    }
 }
 
 .footer-text {
@@ -1105,6 +1225,13 @@ body.theme-transition *::after {
     overflow: hidden;
 }
 
+@media (min-width: 769px) {
+    .pride-badge {
+        padding: 1rem 2rem;
+        gap: 1rem;
+    }
+}
+
 .pride-badge:hover {
     transform: translateY(-2px);
 }
@@ -1176,6 +1303,12 @@ body.theme-transition *::after {
     color: var(--text-color);
     font-size: 0.95rem;
     text-align: center;
+}
+
+@media (min-width: 769px) {
+    .pride-text {
+        font-size: 1.05rem;
+    }
 }
 
 /* Mobile responsiveness */

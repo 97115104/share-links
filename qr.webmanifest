@@ -37,7 +37,7 @@
     "categories": ["business", "networking", "utilities"],
     "screenshots": [
         {
-            "src": "./assets/qr-code-97104xyz.png",
+            "src": "./assets/qr-code.png",
             "sizes": "300x300",
             "type": "image/png",
             "form_factor": "narrow",
