@@ -523,6 +523,7 @@ body.theme-transition *::after {
     transition: transform 0.2s ease;
     text-decoration: none;
     display: inline-block;
+    margin-top: 10px;
 }
 
 @media (min-width: 769px) {
