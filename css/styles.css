@@ -495,6 +495,7 @@ body.theme-transition *::after {
 }
 
 .companies {
+    display: flex;
     justify-content: center;
     gap: 0.75rem;
     flex-wrap: wrap;
@@ -941,6 +942,7 @@ body.theme-transition *::after {
     }
 }
 
+.mcbooboo { border-left-color: #667eea; }
 .status { border-left-color: #ff6b9d; }
 .health-protocol { border-left-color: #a55eea; }
 .attest { border-left-color: #26de81; }
@@ -1384,7 +1386,7 @@ body.theme-transition *::after {
     }
     
     .companies {
-        align-items: center;
+        display: none;
     }
     
     .theme-toggle {
@@ -1416,6 +1418,7 @@ body.theme-transition *::after {
     .title {
         font-size: 0.9rem;
     }
+    
     
     .personal-details {
         gap: 0.75rem;
