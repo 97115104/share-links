@@ -202,8 +202,23 @@ function initializeAnimations() {
 }
 
 function initializeInteractiveElements() {
-    // Enhanced hover effects for profile image
+    // Profile image rotation setup
+    const profileImages = ['p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png'];
+    let currentProfileIndex = 0;
     const profileImage = document.querySelector('.profile-image');
+    
+    // Function to rotate profile image
+    function rotateProfileImage() {
+        if (profileImage) {
+            currentProfileIndex = (currentProfileIndex + 1) % profileImages.length;
+            profileImage.src = `assets/${profileImages[currentProfileIndex]}`;
+        }
+    }
+    
+    // Rotate profile image every 5 seconds
+    setInterval(rotateProfileImage, 5000);
+    
+    // Enhanced hover effects for profile image
     const profileGlow = document.querySelector('.profile-glow');
     
     profileImage.addEventListener('mouseenter', () => {

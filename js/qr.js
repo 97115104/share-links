@@ -107,7 +107,26 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeInteractiveEffects();
     initializeEasterEggs();
     setupActionButtons();
+    initializeProfileRotation();
 });
+
+// Profile image rotation functionality
+function initializeProfileRotation() {
+    const profileImages = ['p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png'];
+    let currentProfileIndex = 0;
+    const miniAvatar = document.querySelector('.mini-avatar');
+    
+    // Function to rotate profile image
+    function rotateProfileImage() {
+        if (miniAvatar) {
+            currentProfileIndex = (currentProfileIndex + 1) % profileImages.length;
+            miniAvatar.src = `./assets/${profileImages[currentProfileIndex]}`;
+        }
+    }
+    
+    // Rotate profile image every 5 seconds
+    setInterval(rotateProfileImage, 5000);
+}
 
 function generateQRCode() {
     const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
