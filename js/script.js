@@ -120,7 +120,7 @@ function initializeBioToggle() {
                 }
             } else {
                 bioContent.classList.add('expanded');
-                // Add waving emoji after "Employee zero"
+                // Add waving emoji after "Product leader"
                 addWavingEmoji();
             }
         });
@@ -130,11 +130,11 @@ function initializeBioToggle() {
 function addWavingEmoji() {
     const bioText = document.querySelector('.bio-text');
     if (bioText && !bioText.querySelector('.waving-emoji')) {
-        // Add emoji inline with the text, right before "Employee zero"
+        // Add emoji inline with the text, right before "Product leader"
         const textContent = bioText.innerHTML;
         const updatedContent = textContent.replace(
-            'Employee zero',
-            '<span class="waving-emoji" style="display: inline-block; font-size: 1.1rem; margin-right: 0.2rem; animation: wave 1.5s ease-in-out infinite; transform-origin: 70% 70%; vertical-align: baseline; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));">👋</span> Employee zero'
+            'Product leader',
+            '<span class="waving-emoji" style="display: inline-block; font-size: 1.1rem; margin-right: 0.2rem; animation: wave 1.5s ease-in-out infinite; transform-origin: 70% 70%; vertical-align: baseline; filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));">👋</span> Product leader'
         );
         bioText.innerHTML = updatedContent;
         
@@ -944,6 +944,10 @@ function showToyStoryBall(ballTypeIndex = null, options = {}) {
     const ballType = ballTypeIndex !== null ? ballTypes[ballTypeIndex] : ballTypes[Math.floor(Math.random() * ballTypes.length)];
     const ball = document.createElement('div');
     
+    // Calculate animation parameters first
+    const speedMultiplier = options.speed === 'fast' ? 0.6 : options.speed === 'slow' ? 1.5 : 1;
+    const animationDuration = 8 * speedMultiplier;
+    
     // More intentional positioning based on options
     const startSide = options.side || (Math.random() < 0.5 ? 'left' : 'right');
     const startY = options.dramatic ? 
@@ -999,13 +1003,11 @@ function showToyStoryBall(ballTypeIndex = null, options = {}) {
     }
     
     // Create more realistic bouncing animation with rotation - adjusted for options
-    const speedMultiplier = options.speed === 'fast' ? 0.6 : options.speed === 'slow' ? 1.5 : 1;
     const bounceHeight = options.dramatic ? 
         180 + Math.random() * 120 : // Higher bounces for drama
         120 + Math.random() * 80;
     const totalDistance = window.innerWidth + 120;
     const direction = startSide === 'left' ? 1 : -1;
-    const animationDuration = 8 * speedMultiplier;
     
     const style = document.createElement('style');
     style.textContent = `
