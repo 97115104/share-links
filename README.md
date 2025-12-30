@@ -5,7 +5,7 @@ A modern, animated, and professional links page designed for easy sharing at con
 ## 📁 Project Structure
 
 ```
-austin-contact-page/
+share-links/
 ├── index.html              # Main contact page
 ├── qr.html                 # Mobile-optimized animated QR code page
 ├── css/
@@ -27,8 +27,8 @@ austin-contact-page/
 
 ### 1. Clone & Setup
 ```bash
-git clone https://github.com/yourusername/austin-contact-page
-cd austin-contact-page
+git clone https://github.com/yourusername/share-links
+cd share-links
 ```
 
 ### 2. Add Required Assets
