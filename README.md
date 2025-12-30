@@ -1,4 +1,4 @@
-# Social Links Page
+# Share Links Page
 
 A modern, animated, and professional links page designed for easy sharing at conferences and for social networking, with a QR code sharing feature.
 
