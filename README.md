@@ -1,54 +1,6 @@
-# Austin Harshberger - Conference Contact Page
+# Social Links Page
 
-A modern, animated, and professional contact page designed for conference networking and QR code sharing. Built with pure HTML, CSS, and JavaScript featuring delightful animations, LGBTQ+ pride representation, a subtle rainbow aesthetic, and a mesmerizing animated QR code.
-
-## 🌟 Live Demo
-
-Visit the live page at **[links.97115104.com](https://links.97115104.com)**
-
-Scan this QR code to access on mobile:
-
-![QR Code for links.97115104.com](assets/qr-code.png)
-
-*QR Code points to https://links.97115104.com*
-
-## ✨ Features
-
-### 🎨 **Visual Design**
-- **Subtle Rainbow Theme**: Pastel rainbow gradient background with smooth color transitions
-- **Glass Morphism**: Modern frosted glass effect for main content area
-- **Floating Animations**: Organic morphing shapes that dance in the background
-- **Professional Typography**: Clean Inter font with animated gradient text effects
-- **Responsive Design**: Looks stunning on mobile, tablet, and desktop
-
-### 🏳️‍🌈 **LGBTQ+ Representation**
-- **Animated Pride Flag**: GIF badge showing pride in identity
-- **Inclusive Messaging**: "Proudly LGBTQ+" prominently displayed
-- **Rainbow Aesthetic**: Color scheme celebrates diversity and inclusion
-
-### 📱 **Animated QR Code Page**
-- **Living QR Code**: Black pixels gently move in a sand-like effect while remaining scannable
-- **Rainbow Scanner**: Subtle rainbow light beam sweeps across the QR code
-- **Mobile Optimized**: Perfect for displaying on phone screens at conferences
-- **Interactive Effects**: Hover animations, click feedback, and easter eggs
-- **Professional Presentation**: Clean design with your branding
-
-### 🔗 **Contact & Social Integration**
-- **Multiple Contact Methods**: Email, LinkedIn, X/Twitter, GitHub, Signal, Telegram
-- **Company Showcase**: status.health, healthprotocol.network, and attest.ink
-- **Personal Blog**: Links to random musings at 97115104.com
-- **Floating Icons**: Social media icons with gentle hover animations
-
-### 🎯 **Interactive Elements**
-- **Hover Effects**: Ripple animations, floating icons, and smooth transitions
-- **Easter Eggs**: Hidden animations triggered by clicks and key combinations
-- **Mobile-Optimized**: Touch-friendly interface perfect for conference networking
-- **Konami Code**: Rainbow explosion effect for the QR code
-
-### 🔒 **Privacy & Attribution**
-- **Claude Attestation**: attest.ink badges for transparent AI assistance acknowledgment
-- **No Tracking**: No analytics or cookies, privacy-first approach
-- **Open Source**: MIT licensed for educational and personal use
+A modern, animated, and professional links page designed for easy sharing at conferences and for social networking, with a QR code sharing feature.
 
 ## 📁 Project Structure
 
@@ -145,21 +97,6 @@ animation: rainbowShift 30s ease-in-out infinite;
 animation: rainbowScan 4s ease-in-out infinite;
 ```
 
-## 🎯 Conference Usage
-
-### QR Code Sharing
-1. **Open QR Page**: Navigate to `qr.html` on your phone
-2. **Display to Contacts**: Show your phone screen for easy scanning
-3. **Business Cards**: Use the static QR code image for printed materials
-4. **Digital Sharing**: Include QR code in email signatures or social media
-
-### Networking Features
-- **Quick Contact**: Multiple ways to connect (email, social, messaging)
-- **Professional Context**: Clear company and project information
-- **Personal Touch**: Philosophy and personality shine through
-- **Mobile-First**: Perfect for on-the-go conference interactions
-- **Visual Appeal**: Animated QR code is a conversation starter
-
 ## 🛠 Technical Details
 
 ### Dependencies
@@ -179,40 +116,6 @@ animation: rainbowScan 4s ease-in-out infinite;
 - **Mobile Optimized**: Responsive images and touch-friendly design
 - **No Tracking**: Privacy-first, no external analytics
 - **Smooth Animations**: 60fps QR code animation with proper cleanup
-
-## 🎭 Easter Eggs
-
-Hidden interactions for those who discover them:
-
-1. **Konami Code**: `↑↑↓↓←→←→BA` triggers rainbow explosion on QR code
-2. **Profile Disco**: Click profile image 5 times for disco mode (main page)
-3. **Champagne Toast**: Double-click footer for celebratory bubbles (main page)
-4. **QR Click**: Click QR code for success notification
-5. **URL Copy**: Click URL display to copy to clipboard
-6. **Color Shifts**: Background smoothly cycles through rainbow spectrum
-
-## 🌈 Design Philosophy
-
-### Authenticity
-- **Personal Branding**: Reflects Austin's personality and values
-- **LGBTQ+ Pride**: Celebrates identity without being overwhelming
-- **Professional Balance**: Serious expertise with playful presentation
-
-### Innovation
-- **Animated QR Codes**: Pushes boundaries of what QR codes can be
-- **Living Design**: Subtle animations make the page feel alive
-- **Technical Artistry**: Code as a form of creative expression
-
-### Accessibility
-- **Color Contrast**: High contrast ratios for readability
-- **Motion Sensitivity**: Respects `prefers-reduced-motion` settings
-- **Keyboard Navigation**: All interactive elements accessible
-- **Screen Readers**: Semantic HTML and ARIA labels
-
-### Performance
-- **Mobile First**: Designed for conference networking on phones
-- **Fast Loading**: Optimized for quick first impressions
-- **Graceful Degradation**: Works even with JavaScript disabled
 
 ## 🔧 Development
 
