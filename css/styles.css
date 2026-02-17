@@ -1,3 +1,19 @@
+/* Match modal envelope icon to email link card */
+.modal-icon {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+}
+.modal-icon .fa-envelope {
+    color: #fff !important;
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 8px rgba(255,107,107,0.15));
+}
 
 /* Make modal envelope icon white in light mode, default in dark *:root:not([data-theme="dark"]) .modal-icon .fa-envelope {
     color: #fff;
