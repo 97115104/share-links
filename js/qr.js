@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Profile image rotation functionality
 function initializeProfileRotation() {
-    const profileImages = ['p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png'];
+    const profileImages = ['p1.png', 'p2.png', 'p3.png', 'p4.png', 'p5.png', 'p6.png'];
     let currentProfileIndex = 0;
     const miniAvatar = document.querySelector('.mini-avatar');
     

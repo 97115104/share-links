@@ -61,12 +61,14 @@
                     <div class="profile-glow"></div>
                 </div>
                 <h1 class="name">Austin Harshberger</h1>
-                <p class="title">Builder • Inventor • Researcher</p>
-<!-- '                <div class="companies">
+                <p class="title">Technical Founder • Inventor • Researcher</p>
+                <!--
+                <div class="companies">
                     <a href="https://status.health/" target="_blank" class="company-tag">status.health</a>
                     <a href="https://attest.ink/" target="_blank" class="company-tag">attest.ink</a>
                     <a href="https://healthprotocollabs.space/" target="_blank" class="company-tag">healthprotocollabs.space</a>
-                </div>' -->
+                </div>
+                -->
             </section>
 
             <!-- Bio section - Expandable -->
@@ -155,11 +157,7 @@
 
                     <a href="https://signal.me/#eu/8XFg1wfgCj5-7v0Hl_gwp-ACf2xHwc804B1186DUXRlRzJ5Wm-1FwoWm3ExgPvmf" target="_blank" class="link-card signal">
                         <div class="link-icon floating-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 1024 1024">
-                                <path d="M512 0C228.7 0 0 228.7 0 512s228.7 512 512 512 512-228.7 512-512S795.3 0 512 0zm0 896c-212.1 0-384-171.9-384-384S299.9 128 512 128s384 171.9 384 384-171.9 384-384 384z"/>
-                                <path d="M512 256c-141.4 0-256 114.6-256 256 0 54.3 17 104.8 45.9 146.2l-45.9 137.8 141.8-45.9c41.4 28.9 91.9 45.9 146.2 45.9 141.4 0 256-114.6 256-256S653.4 256 512 256zm0 448c-106 0-192-86-192-192s86-192 192-192 192 86 192 192-86 192-192 192z"/>
-                                <circle cx="512" cy="512" r="64"/>
-                            </svg>
+                            <i class="fas fa-comment-dots"></i>
                         </div>
                         <div class="link-content">
                             <span class="link-text">Signal</span>
@@ -189,7 +187,7 @@
 
                     <a href="https://97115104.com/" target="_blank" class="link-card blog">
                         <div class="link-icon floating-icon">
-                            <i class="fas fa-pen-fancy"></i>
+                            <i class="fas fa-pen"></i>
                         </div>
                         <div class="link-content">
                             <span class="link-text">Blog</span>
@@ -207,7 +205,7 @@
                 </div> -->
 
                 <!-- Company links -->
-                <div class="companies-section">
+                <!-- <div class="companies-section">
                     <h3 class="companies-title">Things I'm Building</h3>
                     <div class="company-links">
                         
@@ -235,13 +233,13 @@
                             <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </section>
 
             <!-- Footer -->
             <footer class="footer">
                 <div class="footer-copyright">
-                    <p>© 2025 Austin Harshberger (97115104). All rights reserved.</p>
+                    <p>© <span id="current-year"></span> Austin Harshberger (97115104). All rights reserved.</p>
                 </div>
                 <!-- Claude attestation badge -->
                 <a href="https://attest.ink/s/3fz3mglx" target="_blank" rel="noopener" title="Built with AI assistance" style="display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; margin-left: 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: rgb(136, 136, 136); text-decoration: none; font-size: 10px; opacity: 0.6; transition: 0.2s; vertical-align: middle; -webkit-tap-highlight-color: transparent;" onmouseover="if(!('ontouchstart' in window)) { this.style.opacity='0.9'; this.querySelector('span').textContent='Built with AI'; }" onmouseout="if(!('ontouchstart' in window)) { this.style.opacity='0.6'; this.querySelector('span').textContent='AI'; }">
@@ -291,6 +289,13 @@
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+        <script src="js/script.js"></script>
+        <script>
+            // Set current year in footer
+            document.addEventListener('DOMContentLoaded', function() {
+                var yearSpan = document.getElementById('current-year');
+                if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+            });
+        </script>
 </body>
 </html>
