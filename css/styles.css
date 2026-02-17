@@ -605,7 +605,6 @@ body.theme-transition *::after {
     background: rgba(123, 104, 238, 0.1);
     padding: 1rem;
     border-radius: 12px;
-    border-left: 4px solid #9370db;
 }
 
 /* Personal details section with beverage and MBTI */
