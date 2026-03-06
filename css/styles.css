@@ -856,6 +856,7 @@ body.theme-transition *::after {
 .telegram .link-icon { background: linear-gradient(135deg, #0088cc, #006699); }
 .calendly .link-icon { background: linear-gradient(135deg, #006bff, #0052cc); }
 .blog .link-icon { background: linear-gradient(135deg, #ff6b9d, #a55eea); }
+.delphi .link-icon { background: linear-gradient(135deg, #a78bfa, #5b21b6); }
 
 /* Companies section */
 .companies-section {
