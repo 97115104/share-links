@@ -86,16 +86,26 @@ function initializeTheme() {
             }
         }
         
-        themeToggle.addEventListener('click', function() {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            // Update theme and save user preference
+        // Set a specific theme and save preference
+        function setTheme(newTheme) {
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateAriaLabel(newTheme);
             applyThemeTransition();
             regenerateQRCode();
+        }
+
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+        // Keyboard shortcuts: L = light, D = dark
+        document.addEventListener('keydown', function(e) {
+            const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+            if (tag === 'input' || tag === 'textarea') return;
+            if (e.key === 'l' || e.key === 'L') setTheme('light');
+            else if (e.key === 'd' || e.key === 'D') setTheme('dark');
         });
     }
 }

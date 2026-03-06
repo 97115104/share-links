@@ -6,6 +6,7 @@
     --card-bg: rgba(255, 255, 255, 0.95);
     --shadow-color: rgba(0, 0, 0, 0.15);
     --link-shadow: rgba(0, 0, 0, 0.08);
+    --border-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode */
@@ -340,7 +341,7 @@ body {
     background: var(--card-bg);
     backdrop-filter: blur(20px);
     padding: 2.5rem 2rem;
-    border-radius: 0;
+    border-radius: 0 16px 0 16px;
     box-shadow: 0 25px 50px var(--shadow-color);
     text-align: center;
     width: 100%;
@@ -455,7 +456,7 @@ body {
         rgba(255, 255, 255, 0.9), 
         rgba(248, 250, 255, 0.9)
     );
-    border-radius: 0;
+    border-radius: 0 12px 0 12px;
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -469,7 +470,7 @@ body {
 }
 
 #qrcode canvas {
-    border-radius: 0;
+    border-radius: 0 8px 0 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     animation: qrPulse 4s ease-in-out infinite, qrFloat 6s ease-in-out infinite;
     transition: all 0.3s ease;
@@ -500,7 +501,7 @@ body {
     left: 15px;
     right: 15px;
     bottom: 15px;
-    border-radius: 0;
+    border-radius: 0 8px 0 8px;
     pointer-events: none;
     z-index: 3;
     overflow: hidden;
@@ -550,7 +551,7 @@ body {
     background: var(--card-bg);
     color: var(--text-color);
     padding: 0.8rem 1.2rem;
-    border-radius: 0;
+    border-radius: 0 8px 0 8px;
     font-family: 'Monaco', 'Menlo', monospace;
     font-size: 1rem;
     font-weight: 600;
@@ -619,7 +620,7 @@ body {
     gap: 0.5rem;
     padding: 0.8rem 1.2rem;
     border: none;
-    border-radius: 0;
+    border-radius: 0 8px 0 8px;
     font-family: inherit;
     font-size: 0.9rem;
     font-weight: 600;
@@ -723,7 +724,7 @@ body {
     background-color: var(--text-color);
     color: var(--bg-color);
     padding: 4px 8px;
-    border-radius: 4px;
+    border-radius: 0 4px 0 4px;
     font-size: 0.7rem;
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
@@ -757,7 +758,7 @@ body {
     
     .qr-container {
         padding: 1.5rem 1.25rem;
-        border-radius: 16px;
+        border-radius: 0 16px 0 16px;
         margin: 0.5rem auto;
         max-width: 350px;
         min-height: auto;
@@ -869,70 +870,56 @@ body {
 /* Theme Toggle Button */
 .theme-toggle {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: auto;
+    height: auto;
+    border-radius: 0 6px 0 6px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    gap: 0.3rem;
+    padding: 4px 10px;
     z-index: 100;
-    box-shadow: 0 4px 20px var(--shadow-color);
-    opacity: 0.8;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+    opacity: 0.45;
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px var(--shadow-color);
     opacity: 1;
+    border-color: var(--text-color);
 }
 
 .theme-toggle:active {
-    transform: scale(0.95);
+    opacity: 0.7;
 }
 
-/* Theme icon styles to match main page */
-.theme-icon-wrapper {
-    position: relative;
-    width: 24px;
-    height: 24px;
+.theme-pill-light,
+.theme-pill-dark {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-color);
+    transition: opacity 0.2s ease;
 }
 
-.theme-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.9rem;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+.theme-pill-sep {
+    font-size: 0.55rem;
+    color: var(--text-color);
+    opacity: 0.35;
 }
 
-.theme-icon-light {
-    color: #f59e0b;
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(-180deg);
-}
+/* Light mode: Light is active, Dark is faded */
+.theme-pill-light { opacity: 1; font-weight: 700; }
+.theme-pill-dark  { opacity: 0.3; font-weight: 400; }
 
-.theme-icon-dark {
-    color: #6366f1;
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
-}
-
-:root[data-theme="dark"] .theme-icon-light {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg);
-}
-
-:root[data-theme="dark"] .theme-icon-dark {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(180deg);
-}
+/* Dark mode: Dark is active, Light is faded */
+:root[data-theme="dark"] .theme-pill-light { opacity: 0.3; font-weight: 400; }
+:root[data-theme="dark"] .theme-pill-dark  { opacity: 1; font-weight: 700; }
 
 /* Smooth theme transition */
 body.theme-transitioning * {
@@ -962,13 +949,8 @@ body.theme-transitioning * {
 /* Mobile theme toggle adjustments */
 @media (max-width: 480px) {
     .theme-toggle {
-        width: 30px;
-        height: 30px;
-        top: 0.5rem;
-        right: 0.5rem;
-    }
-    
-    .theme-icon {
-        font-size: 0.8rem;
+        top: 1rem;
+        right: 1rem;
+        padding: 3px 8px;
     }
 }
