@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePerformanceOptimizations();
     initializeBeverageAnimations();
     initializeEmailModal();
+    initializeAttestation();
 });
 
 // Theme toggle functionality with automatic detection
@@ -846,6 +847,45 @@ if (prefersReducedMotion()) {
         }
     `;
     document.head.appendChild(style);
+}
+
+// Attestation integration for attest.97115104.com
+function initializeAttestation() {
+    const badge = document.getElementById('attestation-badge');
+    if (!badge) return;
+
+    const contentName = document.title || 'Share Links Page';
+    const query = new URLSearchParams({
+        content_name: contentName,
+        model: 'claude-opus-4',
+        role: 'collaborated',
+        author: 'Austin Harshberger',
+    });
+
+    const endpoint = `https://attest.97115104.com/api/create?${query.toString()}`;
+
+    fetch(endpoint)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.urls && data.urls.verify) {
+                badge.href = data.urls.verify;
+                badge.title = 'Verified AI attestation (attest.97115104.com)';
+                const label = badge.querySelector('span');
+                if (label) label.textContent = 'AI (verified)';
+
+                // Optional: store attestation for later manual inspection
+                badge.dataset.attestation = JSON.stringify(data.attestation || {});
+            } else {
+                throw new Error('Unexpected API response');
+            }
+        })
+        .catch(error => {
+            console.warn('Could not create attestation:', error);
+            // Keep fallback URL to attest homepage
+            badge.href = 'https://attest.97115104.com';
+            const label = badge.querySelector('span');
+            if (label) label.textContent = 'AI (attest unavailable)';
+        });
 }
 
 // Email modal functionality

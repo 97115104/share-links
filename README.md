@@ -164,4 +164,4 @@ Find Austin through any of the methods on the contact page, or:
 
 **Built with ❤️, 🌈, and a touch of ✨ by Austin Harshberger**
 
-**AI Assistance**: Created with help from Claude AI ([attest.ink](https://attest.ink) verified)
+**AI Assistance**: Created with help from Claude AI ([attest.97115104.com](https://attest.97115104.com) verified)
