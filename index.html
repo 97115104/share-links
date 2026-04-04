@@ -1,318 +1,165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Austin Harshberger - Let's Connect!</title>
-    
-    <!-- Favicon and Icons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon.png">
-    <link rel="manifest" href="./site.webmanifest">
-    
-    <!-- Meta Tags -->
-    <meta name="description" content="Austin Harshberger - Founder of status.health and healthprotocol.network. Connect with me for mentorship, advisory opportunities, or health tech investment discussions.">
-    <meta name="keywords" content="Austin Harshberger, status.health, healthprotocol.network, attest.97115104.com, health tech, privacy, LGBTQ+, San Francisco, founder">
-    <meta name="author" content="Austin Harshberger">
-    <meta name="attestation" content="https://attest.97115104.com/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI2LTA0LTA0LTNmYWM4OCIsImNvbnRlbnRfbmFtZSI6ImxpbmtzLjk3MTE1MTA0LmNvbSIsIm1vZGVsIjoiY2xhdWRlLW9wdXMtNCIsInJvbGUiOiJjb2xsYWJvcmF0ZWQiLCJhdXRob3JzaGlwX3R5cGUiOiJjb2xsYWIiLCJ0aW1lc3RhbXAiOiIyMDI2LTA0LTA0VDIwOjI0OjE4LjgzMloiLCJwbGF0Zm9ybSI6ImF0dGVzdC45NzExNTEwNC5jb20iLCJhdXRob3IiOiJHaXRIdWIgQ29waWxvdCIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiaG1hYy1zaGEyNTYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsInZhbHVlIjoiZTM0Yjg1NjYxZTc1NjlhM2VkZjlhMDJlZDFlZjY5ZDFhNzE1OGUxZjA4YjhhYjYzZTRkNGZmZDNmZTEzNzRkNyIsImRhdGFfdG9fc2lnbiI6IntcIm1vZGVsXCI6XCJjbGF1ZGUtb3B1cy00XCIsXCJ0aW1lc3RhbXBcIjpcIjIwMjYtMDQtMDRUMjA6MjQ6MTguODMyWlwiLFwiYXV0aG9yc2hpcF90eXBlXCI6XCJjb2xsYWJcIixcInJvbGVcIjpcImNvbGxhYm9yYXRlZFwifSJ9LCJzaWduZXIiOnsibmFtZSI6IkdpdEh1YiBDb3BpbG90IiwiaWQiOiJnaXRodWJjb3BpbG90In19">
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://links.97115104.com/">
-    <meta property="og:title" content="Austin Harshberger - Let's Connect!">
-    <meta property="og:description" content="Builder reimagining healthcare through privacy-first public good infrastructure. Always open to connect with fellow builders.">
-    <meta property="og:image" content="https://links.97115104.com/assets/profile.png">
-    
-    <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://links.97115104.com/">
-    <meta property="twitter:title" content="Austin Harshberger - Let's Connect!">
-    <meta property="twitter:description" content="Builder reimagining healthcare through privacy-first public good infrastructure. Always open to connect with fellow builders.">
-    <meta property="twitter:image" content="https://links.97115104.com/assets/profile.png">
-    
-    <!-- Stylesheets and Fonts -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <title>Austin Harshberger - Let's Connect!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Austin Harshberger - Founder, open-source developer, early adopter. Connect with me for mentorship, advisory, or health tech discussions." />
+
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://links.97115104.com/" />
+  <meta property="og:title" content="Austin Harshberger - Let's Connect!" />
+  <meta property="og:description" content="Builder reimagining healthcare through privacy-first public good infrastructure. Always open to connect with fellow builders." />
+  <meta property="og:image" content="https://links.97115104.com/assets/profile.png" />
+
+  <meta name="attestation" content="https://attest.97115104.com/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI2LTA0LTA0LTNmYWM4OCIsImNvbnRlbnRfbmFtZSI6ImxpbmtzLjk3MTE1MTA0LmNvbSIsIm1vZGVsIjoiY2xhdWRlLW9wdXMtNCIsInJvbGUiOiJjb2xsYWJvcmF0ZWQiLCJhdXRob3JzaGlwX3R5cGUiOiJjb2xsYWIiLCJ0aW1lc3RhbXAiOiIyMDI2LTA0LTA0VDIwOjI0OjE4LjgzMloiLCJwbGF0Zm9ybSI6ImF0dGVzdC45NzExNTEwNC5jb20iLCJhdXRob3IiOiJHaXRIdWIgQ29waWxvdCIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiaG1hYy1zaGEyNTYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsInZhbHVlIjoiZTM0Yjg1NjYxZTc1NjlhM2VkZjlhMDJlZDFlZjY5ZDFhNzE1OGUxZjA4YjhhYjYzZTRkNGZmZDNmZTEzNzRkNyIsImRhdGFfdG9fc2lnbiI6IntcIm1vZGVsXCI6XCJjbGF1ZGUtb3B1cy00XCIsXCJ0aW1lc3RhbXBcIjpcIjIwMjYtMDQtMDRUMjA6MjQ6MTguODMyWlwiLFwiYXV0aG9yc2hpcF90eXBlXCI6XCJjb2xsYWJcIixcInJvbGVcIjpcImNvbGxhYm9yYXRlZFwifSJ9LCJzaWduZXIiOnsibmFtZSI6IkdpdEh1YiBDb3BpbG90IiwiaWQiOiJnaXRodWJjb3BpbG90In19" />
+
+  <link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <!-- WebGL noise field background (rendered by field.js) -->
 
-        <!-- Main content -->
-        <main class="content">
+  <!-- WebGL background -->
+  <script src="js/field.js"></script>
 
-            <!-- Profile section -->
-            <section class="profile-section">
-                <div class="profile-image-container">
-                    <img src="assets/p1.png" alt="Austin Harshberger" class="profile-image">
-                    <div class="profile-glow"></div>
-                </div>
-                <h1 class="name">Austin Harshberger</h1>
-                <p class="title">Technical Founder / Open-Source Developer / Early Adopter</p>
-                <!--
-                <div class="companies">
-                    <a href="https://status.health/" target="_blank" class="company-tag">status.health</a>
-                    <a href="https://attest.97115104.com/" target="_blank" class="company-tag">attest.97115104.com</a>
-                    <a href="https://healthprotocollabs.space/" target="_blank" class="company-tag">healthprotocollabs.space</a>
-                </div>
-                -->
-            </section>
+  <div class="shell">
 
-            <!-- Bio section - Expandable -->
-            <section class="bio-section">
-                <button class="bio-toggle" aria-expanded="false" aria-controls="bio-content">
-                    <span class="bio-toggle-text">You prob won't read this</span>
-                    <i class="fas fa-chevron-down bio-toggle-icon"></i>
-                </button>
-                
-                <div class="bio-content" id="bio-content">
-                    <p class="bio-text">
-                        Early blockchain and privacy advocate, open-source maintainer, and product leader with deep technical expertise across emerging technologies.
-                    </p>
-                    <p class="bio-text">
-                        I'm also a lifelong builder who started modding <a href="https://en.wikipedia.org/wiki/World_of_Warcraft" target="_blank" class="bio-link">World of Warcraft</a> to run on <a href="https://en.wikipedia.org/wiki/Linux" target="_blank" class="bio-link">Linux</a> and somehow ended up holding a <a href="https://projects.97115104.com/patents/1.pdf" target="_blank" class="bio-link">patent</a> and launching the <a href="https://pioneersprize.polkadot.network/" target="_blank" class="bio-link">Polkadot Pioneers Prize</a> for zero-knowledge research.
-                    </p>
-                    <p class="bio-text">
-                        I <a href="https://github.com/97115104/" target="_blank" class="bio-link">ship</a> like I <a href="https://blog.97115104.com/" target="_blank" class="bio-link">write</a>: probably too often, a little sarcastically, and usually after some matcha.
-                    </p>
-                    <p class="bio-text networking">
-                        Always open to connect with fellow builders looking for mentorship, potential advisors, or those generally interested in all things at the frontier. <a href="https://calendly.com/97115104/30min" target="_blank" class="bio-link">Let's chat!</a>
-                    </p>
-                    <div class="personal-details">
-                        <a href="https://www.16personalities.com/enfj-personality" target="_blank" rel="noopener" class="personality-badge" title="Learn more about the ENFJ-T personality type">
-                            <span class="mbti-type">ENFJ-T</span>
-                            <span class="mbti-divider">•</span>
-                            <span class="mbti-name">Protagonist</span>
-                        </a>
-                        <div class="favorite-beverage">
-                            <div class="beverage-emoji">🥂</div>
-                            <div class="beverage-content">
-                                <h4>Favorite Beverage</h4>
-                                <p>Champagne: every crisis averted deserves a toast, and code deployments count as crises.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <!-- PROFILE -->
+    <section class="profile">
+      <div class="photo-ring">
+        <img class="profile-photo" src="assets/p3.png" alt="Austin Harshberger" />
+      </div>
+      <h1 class="profile-name">Austin Harshberger</h1>
+      <div class="profile-title">Technical Founder / Open-Source Developer / Early Adopter</div>
 
-            <!-- Links section -->
-            <section class="links-section">
-                
-                <!-- Social links -->
-                <div class="links-grid">
-                    <a href="mailto:x@97115104.com" class="link-card email">
-                        <div class="link-icon floating-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">Email Me</span>
-                            <span class="link-desc">x@97115104.com</span>
-                        </div>
-                    </a>
-
-                    <a href="https://blog.97115104.com/" target="_blank" class="link-card blog">
-                        <div class="link-icon floating-icon">
-                            <i class="fas fa-pen-fancy"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">Blog</span>
-                            <span class="link-desc">Personal website</span>
-                        </div>
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/aharshbe/" target="_blank" class="link-card linkedin">
-                        <div class="link-icon floating-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">LinkedIn</span>
-                            <span class="link-desc">Professional updates</span>
-                        </div>
-                    </a>
-
-                    <a href="https://x.com/x97115104" target="_blank" class="link-card twitter">
-                        <div class="link-icon floating-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
-                            </svg>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">X/Twitter</span>
-                            <span class="link-desc">Hot takes & threads</span>
-                        </div>
-                    </a>
-
-                    <a href="https://github.com/97115104/" target="_blank" class="link-card github">
-                        <div class="link-icon floating-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">GitHub</span>
-                            <span class="link-desc">Code & projects</span>
-                        </div>
-                    </a>
-
-                    <a href="https://signal.me/#eu/8XFg1wfgCj5-7v0Hl_gwp-ACf2xHwc804B1186DUXRlRzJ5Wm-1FwoWm3ExgPvmf" target="_blank" class="link-card signal">
-                        <div class="link-icon floating-icon">
-                            <i class="fas fa-comment-dots"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">Signal</span>
-                            <span class="link-desc">Encrypted messaging</span>
-                        </div>
-                    </a>
-
-                    <a href="https://t.me/x97115104" target="_blank" class="link-card telegram">
-                        <div class="link-icon floating-icon">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">Telegram</span>
-                            <span class="link-desc">Direct messages</span>
-                        </div>
-                    </a>
-
-                    <a href="https://calendly.com/97115104/30min" target="_blank" class="link-card calendly">
-                        <div class="link-icon floating-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">Calendly</span>
-                            <span class="link-desc">Schedule a chat</span>
-                        </div>
-                    </a>
-
-                    <a href="https://97115104.com" target="_blank" class="link-card brain">
-                        <div class="link-icon floating-icon brain-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">97115104.com</span>
-                            <span class="link-desc brain-desc">
-                                <span class="brain-desc-default">Interactive 3D oracle</span>
-                                <span class="brain-desc-hover">Interact with projects API<span class="brain-cursor">|</span></span>
-                            </span>
-                        </div>
-                    </a>
-
-                    <a href="https://sixgates.97115104.com" target="_blank" class="link-card genesiscreator">
-                        <div class="link-icon floating-icon genesiscreator-icon">
-                            <img src="assets/genesiscreator.png" alt="Genesis Creator" class="genesiscreator-img">
-                        </div>
-                        <div class="link-content">
-                            <span class="link-text">Six Gates</span>
-                            <span class="link-desc">Do you have what it takes?</span>
-                        </div>
-                    </a>
-
-                </div>
-
-                <!-- LGBTQ+ Pride badge -->
-                <!-- <div class="pride-section">
-                    <div class="pride-badge">
-                        <img src="assets/prideflag.gif" alt="Pride Flag" class="pride-flag">
-                        <span class="pride-text">Proudly LGBTQ+</span>
-                    </div>
-                </div> -->
-
-                <!-- Company links -->
-                <!-- <div class="companies-section">
-                    <h3 class="companies-title">Things I'm Building</h3>
-                    <div class="company-links">
-                        
-                        <a href="https://0x42r.io/" target="_blank" class="company-link health-protocol">
-                            <div class="company-info">
-                                <h4>0x42r.io</h4>
-                                <p>Research and other things</p>
-                            </div>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-
-                        <a href="https://attest.97115104.com/" target="_blank" class="company-link attest">
-                            <div class="company-info">
-                                <h4>attest.97115104.com</h4>
-                                <p>Open-source AI content attestation workflow</p>
-                            </div>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-
-                        <a href="https://healthprotocollabs.space/" target="_blank" class="company-link mcbooboo">
-                            <div class="company-info">
-                                <h4>Everything else...</h4>
-                                <p>Organized as a solar system for your entertainment</p>
-                            </div>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div> -->
-            </section>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="footer-copyright">
-                    <p>© <span id="current-year"></span> Austin Harshberger (97115104). All rights reserved.</p>
-                </div>
-                <!-- Claude attestation badge -->
-                <a id="attestation-badge" href="https://attest.97115104.com/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI2LTA0LTA0LTNmYWM4OCIsImNvbnRlbnRfbmFtZSI6ImxpbmtzLjk3MTE1MTA0LmNvbSIsIm1vZGVsIjoiY2xhdWRlLW9wdXMtNCIsInJvbGUiOiJjb2xsYWJvcmF0ZWQiLCJhdXRob3JzaGlwX3R5cGUiOiJjb2xsYWIiLCJ0aW1lc3RhbXAiOiIyMDI2LTA0LTA0VDIwOjI0OjE4LjgzMloiLCJwbGF0Zm9ybSI6ImF0dGVzdC45NzExNTEwNC5jb20iLCJhdXRob3IiOiJHaXRIdWIgQ29waWxvdCIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiaG1hYy1zaGEyNTYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsInZhbHVlIjoiZTM0Yjg1NjYxZTc1NjlhM2VkZjlhMDJlZDFlZjY5ZDFhNzE1OGUxZjA4YjhhYjYzZTRkNGZmZDNmZTEzNzRkNyIsImRhdGFfdG9fc2lnbiI6IntcIm1vZGVsXCI6XCJjbGF1ZGUtb3B1cy00XCIsXCJ0aW1lc3RhbXBcIjpcIjIwMjYtMDQtMDRUMjA6MjQ6MTguODMyWlwiLFwiYXV0aG9yc2hpcF90eXBlXCI6XCJjb2xsYWJcIixcInJvbGVcIjpcImNvbGxhYm9yYXRlZFwifSJ9LCJzaWduZXIiOnsibmFtZSI6IkdpdEh1YiBDb3BpbG90IiwiaWQiOiJnaXRodWJjb3BpbG90In19" target="_blank" rel="noopener" title="Verified AI attestation" style="display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; margin-left: 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: rgb(136, 136, 136); text-decoration: none; font-size: 10px; opacity: 0.6; transition: 0.2s; vertical-align: middle; -webkit-tap-highlight-color: transparent;" onmouseover="if(!('ontouchstart' in window)) { this.style.opacity='0.9'; this.querySelector('span').textContent='Verified AI'; }" onmouseout="if(!('ontouchstart' in window)) { this.style.opacity='0.6'; this.querySelector('span').textContent='AI'; }">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
-                    <path d="M8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                    <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
-                    <path d="M12 6V8M12 16V18M18 12H16M8 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                    </svg>
-                    <span>AI</span>
-                </a>
-            </footer>
-        </main>
-    </div>
-
-    <!-- Email Modal -->
-    <div id="email-modal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close modal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-            <div class="modal-header">
-                <div class="modal-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <h2>Let's Connect!</h2>
-            </div>
-            <div class="modal-body">
-                <p>I'd love to hear from you! Choose how you'd like to reach out:</p>
-                <div class="email-options">
-                    <div class="email-display">
-                        <span class="email-address">x@97115104.com</span>
-                        <button class="copy-button" data-email="x@97115104.com">
-                            <span class="copy-icon">📋</span>
-                            <span>Copy</span>
-                        </button>
-                    </div>
-                    <a href="mailto:x@97115104.com" class="email-client-button">
-                        <span></span>
-                        <span>Open Email Client</span>
-                    </a>
-                </div>
-                <div class="footer-note" style="margin-top:2rem; text-align:center; color:#888; font-size:0.95rem;">
-                    Looking forward to connecting soon! <i class="fas fa-mobile-alt"></i>
-                </div>
-            </div>
+      <!-- EASTER EGG (top-right of profile) -->
+      <section class="easter-section" id="easter-section" style="opacity:0;visibility:hidden">
+        <div class="egg-dropdown" id="egg-dropdown">
+          <div class="egg-quote" id="egg-quote">Loading...</div>
         </div>
-    </div>
+        <button class="egg-btn" id="egg-btn">
+          <span class="egg-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 8.5 5 14a7 7 0 0 0 14 0C19 8.5 16 2 12 2z"/></svg></span>
+        </button>
+      </section>
+    </section>
 
-        <script src="js/field.js"></script>
-        <script src="js/script.js"></script>
-        <script>
-            // Set current year in footer
-            document.addEventListener('DOMContentLoaded', function() {
-                var yearSpan = document.getElementById('current-year');
-                if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-            });
-        </script>
+    <!-- BIO -->
+    <section class="bio-section">
+      <button class="bio-toggle" aria-expanded="false" aria-controls="bio-panel">
+        <span>You prob won't read this</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="bio-panel" id="bio-panel">
+        <div class="bio-inner">
+          <p class="bio-text">Early blockchain and privacy advocate, open-source maintainer, and product leader with deep technical expertise across emerging technologies.</p>
+          <p class="bio-text">I'm also a lifelong builder who started modding <a href="https://en.wikipedia.org/wiki/World_of_Warcraft" target="_blank" rel="noopener">World of Warcraft</a> to run on <a href="https://en.wikipedia.org/wiki/Linux" target="_blank" rel="noopener">Linux</a> and somehow ended up holding a <a href="https://projects.97115104.com/patents/1.pdf" target="_blank" rel="noopener">patent</a> and launching the <a href="https://pioneersprize.polkadot.network/" target="_blank" rel="noopener">Polkadot Pioneers Prize</a> for zero-knowledge research.</p>
+          <p class="bio-text">I <a href="https://github.com/97115104/" target="_blank" rel="noopener">ship</a> like I <a href="https://blog.97115104.com/" target="_blank" rel="noopener">write</a>: probably too often, a little sarcastically, and usually after some matcha.</p>
+          <p class="bio-text highlight">Always open to connect with fellow builders looking for mentorship, potential advisors, or those generally interested in all things at the frontier. <a href="https://calendly.com/97115104/30min" target="_blank" rel="noopener">Let's chat!</a></p>
+          <div class="bio-detail">
+            <a class="bio-badge" href="https://www.16personalities.com/enfj-personality" target="_blank" rel="noopener">ENFJ-T · Protagonist</a>
+            <span class="bio-badge">🥂 Champagne</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section class="links-section">
+      <div class="section-label">Connect</div>
+      <div class="links-grid">
+
+        <a href="mailto:x@97115104.com" class="link-card email" data-email>
+          <div class="link-icon">✉</div>
+          <div><span class="link-text">Email Me</span><span class="link-desc">x@97115104.com</span></div>
+        </a>
+
+        <a href="https://blog.97115104.com/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">✎</div>
+          <div><span class="link-text">Blog</span><span class="link-desc">Personal website</span></div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/aharshbe/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">in</div>
+          <div><span class="link-text">LinkedIn</span><span class="link-desc">Professional updates</span></div>
+        </a>
+
+        <a href="https://x.com/x97115104" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+            </svg>
+          </div>
+          <div><span class="link-text">X / Twitter</span><span class="link-desc">Hot takes &amp; threads</span></div>
+        </a>
+
+        <a href="https://github.com/97115104/" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </div>
+          <div><span class="link-text">GitHub</span><span class="link-desc">Code &amp; projects</span></div>
+        </a>
+
+        <a href="https://signal.me/#eu/8XFg1wfgCj5-7v0Hl_gwp-ACf2xHwc804B1186DUXRlRzJ5Wm-1FwoWm3ExgPvmf" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">💬</div>
+          <div><span class="link-text">Signal</span><span class="link-desc">Encrypted messaging</span></div>
+        </a>
+
+        <a href="https://t.me/x97115104" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">✈</div>
+          <div><span class="link-text">Telegram</span><span class="link-desc">Direct messages</span></div>
+        </a>
+
+        <a href="https://calendly.com/97115104/30min" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">📅</div>
+          <div><span class="link-text">Calendly</span><span class="link-desc">Schedule a chat</span></div>
+        </a>
+
+        <a href="https://97115104.com" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">🧠</div>
+          <div><span class="link-text">97115104.com</span><span class="link-desc">Interactive 3D oracle</span></div>
+        </a>
+
+        <a href="https://sixgates.97115104.com" target="_blank" rel="noopener" class="link-card genesiscreator">
+          <div class="link-icon"><img src="assets/genesiscreator.png" alt="Six Gates" /></div>
+          <div><span class="link-text">Six Gates</span><span class="link-desc">Do you have what it takes?</span></div>
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-copy">
+        © <span id="yr"></span> Austin Harshberger (97115104)
+        <a class="attest-inline" href="https://attest.97115104.com/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI2LTA0LTA0LTNmYWM4OCIsImNvbnRlbnRfbmFtZSI6ImxpbmtzLjk3MTE1MTA0LmNvbSIsIm1vZGVsIjoiY2xhdWRlLW9wdXMtNCIsInJvbGUiOiJjb2xsYWJvcmF0ZWQiLCJhdXRob3JzaGlwX3R5cGUiOiJjb2xsYWIiLCJ0aW1lc3RhbXAiOiIyMDI2LTA0LTA0VDIwOjI0OjE4LjgzMloiLCJwbGF0Zm9ybSI6ImF0dGVzdC45NzExNTEwNC5jb20iLCJhdXRob3IiOiJHaXRIdWIgQ29waWxvdCIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiaG1hYy1zaGEyNTYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsInZhbHVlIjoiZTM0Yjg1NjYxZTc1NjlhM2VkZjlhMDJlZDFlZjY5ZDFhNzE1OGUxZjA4YjhhYjYzZTRkNGZmZDNmZTEzNzRkNyIsImRhdGFfdG9fc2lnbiI6IntcIm1vZGVsXCI6XCJjbGF1ZGUtb3B1cy00XCIsXCJ0aW1lc3RhbXBcIjpcIjIwMjYtMDQtMDRUMjA6MjQ6MTguODMyWlwiLFwiYXV0aG9yc2hpcF90eXBlXCI6XCJjb2xsYWJcIixcInJvbGVcIjpcImNvbGxhYm9yYXRlZFwifSJ9LCJzaWduZXIiOnsibmFtZSI6IkdpdEh1YiBDb3BpbG90IiwiaWQiOiJnaXRodWJjb3BpbG90In19" target="_blank" rel="noopener">AI Attested</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- EMAIL MODAL -->
+  <div class="modal-overlay" id="email-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 class="modal-title">Let's Connect!</h2>
+      <p class="modal-sub">Choose how you'd like to reach out</p>
+      <div class="email-row">
+        <span class="email-addr">x@97115104.com</span>
+        <button class="copy-btn" id="copy-btn">Copy</button>
+      </div>
+      <a href="mailto:x@97115104.com" class="email-open-btn">Open Email Client</a>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+
 </body>
 </html>
