@@ -4,7 +4,7 @@
     --bg-color: #ffffff;
     --text-color: #333333;
     --card-bg: rgba(255, 255, 255, 0.45);
-    --panel-bg: rgba(255, 255, 255, 0.18);
+    --panel-bg: rgba(255, 255, 255, 0.45);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --link-shadow: rgba(0, 0, 0, 0.06);
     --border-color: rgba(0, 0, 0, 0.08);
@@ -16,7 +16,7 @@
     --bg-color: #000000;
     --text-color: #e0e0e0;
     --card-bg: rgba(20, 20, 25, 0.45);
-    --panel-bg: rgba(25, 25, 30, 0.35);
+    --panel-bg: rgba(20, 20, 25, 0.45);
     --shadow-color: rgba(0, 0, 0, 0.4);
     --link-shadow: rgba(0, 0, 0, 0.3);
     --border-color: rgba(255, 255, 255, 0.08);

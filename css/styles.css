@@ -10,7 +10,7 @@
     --bg-color: #ffffff;
     --text-color: #333333;
     --card-bg: rgba(255, 255, 255, 0.45);
-    --panel-bg: rgba(255, 255, 255, 0.18);
+    --panel-bg: rgba(255, 255, 255, 0.45);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --link-shadow: rgba(0, 0, 0, 0.06);
     --border-color: rgba(0, 0, 0, 0.08);
@@ -22,7 +22,7 @@
     --bg-color: #000000;
     --text-color: #e0e0e0;
     --card-bg: rgba(20, 20, 25, 0.45);
-    --panel-bg: rgba(25, 25, 30, 0.35);
+    --panel-bg: rgba(20, 20, 25, 0.45);
     --shadow-color: rgba(0, 0, 0, 0.4);
     --link-shadow: rgba(0, 0, 0, 0.3);
     --border-color: rgba(255, 255, 255, 0.08);
@@ -401,7 +401,9 @@ body.theme-transition *::after {
 }
 
 .bio-toggle {
-    background: none;
+    background: var(--panel-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 2px solid var(--border-color);
     border-radius: 0 8px 0 8px;
     padding: 1rem 1.5rem;
@@ -427,11 +429,10 @@ body.theme-transition *::after {
 
 .bio-toggle:hover {
     border-color: var(--border-hover);
-    background: rgba(0, 0, 0, 0.02);
 }
 
 [data-theme="dark"] .bio-toggle:hover {
-    background: rgba(255, 255, 255, 0.02);
+    border-color: var(--border-hover);
 }
 
 .bio-toggle-icon {
@@ -498,7 +499,9 @@ body.theme-transition *::after {
 .bio-text.networking {
     color: #7b68ee;
     font-weight: 500;
-    background: rgba(123, 104, 238, 0.1);
+    background: var(--panel-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 1rem;
     border-radius: 0 12px 0 12px;
 }
@@ -518,7 +521,9 @@ body.theme-transition *::after {
     margin-top: 0;
     margin-bottom: 0;
     padding: 15px;
-    background: rgba(255, 107, 157, 0.1);
+    background: var(--panel-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 0 12px 0 12px;
     display: flex;
     align-items: flex-start;
@@ -582,7 +587,9 @@ body.theme-transition *::after {
     display: inline-flex;
     align-items: center;
     padding: 6px 12px;
-    background: rgba(102, 126, 234, 0.1);
+    background: var(--panel-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 0 12px 0 12px;
     font-size: 0.85rem;
     color: var(--muted-color);
@@ -594,7 +601,7 @@ body.theme-transition *::after {
 }
 
 .personality-badge:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background: var(--panel-bg);
     transform: translateY(-2px);
     text-decoration: none;
     color: var(--muted-color);
@@ -1002,21 +1009,20 @@ body.theme-transition *::after {
 }
 
 .easter-egg-dropdown-btn {
-    background: none;
-    border: none;
+    background: var(--panel-bg);
+    border: 2px solid var(--border-color);
     cursor: pointer;
     padding: 8px;
     border-radius: 0 8px 0 8px;
     transition: all 0.3s ease;
-    background: rgba(255, 215, 0, 0.15);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .easter-egg-dropdown-btn:hover {
     transform: scale(1.1);
-    background: rgba(255, 215, 0, 0.25);
-    border-color: rgba(255, 215, 0, 0.5);
+    background: var(--panel-bg);
+    border-color: var(--border-color);
 }
 
 .easter-egg-icon {
@@ -1404,12 +1410,12 @@ body.theme-transition *::after {
 }
 
 [data-theme="dark"] .bio-text.networking {
-    background: rgba(123, 104, 238, 0.2);
+    background: var(--panel-bg);
     color: #a78bfa;
 }
 
 [data-theme="dark"] .favorite-beverage {
-    background: rgba(255, 107, 157, 0.15);
+    background: var(--panel-bg);
 }
 
 [data-theme="dark"] .beverage-content h4 {
