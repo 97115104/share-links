@@ -843,7 +843,7 @@ body.theme-transition *::after {
 .telegram .link-icon { background: linear-gradient(135deg, #0088cc, #006699); }
 .calendly .link-icon { background: linear-gradient(135deg, #006bff, #0052cc); }
 .blog .link-icon { background: linear-gradient(135deg, #ff6b9d, #a55eea); }
-.delphi .link-icon { background: linear-gradient(135deg, #a78bfa, #5b21b6); }
+.brain .link-icon { background: linear-gradient(135deg, #a78bfa, #5b21b6); }
 .genesiscreator .link-icon { background: transparent; overflow: visible; border: 1px solid rgba(0,0,0,0.3); width: 58px; height: 58px; border-radius: 0 8px 0 8px; }
 :root[data-theme="dark"] .genesiscreator .link-icon { border-color: rgba(255,255,255,0.18); }
 
@@ -868,30 +868,30 @@ body.theme-transition *::after {
     box-shadow: 0 8px 30px rgba(100, 60, 200, 0.2);
 }
 
-/* Delphi — AI typing desc swap animation */
-@keyframes delphi-ring {
+/* Brain — AI typing desc swap animation */
+@keyframes brain-ring {
     0%, 55% { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0.5); }
     80%      { box-shadow: 0 0 0 8px rgba(167, 139, 250, 0); }
     100%     { box-shadow: 0 0 0 0 rgba(167, 139, 250, 0); }
 }
 
-.delphi-brain-icon {
+.brain-icon {
     flex-shrink: 0;
 }
 
-.delphi-desc {
+.brain-desc {
     position: relative;
     display: block;
     min-height: 1.2em;
 }
 
-.delphi-desc-default,
-.delphi-desc-hover {
+.brain-desc-default,
+.brain-desc-hover {
     display: block;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.delphi-desc-hover {
+.brain-desc-hover {
     position: absolute;
     top: 0;
     left: 0;
@@ -901,29 +901,29 @@ body.theme-transition *::after {
     color: var(--muted-color);
 }
 
-.link-card.delphi:hover .delphi-desc-default {
+.link-card.brain:hover .brain-desc-default {
     opacity: 0;
     transform: translateY(-5px);
 }
 
-.link-card.delphi:hover .delphi-desc-hover {
+.link-card.brain:hover .brain-desc-hover {
     opacity: 1;
     transform: translateY(0);
 }
 
-@keyframes delphi-blink {
+@keyframes brain-blink {
     0%, 100% { opacity: 1; }
     50%       { opacity: 0; }
 }
 
-.delphi-cursor {
-    animation: delphi-blink 0.85s step-end infinite;
+.brain-cursor {
+    animation: brain-blink 0.85s step-end infinite;
     margin-left: 1px;
     font-weight: 300;
     opacity: 0;
 }
 
-.link-card.delphi:hover .delphi-cursor {
+.link-card.brain:hover .brain-cursor {
     opacity: 1;
 }
 

@@ -1,0 +1,15 @@
+{
+  "name": "share-links",
+  "version": "1.0.0",
+  "description": "A modern, animated, and professional links page designed for easy sharing at conferences and for social networking, with a QR code sharing feature.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "attest-client": "^2.0.0"
+  }
+}

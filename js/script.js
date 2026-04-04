@@ -849,14 +849,14 @@ if (prefersReducedMotion()) {
     document.head.appendChild(style);
 }
 
-// Attestation — short URL generated 2026-04-04
-// ID: 2026-04-04-3cdda7 | role: collaborated | model: gpt-5.3-codex
-// Verify: https://attest.97115104.com/s/gr2h16gk
+// Attestation — long verify URL generated 2026-04-04 via attest-client npm package
+// ID: 2026-04-04-3fac88 | role: collaborated | model: claude-opus-4
+// Verify: https://attest.97115104.com/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI2LTA0LTA0LTNmYWM4OCIsImNvbnRlbnRfbmFtZSI6ImxpbmtzLjk3MTE1MTA0LmNvbSIsIm1vZGVsIjoiY2xhdWRlLW9wdXMtNCIsInJvbGUiOiJjb2xsYWJvcmF0ZWQiLCJhdXRob3JzaGlwX3R5cGUiOiJjb2xsYWIiLCJ0aW1lc3RhbXAiOiIyMDI2LTA0LTA0VDIwOjI0OjE4LjgzMloiLCJwbGF0Zm9ybSI6ImF0dGVzdC45NzExNTEwNC5jb20iLCJhdXRob3IiOiJHaXRIdWIgQ29waWxvdCIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiaG1hYy1zaGEyNTYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsInZhbHVlIjoiZTM0Yjg1NjYxZTc1NjlhM2VkZjlhMDJlZDFlZjY5ZDFhNzE1OGUxZjA4YjhhYjYzZTRkNGZmZDNmZTEzNzRkNyIsImRhdGFfdG9fc2lnbiI6IntcIm1vZGVsXCI6XCJjbGF1ZGUtb3B1cy00XCIsXCJ0aW1lc3RhbXBcIjpcIjIwMjYtMDQtMDRUMjA6MjQ6MTguODMyWlwiLFwiYXV0aG9yc2hpcF90eXBlXCI6XCJjb2xsYWJcIixcInJvbGVcIjpcImNvbGxhYm9yYXRlZFwifSJ9LCJzaWduZXIiOnsibmFtZSI6IkdpdEh1YiBDb3BpbG90IiwiaWQiOiJnaXRodWJjb3BpbG90In19
 function initializeAttestation() {
     const badge = document.getElementById('attestation-badge');
     if (!badge) return;
     const attestationMeta = document.querySelector('meta[name="attestation"]');
-    const attestationUrl = attestationMeta?.content || 'https://attest.97115104.com/s/gr2h16gk';
+    const attestationUrl = attestationMeta?.content || 'https://attest.97115104.com/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI2LTA0LTA0LTNmYWM4OCIsImNvbnRlbnRfbmFtZSI6ImxpbmtzLjk3MTE1MTA0LmNvbSIsIm1vZGVsIjoiY2xhdWRlLW9wdXMtNCIsInJvbGUiOiJjb2xsYWJvcmF0ZWQiLCJhdXRob3JzaGlwX3R5cGUiOiJjb2xsYWIiLCJ0aW1lc3RhbXAiOiIyMDI2LTA0LTA0VDIwOjI0OjE4LjgzMloiLCJwbGF0Zm9ybSI6ImF0dGVzdC45NzExNTEwNC5jb20iLCJhdXRob3IiOiJHaXRIdWIgQ29waWxvdCIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiaG1hYy1zaGEyNTYiLCJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsInZhbHVlIjoiZTM0Yjg1NjYxZTc1NjlhM2VkZjlhMDJlZDFlZjY5ZDFhNzE1OGUxZjA4YjhhYjYzZTRkNGZmZDNmZTEzNzRkNyIsImRhdGFfdG9fc2lnbiI6IntcIm1vZGVsXCI6XCJjbGF1ZGUtb3B1cy00XCIsXCJ0aW1lc3RhbXBcIjpcIjIwMjYtMDQtMDRUMjA6MjQ6MTguODMyWlwiLFwiYXV0aG9yc2hpcF90eXBlXCI6XCJjb2xsYWJcIixcInJvbGVcIjpcImNvbGxhYm9yYXRlZFwifSJ9LCJzaWduZXIiOnsibmFtZSI6IkdpdEh1YiBDb3BpbG90IiwiaWQiOiJnaXRodWJjb3BpbG90In19';
 
     badge.href = attestationUrl;
     badge.title = `Verified AI attestation - ${attestationUrl.replace('https://', '')}`;
