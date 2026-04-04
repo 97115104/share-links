@@ -849,13 +849,17 @@ if (prefersReducedMotion()) {
     document.head.appendChild(style);
 }
 
-// Attestation — hardcoded short URL generated 2026-04-03
-// ID: 2026-04-03-100a09 | role: collaborated | model: claude-sonnet-4-5
-// Verify: https://attest.97115104.com/s/hl8s4qkz
+// Attestation — short URL generated 2026-04-04
+// ID: 2026-04-04-3cdda7 | role: collaborated | model: gpt-5.3-codex
+// Verify: https://attest.97115104.com/s/gr2h16gk
 function initializeAttestation() {
     const badge = document.getElementById('attestation-badge');
     if (!badge) return;
-    badge.href = 'https://attest.97115104.com/s/hl8s4qkz';
+    const attestationMeta = document.querySelector('meta[name="attestation"]');
+    const attestationUrl = attestationMeta?.content || 'https://attest.97115104.com/s/gr2h16gk';
+
+    badge.href = attestationUrl;
+    badge.title = `Verified AI attestation - ${attestationUrl.replace('https://', '')}`;
     const label = badge.querySelector('span');
     if (label) label.textContent = 'AI';
 }
