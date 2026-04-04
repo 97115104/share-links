@@ -142,10 +142,6 @@ body {
   clip-path: var(--clip);
 }
 
-.scan-overlay {
-  display: none;
-}
-
 /* URL display */
 .url-display {
   display: flex;
