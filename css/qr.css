@@ -3,10 +3,10 @@
     --heading-color: #2d3748;
     --bg-color: #ffffff;
     --text-color: #333333;
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --shadow-color: rgba(0, 0, 0, 0.15);
-    --link-shadow: rgba(0, 0, 0, 0.08);
-    --border-color: rgba(0, 0, 0, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --link-shadow: rgba(0, 0, 0, 0.06);
+    --border-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Dark mode */
@@ -14,10 +14,10 @@
     --heading-color: #e2e8f0;
     --bg-color: #000000;
     --text-color: #e0e0e0;
-    --card-bg: rgba(30, 30, 30, 0.25);
-    --shadow-color: rgba(0, 0, 0, 0.5);
-    --link-shadow: rgba(0, 0, 0, 0.4);
-    --border-color: #333333;
+    --card-bg: rgba(20, 20, 25, 0.55);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --link-shadow: rgba(0, 0, 0, 0.3);
+    --border-color: rgba(255, 255, 255, 0.08);
     --muted-color: #a0a0a0;
 }
 
@@ -48,38 +48,8 @@ body {
     background: var(--bg-color);
 }
 
-/* Desktop subtle rainbow animation */
-@media (min-width: 769px) and (min-height: 800px) {
-    body {
-        background: linear-gradient(135deg, 
-            #ffffff 0%,   /* white base */
-            rgba(255, 179, 186, 0.03) 20%,  /* very very soft pink */
-            rgba(255, 223, 186, 0.03) 35%,  /* very very soft orange */
-            rgba(255, 255, 186, 0.03) 50%,  /* very very soft yellow */
-            rgba(186, 255, 201, 0.03) 65%,  /* very very soft green */
-            rgba(186, 225, 255, 0.03) 80%,  /* very very soft blue */
-            #ffffff 100%  /* back to white */
-        );
-        background-size: 300% 300%;
-        animation: subtleRainbow 35s ease-in-out infinite;
-    }
-}
-
-@keyframes subtleRainbow {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    33% {
-        background-position: 50% 100%;
-    }
-    66% {
-        background-position: 100% 0%;
-    }
-}
-
 /* iOS Safari and PWA specific fixes */
 @supports (-webkit-touch-callout: none) {
-    /* Target iOS Safari */
     body {
         background: var(--bg-color) !important;
         background-image: none !important;
@@ -87,7 +57,6 @@ body {
         animation: none !important;
     }
     
-    /* iOS PWA detection - proper theme colors */
     @media (display-mode: standalone), 
            (display-mode: fullscreen),
            (-webkit-standalone) {
@@ -98,11 +67,7 @@ body {
             overflow-y: auto !important;
         }
         
-        .bg-animation {
-            display: none !important;
-        }
-        
-        .floating-shape {
+        #field {
             display: none !important;
         }
     }
@@ -119,11 +84,7 @@ body {
         animation: none !important;
     }
     
-    .bg-animation {
-        display: none !important;
-    }
-    
-    .floating-shape {
+    #field {
         display: none !important;
     }
     
@@ -141,208 +102,20 @@ body {
         overflow-y: auto !important;
     }
     
-    .bg-animation {
+    #field {
         display: none !important;
-    }
-    
-    .floating-shape {
-        display: none !important;
-    }
-}
-
-/* Background animations */
-.bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    background: transparent;
-}
-
-
-.floating-shape {
-    position: absolute;
-    background: linear-gradient(45deg, 
-        rgba(255, 179, 186, 0.15),
-        rgba(255, 223, 186, 0.15),
-        rgba(255, 255, 186, 0.15),
-        rgba(186, 255, 201, 0.15),
-        rgba(186, 225, 255, 0.15),
-        rgba(201, 186, 255, 0.15)
-    );
-    backdrop-filter: blur(20px);
-    animation: complexFloat 15s ease-in-out infinite, colorShift 20s ease-in-out infinite;
-    opacity: 0.8;
-}
-
-:root[data-theme="dark"] .floating-shape {
-    display: none;
-}
-
-/* Starry night background for dark mode */
-[data-theme="dark"] .bg-animation::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        /* North Star - largest and brightest */
-        radial-gradient(4px 4px at 75% 15%, #fff, transparent),
-        radial-gradient(8px 8px at 75% 15%, rgba(255, 255, 255, 0.3), transparent),
-        /* Bright stars */
-        radial-gradient(3px 3px at 20% 30%, #ffd4a3, transparent),
-        radial-gradient(2.5px 2.5px at 60% 70%, #fff, transparent),
-        radial-gradient(3px 3px at 90% 60%, #e6f3ff, transparent),
-        /* Medium stars */
-        radial-gradient(2px 2px at 45% 85%, #fff, transparent),
-        radial-gradient(2px 2px at 80% 40%, #ffe7c7, transparent),
-        radial-gradient(1.5px 1.5px at 30% 80%, #fff, transparent),
-        radial-gradient(2px 2px at 10% 20%, #f0f8ff, transparent),
-        /* Small dim stars */
-        radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.8), transparent),
-        radial-gradient(0.5px 0.5px at 95% 90%, rgba(255, 255, 255, 0.6), transparent),
-        radial-gradient(1px 1px at 5% 5%, rgba(255, 255, 255, 0.7), transparent),
-        radial-gradient(0.5px 0.5px at 85% 85%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 25% 60%, rgba(255, 255, 255, 0.7), transparent),
-        radial-gradient(0.5px 0.5px at 65% 25%, rgba(255, 255, 255, 0.6), transparent);
-    background-size: 100% 100%;
-    background-position: 0% 0%;
-    opacity: 1;
-    animation: twinkle 4s ease-in-out infinite;
-}
-
-[data-theme="dark"] .bg-animation::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        /* More varied stars */
-        radial-gradient(1.5px 1.5px at 15% 25%, #fff9e6, transparent),
-        radial-gradient(2.5px 2.5px at 35% 45%, #fff, transparent),
-        radial-gradient(1px 1px at 55% 35%, rgba(255, 255, 255, 0.7), transparent),
-        radial-gradient(3px 3px at 85% 25%, #e8f0ff, transparent),
-        radial-gradient(0.5px 0.5px at 25% 75%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1.5px 1.5px at 70% 90%, #fff, transparent),
-        radial-gradient(2px 2px at 40% 10%, #fffaf0, transparent),
-        radial-gradient(1px 1px at 90% 80%, rgba(255, 255, 255, 0.6), transparent),
-        radial-gradient(0.5px 0.5px at 10% 70%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(1.5px 1.5px at 95% 50%, #fff, transparent);
-    background-size: 100% 100%;
-    background-position: 0% 0%;
-    opacity: 0.8;
-    animation: twinkle 6s ease-in-out infinite reverse;
-}
-
-/* Twinkle animation for stars */
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0.8;
-        filter: brightness(0.9);
-    }
-    50% {
-        opacity: 1;
-        filter: brightness(1.2);
-    }
-}
-
-.shape-1 {
-    width: 60px;
-    height: 60px;
-    top: 15%;
-    left: 10%;
-    animation-delay: 0s;
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-}
-
-.shape-2 {
-    width: 80px;
-    height: 80px;
-    top: 70%;
-    right: 15%;
-    animation-delay: 3s;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-}
-
-.shape-3 {
-    width: 40px;
-    height: 40px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 6s;
-    border-radius: 70% 30% 50% 50% / 60% 40% 60% 40%;
-}
-
-.shape-4 {
-    width: 70px;
-    height: 70px;
-    top: 30%;
-    right: 25%;
-    animation-delay: 1.5s;
-    border-radius: 40% 60% 30% 70% / 50% 60% 40% 50%;
-}
-
-.shape-5 {
-    width: 50px;
-    height: 50px;
-    top: 60%;
-    left: 5%;
-    animation-delay: 4.5s;
-    border-radius: 50% 50% 30% 70% / 40% 50% 50% 60%;
-}
-
-@keyframes complexFloat {
-    0%, 100% {
-        transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
-        opacity: 0.6;
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    }
-    25% {
-        transform: translateY(-20px) translateX(15px) rotate(90deg) scale(1.1);
-        opacity: 0.8;
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    }
-    50% {
-        transform: translateY(-10px) translateX(-10px) rotate(180deg) scale(0.9);
-        opacity: 0.7;
-        border-radius: 70% 30% 50% 50% / 60% 40% 60% 40%;
-    }
-    75% {
-        transform: translateY(5px) translateX(-15px) rotate(270deg) scale(1.05);
-        opacity: 0.9;
-        border-radius: 40% 60% 30% 70% / 50% 60% 40% 50%;
-    }
-}
-
-@keyframes colorShift {
-    0%, 100% {
-        background: linear-gradient(45deg, 
-            rgba(255, 179, 186, 0.15), rgba(255, 223, 186, 0.15), rgba(255, 255, 186, 0.15));
-    }
-    33% {
-        background: linear-gradient(45deg, 
-            rgba(186, 255, 201, 0.15), rgba(186, 225, 255, 0.15), rgba(201, 186, 255, 0.15));
-    }
-    66% {
-        background: linear-gradient(45deg, 
-            rgba(255, 223, 186, 0.15), rgba(255, 255, 186, 0.15), rgba(186, 255, 201, 0.15));
     }
 }
 
 /* Main container */
 .qr-container {
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
     padding: 2.5rem 2rem;
     border-radius: 0 16px 0 16px;
     box-shadow: 0 25px 50px var(--shadow-color);
+    border: 1px solid var(--border-color);
     text-align: center;
     width: 100%;
     max-width: 420px;
@@ -453,13 +226,15 @@ body {
     position: relative;
     padding: 15px;
     background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.9), 
-        rgba(248, 250, 255, 0.9)
+        rgba(255, 255, 255, 0.75), 
+        rgba(248, 250, 255, 0.75)
     );
     border-radius: 0 12px 0 12px;
     box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 #qrcode {
