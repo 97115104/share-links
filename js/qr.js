@@ -3,16 +3,9 @@
 
 // Initialize theme on page load with automatic detection
 function initializeTheme() {
-    // Determine the appropriate theme based on user preference, system preference, and time
+    // Determine the appropriate theme based on system/browser preference
     function getAutoTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        
-        // If user has manually set a theme, use that
-        if (savedTheme && savedTheme !== 'auto') {
-            return savedTheme;
-        }
-        
-        // Check system preference first
+        // Check system preference
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             return 'dark';
         }
@@ -27,97 +20,71 @@ function initializeTheme() {
     const currentTheme = getAutoTheme();
     document.documentElement.setAttribute('data-theme', currentTheme);
     
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        // Update aria-label based on current theme
-        const updateAriaLabel = (theme) => {
-            themeToggle.setAttribute('aria-label', 
-                theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-            );
-        };
-        
-        updateAriaLabel(currentTheme);
-        
-        // Listen for system theme changes
-        if (window.matchMedia) {
-            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            mediaQuery.addEventListener('change', (e) => {
-                // Only auto-update if user hasn't manually set a preference
-                const savedTheme = localStorage.getItem('theme');
-                if (!savedTheme || savedTheme === 'auto') {
-                    const newTheme = e.matches ? 'dark' : 'light';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    updateAriaLabel(newTheme);
-                    applyThemeTransition();
-                    regenerateQRCode();
-                }
-            });
-        }
-        
-        // Check time-based theme change every hour
-        setInterval(() => {
-            const savedTheme = localStorage.getItem('theme');
-            if (!savedTheme || savedTheme === 'auto') {
-                const newTheme = getAutoTheme();
-                const currentAppliedTheme = document.documentElement.getAttribute('data-theme');
-                if (newTheme !== currentAppliedTheme) {
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    updateAriaLabel(newTheme);
-                    applyThemeTransition();
-                    regenerateQRCode();
-                }
-            }
-        }, 3600000); // Check every hour
-        
-        // Apply smooth transition animation
-        function applyThemeTransition() {
-            document.body.classList.add('theme-transitioning');
-            setTimeout(() => {
-                document.body.classList.remove('theme-transitioning');
-            }, 300);
-        }
-        
-        // Regenerate QR code with new theme colors
-        function regenerateQRCode() {
-            const qrContainer = document.getElementById('qrcode');
-            if (qrContainer) {
-                qrContainer.innerHTML = '';
-                generateQRCode();
-            }
-        }
-        
-        // Set a specific theme and save preference
-        function setTheme(newTheme) {
+    // Listen for system theme changes
+    if (window.matchMedia) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', (e) => {
+            const newTheme = e.matches ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateAriaLabel(newTheme);
+            applyThemeTransition();
+            regenerateQRCode();
+        });
+    }
+    
+    // Check time-based theme change every hour
+    setInterval(() => {
+        const newTheme = getAutoTheme();
+        const currentAppliedTheme = document.documentElement.getAttribute('data-theme');
+        if (newTheme !== currentAppliedTheme) {
+            document.documentElement.setAttribute('data-theme', newTheme);
             applyThemeTransition();
             regenerateQRCode();
         }
-
-        themeToggle.addEventListener('click', function() {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-        });
-
-        // Keyboard shortcuts: L = light, D = dark
-        document.addEventListener('keydown', function(e) {
-            const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
-            if (tag === 'input' || tag === 'textarea') return;
-            if (e.key === 'l' || e.key === 'L') setTheme('light');
-            else if (e.key === 'd' || e.key === 'D') setTheme('dark');
-        });
+    }, 3600000); // Check every hour
+    
+    // Apply smooth transition animation
+    function applyThemeTransition() {
+        document.body.classList.add('theme-transitioning');
+        setTimeout(() => {
+            document.body.classList.remove('theme-transitioning');
+        }, 300);
     }
+    
+    // Regenerate QR code with new theme colors
+    function regenerateQRCode() {
+        const qrContainer = document.getElementById('qrcode');
+        if (qrContainer) {
+            qrContainer.innerHTML = '';
+            generateQRCode();
+        }
+    }
+    
+    // Set a specific theme
+    function setTheme(newTheme) {
+        document.documentElement.setAttribute('data-theme', newTheme);
+        applyThemeTransition();
+        regenerateQRCode();
+    }
+
+    // Keyboard shortcuts: L = light, D = dark
+    document.addEventListener('keydown', function(e) {
+        const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea') return;
+        if (e.key === 'l' || e.key === 'L') setTheme('light');
+        else if (e.key === 'd' || e.key === 'D') setTheme('dark');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize theme first
-    initializeTheme();
-    generateQRCode();
-    initializeInteractiveEffects();
-    initializeEasterEggs();
-    setupActionButtons();
-    initializeProfileRotation();
+    const inits = [
+        initializeTheme,
+        generateQRCode,
+        initializeInteractiveEffects,
+        initializeEasterEggs,
+        setupActionButtons,
+        initializeProfileRotation
+    ];
+    inits.forEach(fn => { try { fn(); } catch (e) { console.error(fn.name, e); } });
 });
 
 // Profile image rotation functionality

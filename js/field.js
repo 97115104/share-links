@@ -77,11 +77,11 @@
       float n = fbm(p * 2.0 + vec2(warp2 * 1.2, warp2 * 0.9 + scroll));
 
       // color palette — shifts between dark and light mode
-      vec3 base  = mix(vec3(0.06, 0.055, 0.07),  vec3(0.94, 0.93, 0.90),  u_light);
-      vec3 col1  = mix(vec3(0.12, 0.08, 0.18),   vec3(0.88, 0.85, 0.92),  u_light);
-      vec3 col2  = mix(vec3(0.08, 0.14, 0.20),   vec3(0.86, 0.90, 0.94),  u_light);
-      vec3 col3  = mix(vec3(0.22, 0.12, 0.06),   vec3(0.92, 0.86, 0.78),  u_light);
-      vec3 col4  = mix(vec3(0.04, 0.10, 0.12),   vec3(0.90, 0.94, 0.93),  u_light);
+      vec3 base  = mix(vec3(0.06, 0.055, 0.07),  vec3(0.92, 0.90, 0.95),  u_light);
+      vec3 col1  = mix(vec3(0.12, 0.08, 0.18),   vec3(0.88, 0.84, 0.94),  u_light);
+      vec3 col2  = mix(vec3(0.08, 0.14, 0.20),   vec3(0.85, 0.86, 0.95),  u_light);
+      vec3 col3  = mix(vec3(0.22, 0.12, 0.06),   vec3(0.90, 0.84, 0.88),  u_light);
+      vec3 col4  = mix(vec3(0.04, 0.10, 0.12),   vec3(0.88, 0.90, 0.96),  u_light);
 
       // layer the colors using noise thresholds
       vec3 color = base;

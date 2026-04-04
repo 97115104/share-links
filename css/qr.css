@@ -3,7 +3,8 @@
     --heading-color: #2d3748;
     --bg-color: #ffffff;
     --text-color: #333333;
-    --card-bg: rgba(255, 255, 255, 0.65);
+    --card-bg: rgba(255, 255, 255, 0.45);
+    --panel-bg: rgba(255, 255, 255, 0.18);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --link-shadow: rgba(0, 0, 0, 0.06);
     --border-color: rgba(0, 0, 0, 0.08);
@@ -14,7 +15,8 @@
     --heading-color: #e2e8f0;
     --bg-color: #000000;
     --text-color: #e0e0e0;
-    --card-bg: rgba(20, 20, 25, 0.55);
+    --card-bg: rgba(20, 20, 25, 0.45);
+    --panel-bg: rgba(25, 25, 30, 0.35);
     --shadow-color: rgba(0, 0, 0, 0.4);
     --link-shadow: rgba(0, 0, 0, 0.3);
     --border-color: rgba(255, 255, 255, 0.08);
@@ -180,6 +182,10 @@ body {
     animation: rotate 4s linear infinite;
 }
 
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
 
 .header-content {
@@ -225,10 +231,7 @@ body {
 .qr-frame {
     position: relative;
     padding: 15px;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.75), 
-        rgba(248, 250, 255, 0.75)
-    );
+    background: var(--panel-bg);
     border-radius: 0 12px 0 12px;
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.08),

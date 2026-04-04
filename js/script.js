@@ -2,32 +2,27 @@
 // Adding delightful interactions and animations with team.js style typing
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all interactive features
-    initializeTheme();
-    initializeAnimations();
-    initializeInteractiveElements();
-    initializeBioToggle();
-    initializeEasterEggs();
-    initializePerformanceOptimizations();
-    initializeBeverageAnimations();
-    initializeEmailModal();
-    initializeAttestation();
+    // Initialize all interactive features independently
+    // Each is wrapped so a failure in one doesn't break the others
+    const inits = [
+        initializeTheme,
+        initializeAnimations,
+        initializeInteractiveElements,
+        initializeBioToggle,
+        initializeEasterEggs,
+        initializePerformanceOptimizations,
+        initializeBeverageAnimations,
+        initializeEmailModal,
+        initializeAttestation
+    ];
+    inits.forEach(fn => { try { fn(); } catch (e) { console.error(fn.name, e); } });
 });
 
 // Theme toggle functionality with automatic detection
 function initializeTheme() {
-    const themeToggle = document.getElementById('theme-toggle');
-    
-    // Determine the appropriate theme based on user preference, system preference, and time
+    // Determine the appropriate theme based on system/browser preference
     function getAutoTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        
-        // If user has manually set a theme, use that
-        if (savedTheme && savedTheme !== 'auto') {
-            return savedTheme;
-        }
-        
-        // Check system preference first
+        // Check system preference
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             return 'dark';
         }
@@ -42,40 +37,23 @@ function initializeTheme() {
     const currentTheme = getAutoTheme();
     document.documentElement.setAttribute('data-theme', currentTheme);
     
-    // Update toggle button aria-label
-    const updateAriaLabel = (theme) => {
-        const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-        themeToggle.setAttribute('aria-label', label);
-    };
-    
-    updateAriaLabel(currentTheme);
-    
     // Listen for system theme changes
     if (window.matchMedia) {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         mediaQuery.addEventListener('change', (e) => {
-            // Only auto-update if user hasn't manually set a preference
-            const savedTheme = localStorage.getItem('theme');
-            if (!savedTheme || savedTheme === 'auto') {
-                const newTheme = e.matches ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', newTheme);
-                updateAriaLabel(newTheme);
-                applyThemeTransition();
-            }
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            applyThemeTransition();
         });
     }
     
     // Check time-based theme change every hour
     setInterval(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (!savedTheme || savedTheme === 'auto') {
-            const newTheme = getAutoTheme();
-            const currentAppliedTheme = document.documentElement.getAttribute('data-theme');
-            if (newTheme !== currentAppliedTheme) {
-                document.documentElement.setAttribute('data-theme', newTheme);
-                updateAriaLabel(newTheme);
-                applyThemeTransition();
-            }
+        const newTheme = getAutoTheme();
+        const currentAppliedTheme = document.documentElement.getAttribute('data-theme');
+        if (newTheme !== currentAppliedTheme) {
+            document.documentElement.setAttribute('data-theme', newTheme);
+            applyThemeTransition();
         }
     }, 3600000); // Check every hour
     
@@ -87,19 +65,11 @@ function initializeTheme() {
         }, 300);
     }
     
-    // Set a specific theme and save preference
+    // Set a specific theme
     function setTheme(newTheme) {
         document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateAriaLabel(newTheme);
         applyThemeTransition();
     }
-
-    // Toggle theme on button click
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-    });
 
     // Keyboard shortcuts: L = light, D = dark
     document.addEventListener('keydown', function(e) {
@@ -232,15 +202,17 @@ function initializeInteractiveElements() {
     // Enhanced hover effects for profile image
     const profileGlow = document.querySelector('.profile-glow');
     
-    profileImage.addEventListener('mouseenter', () => {
-        profileGlow.style.opacity = '1';
-        profileGlow.style.filter = 'blur(15px)';
-    });
-    
-    profileImage.addEventListener('mouseleave', () => {
-        profileGlow.style.opacity = '0.6';
-        profileGlow.style.filter = 'blur(20px)';
-    });
+    if (profileImage && profileGlow) {
+        profileImage.addEventListener('mouseenter', () => {
+            profileGlow.style.opacity = '1';
+            profileGlow.style.filter = 'blur(15px)';
+        });
+        
+        profileImage.addEventListener('mouseleave', () => {
+            profileGlow.style.opacity = '0.6';
+            profileGlow.style.filter = 'blur(20px)';
+        });
+    }
 
     // Interactive link cards with sound effects (visual feedback)
     const linkCards = document.querySelectorAll('.link-card');
@@ -257,11 +229,6 @@ function initializeInteractiveElements() {
         link.addEventListener('mouseleave', handleCompanyLeave);
     });
 
-    // Email link special behavior
-    const emailLink = document.querySelector('.email');
-    if (emailLink) {
-        emailLink.addEventListener('click', handleEmailClick);
-    }
 }
 
 function handleCardHover(e) {
@@ -307,23 +274,6 @@ function handleCompanyLeave(e) {
     
     // Reset icon transform
     icon.style.transform = '';
-}
-
-function handleEmailClick(e) {
-    e.preventDefault();
-    
-    // Open email modal
-    const modal = document.getElementById('email-modal');
-    if (modal) {
-        modal.classList.add('show');
-        
-        // Add click animation to email card
-        const emailCard = e.currentTarget;
-        emailCard.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            emailCard.style.transform = '';
-        }, 150);
-    }
 }
 
 function createRippleEffect(element, event) {
@@ -867,8 +817,18 @@ function initializeAttestation() {
 // Email modal functionality
 function initializeEmailModal() {
     const modal = document.getElementById('email-modal');
-    const closeButton = modal?.querySelector('.modal-close');
-    const copyButton = modal?.querySelector('.copy-button');
+    if (!modal) return;
+    const closeButton = modal.querySelector('.modal-close');
+    const copyButton = modal.querySelector('.copy-button');
+
+    // Open modal when email link card is clicked
+    const emailLink = document.querySelector('.link-card.email');
+    if (emailLink) {
+        emailLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+    }
     
     // Close modal functionality
     if (closeButton) {
